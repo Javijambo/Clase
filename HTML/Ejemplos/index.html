@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Tabla</h3>
+    <pre>
+&lt;table id="sample"  border="1px"&gt;
+    &lt;caption&gt;Tabla de Ejemplo&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;Nombre&lt;/th&gt;
+            &lt;th&gt;Ocupacion&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Benito&lt;/td&gt;
+            &lt;td&gt;Informatico&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;Vilcu&lt;/td&gt;
+            &lt;td&gt;Videojuegador&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr colspan="4"&gt;
+            &lt;th&gt; 2 Puestos&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+    </pre>
+    <table id="sample" border="1px">
+        <caption>Tabla de Ejemplo</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Ocupacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Benito</td>
+                <td>Informatico</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Vilcu</td>
+                <td>Videojuegador</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr colspan="4">
+                <th> 2 Puestos</th>
+            </tr>
+        </tfoot>
+
+    </table>
+
+
+    <h3>Lista ordenada:</h3>
+    <pre>
+&lt;ol&gt;
+    &lt;li&gt;Elemento Primero ordenado&lt;/li&gt;
+    &lt;li&gt;Elemento Segundo ordenado&lt;/li&gt;
+    &lt;li&gt;Elemento Tercero ordenado&lt;/li&gt;
+&lt;/ol&gt;
+    </pre>
+    <ol>
+        <li>Elemento Primero ordenado</li>
+        <li>Elemento Segundo ordenado</li>
+        <li>Elemento Tercero ordenado</li>
+    </ol>
+
+    <h3>Lista desordenada:</h3>
+    <pre>
+&lt;ul&gt;
+    &lt;li&gt;Elemento Primero ordenado&lt;/li&gt;
+    &lt;li&gt;Elemento Segundo ordenado&lt;/li&gt;
+    &lt;li&gt;Elemento Tercero ordenado&lt;/li&gt;
+&lt;/ul&gt;
+    </pre>
+    <ul>
+        <li>Elemento Primero ordenado</li>
+        <li>Elemento Segundo ordenado</li>
+        <li>Elemento Tercero ordenado</li>
+    </ul>
+
+    <h3>Lista con Opciones Predefinidas</h3>
+    <pre>
+&lt;input list="browsers"&gt;
+&lt;datalist id="browsers"&gt;
+    &lt;option value="Internet Explorer"&gt;&lt;/option&gt;
+    &lt;option value="Firefox"&gt;&lt;/option&gt;
+    &lt;option value="Chrome"&gt;&lt;/option&gt;
+    &lt;option value="Opera"&gt;&lt;/option&gt;
+    &lt;option value="Safari"&gt;&lt;/option&gt;
+&lt;/datalist&gt;
+&lt;/input&gt;
+            </pre>
+    <input list="browsers">
+    <datalist id="browsers">
+        <option value="Internet Explorer"></option>
+        <option value="Firefox"></option>
+        <option value="Chrome"></option>
+        <option value="Opera"></option>
+        <option value="Safari"></option>
+    </datalist>
+    </input>
+
+    <h3>Formulario</h3>
+    <pre>
+&lt;form name="formulario" id="form-1" action="form.php" method="post"&gt;
+    &lt;legend&gt; Formulario&lt;/legend&gt;
+    &lt;input type="text" name="usuario"&gt;
+&lt;/form&gt;
+    </pre>
+    <form name="formulario" id="form-1" action="form.php" method="post">
+        <fieldset>
+            <legend>Formulario</legend>
+            Nombre:<input type="text" name="usuario">
+        </fieldset>
+    </form>
+
+
+
+    <h3>Texto</h3>
+    <pre>
+&lt;input type="text" name="usuario"&gt;
+    </pre>
+    <input type="text" name="usuario">
+
+    <h3>Contraseña</h3>
+    <pre>
+&lt;input type="password" name="pass"&gt;
+    </pre>
+    <input type="password" name="pass">
+
+    <h3>Introducir Numero</h3>
+    <pre>
+&lt;input type="number" name="num"&gt;
+    </pre>
+    <input type="number" name="num">
+
+    <h3>URL</h3>
+    <pre>
+&lt;input type="url" name="url"&gt;
+    </pre>
+    <input type="url" name="rul">
+
+    <h3>Email</h3>
+    <pre>
+&lt;input type="email" name="mail"&gt;
+    </pre>
+    <input type="email" name="mail">
+
+    <h3>Telefono</h3>
+    <pre>
+&lt;input type="tel" name="telefono"&gt;
+    </pre>
+    <input type="tel" name="telefono">
+
+    <h3>TextArea</h3>
+    <pre>
+&lt;textarea name="txt" id="txt" cols="30" rows="10"&gt;Texto Relleno&lt;/textarea&gt;
+    </pre>
+    <textarea name="txt" id="txt" cols="30" rows="10">Texto Relleno</textarea>
+
+    <h3>Busqueda</h3>
+    <pre>
+&lt;input type="search" name="busqueda"&gt;
+    </pre>
+    <input type="search" name="buqueda">
+
+
+    <h3>Ficheros</h3>
+    <pre>
+&lt;input type="file" name="fichero"&gt;
+    </pre>
+    <input type="file" name="fichero">
+
+    <h3>Hora</h3>
+    <pre> 
+&lt;input type="time" name="fecha"&gt;
+    </pre>
+    <input type="time" name="fecha"></input>
+
+    <h3>Fecha a Elegir</h3>
+    <pre>
+&lt;input type="date" name="cumple"&gt;
+    </pre>
+    <input type="date" name="cumple"></input>
+
+    <h3>Boton Reset</h3>
+    <pre>
+&lt;input type="reset" name="reset"&gt;
+    </pre>
+    <input type="reset" name="resetear"></input>
+
+    <h3>Enviar</h3>
+    <pre>
+&lt;input type="submit" method="post" name="reset"&gt;
+    </pre>
+    <input type="submit" method="post" name="submit"></input>
+
+    <h3>"Rangos"</h3>
+    <pre>
+&lt;input type="range" name="rango" min="1" max="10"&gt;
+    </pre>
+    <input type="range" name="rango" min="1" max="10">
+
+    <h3>Color</h3>
+    <pre>
+&lt;input type="color" value="#ff0000"&gt;
+            </pre>
+    <input type="color" value="#ff0000">
+
+    <h3>Canvas</h3>
+    <pre>
+        &lt;canvas id="canvas1" width="180" height="80" style="border:1px solid #d3d3d3;"&gt;
+        &lt;script&gt;
+            var c = document.getElementById("canvas1");
+            var ctx = c.getContext("2d");
+            ctx.font = "30px Arial";
+            ctx.strokeText("Hello World", 10, 50);
+        &lt;/script&gt;
+        &lt;/canvas&gt;
+    </pre>
+
+    <canvas id="canvas1" width="180" height="80" style="border:1px solid #d3d3d3;">
+        <script>
+            var c = document.getElementById("canvas1");
+            var ctx = c.getContext("2d");
+            ctx.font = "30px Arial";
+            ctx.strokeText("Hello World", 10, 50);
+        </script>
+    </canvas>
+
+    <h3>Imagen</h3>
+    <pre>
+&lt;img src="wp.jpg" width="50%" height="50%" alt="Imagen de Prueba"&gt;
+</pre>
+    <img src="wp.jpg" width="50%" height="50%" alt="Imagen de Prueba">
+
+
+    <h3>Video</h3>
+    Codigo:
+    <pre>
+&lt;video src="marcianito.mp4" width="50%" height="50%" autoplay="autoplay" loop="loop" controls="controls"&gt;&lt;/video&lt;
+</pre>
+    <video src="marcianito.mp4" width="50%" height="50%" autoplay="autoplay" loop="loop" controls="controls"></video>
+
+    <h3>Audio</h3>
+    Codigo:
+    <pre>
+&lt;audio src="joji.mp3" autoplay="autoplay" loop="loop" controls="controls"&gt;&lt;/audio&gt;
+</pre>
+    <audio src="joji.mp3" autoplay="autoplay" loop="loop" controls="controls"></audio>
+
+</body>
+
+</html>

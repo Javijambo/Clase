@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var usuario = prompt("introduzca su nombre");
+
+        function primera() {
+            var texto = "Hola ";
+            texto2 = texto.concat(usuario);
+            segunda(texto2);
+        }
+
+        function segunda(param) {
+            var texto = ", que";
+            param2 = param.concat(texto);
+            tercera(param2);
+        }
+
+        function tercera(parametro) {
+            var texto = " tal?";
+            parametro2 = parametro.concat(texto);
+            alert(parametro2);
+        }
+        primera();
+    </script>
+</body>
+
+</html>

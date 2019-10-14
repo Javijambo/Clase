@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" onclick="escribir(this.value)" id="0" value="0">0</button>
+    <button type="button" onclick="escribir(this.value)" id="1" value="1">1</button>
+    <button type="button" onclick="escribir(this.value)" id="2" value="2">2</button>
+    <button type="button" onclick="escribir(this.value)" id="3" value="3">3</button>
+    <button type="button" onclick="escribir(this.value)" id="4" value="4">4</button>
+    <button type="button" onclick="escribir(this.value)" id="5" value="5">5</button>
+    <button type="button" onclick="escribir(this.value)" id="6" value="6">6</button>
+    <button type="button" onclick="escribir(this.value)" id="7" value="7">7</button>
+    <button type="button" onclick="escribir(this.value)" id="8" value="8">8</button>
+    <button type="button" onclick="escribir(this.value)" id="9" value="9">9</button>
+
+    <br>
+    <button type="button" id="suma" onclick="suma()" value="+">+</button>
+    <button type="button" id="resta" value="-">-</button>
+    <button type="button" id="multi" value="*">*</button>
+    <button type="button" id="divi" value="/">/</button>
+
+    <script>
+        var num2 = "";
+
+        function escribir(num) {
+            document.body.innerHTML += num;
+            numero = numero.concat(num);
+        }
+    </script>
+</body>
+
+</html>

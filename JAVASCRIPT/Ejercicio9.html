@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var libro1 = ["Javascript", "RA-MA", "Lopez"];
+        var libro2 = ["PHP", "Inforbooks", "Perez"];
+        var libro3 = ["HTML", "Anaya", "Fernandez"];
+
+        var libros = [libro1, libro2, libro3];
+
+        for (var i = 0; i < libros.length; i++) {
+            document.write("<br>");
+            for (var j = 0; j < libros[i].length; j++) {
+                document.write(libros[i][j], ", ");
+            }
+        }
+    </script>
+</body>
+
+</html>

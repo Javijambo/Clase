@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var array1 = new Array(3);
+        for (var i = 0; i < array1.length; i++) {
+            array1[i] = new Array(3);
+        }
+
+        var array1 = aray1;
+
+        var contador = -1;
+        var aux = 0;
+        for (var i = 0; i < array1.length; i++) {
+            document.write(array1[0][i]);
+        }
+        for (var j = array1.length - 1; j > 1; j--) {
+            for (var i = 1; i < array1.length; i++) {
+                document.write(array1[i][j]);
+            }
+        }
+        for (var j = array1.length - 2; j > -1; j--) {
+            document.write(array1[2][j]);
+        }
+
+        for (var i = 0; i < array1.length - 1; i++) {
+            document.write(array1[1][i]);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var usuario = prompt("Nombre Usuario:");
+        var contra = prompt("Contraseña:");
+        var matriz2 = ["1234", "4321", "5678", "8765"];
+        var matriz1 = ["Antonio", "Juan", "Jorge", "Javier"];
+
+        function compUsuario(user, matr) {
+            for (var i = 0; i < matr.length; i++) {
+                if (user == matr[i]) {
+                    return i;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        function compContras(pass, mat) {
+            for (var i = 0; i < mat.length; i++) {
+                if (pass == mat[i]) {
+                    return i;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        var valor1 = compUsuario(usuario, matriz1);
+        var valor2 = compContras(contra, matriz2);
+
+        if (valor1 == valor2 && valor2 !== false) {
+            alert("Datos Correctos");
+        } else {
+            alert("Intentelo de Nuevo");
+        }
+    </script>
+</body>
+
+</html>

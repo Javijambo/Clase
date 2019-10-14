@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Alvaro Mínguez-->
+<!--Calculadora-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- Minihoja de estilos para que quede mas bonito, debería estar en un .css pero para una linea me ahorro tiempo -->
+<style>
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <form action="#">
+        <h2>Calculadora</h2>
+        <p> Instrucciones: introduzca los numeros y el operador necesarios para realizar la operacion
+            <br>Si quiere seguir realizando operaciones haga click en "Continuar", le aparecerá el resultado
+            <br>de la primera operacion en el campo de texto primero, elija un operador y introduzca el
+            <br>siguiente numero a realizar la Operación. Repita las veces que elija.
+            <br>El botón limpiar vacía los campos / desbloquea el programa y el boton "Resultado Final"
+            <br>muestra cual es el resultado final tras las operaciones que hayamos realizado.
+        </p>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" name="numero1" id="numero1" width="8">
+                </td>
+                <td><select name="x" id="x" width="20">
+                        <option value="1" id="1">+</option>
+                        <option value="2" id="2">-</option>
+                        <option value="3" id="3">*</option>
+                        <option value="4" id="4">/</option>
+                    </select>
+                </td>
+                <td><input type="text" name="numero2" id="numero2"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="reset" onclick="unlock()" value="Limpiar/Resetear"></input>
+                </td>
+                <td>
+                    <input type="button" id="final" onclick="resultado()" value="Resultado Final"></input>
+                </td>
+                <td>
+                    <input type="button" onclick="recogerdatos();" id="continuar" value="Continuar"></input>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!--********************************JAVASCRIPT*****************************************-->
+    <script>
+        function recogerdatos() {
+            //Recoger valor1 
+            var valor1 = parseInt(document.getElementById("numero1").value, 10);
+            //Recoger valor2
+            var valor2 = parseInt(document.getElementById("numero2").value, 10);
+
+            //llamamos a la funcion operacion para que nos muestre el resultado en el primer campo
+            //  y nos bloquee el acceso al mismo para no cambiar el resultado si queremos continuar
+            document.getElementById("numero1").value = operacion(valor1, valor2);
+        }
+
+        //funcion para realizar la operación
+        function operacion(v1, v2) {
+            switch (document.getElementById('x').value) {
+                //suma
+                case "1":
+                    var resultado = v1 + v2;
+                    break;
+                    //resta
+                case "2":
+                    var resultado = v1 - v2;
+                    break;
+                    //multiplicacion
+                case "3":
+                    var resultado = v1 * v2;
+                    break;
+                    //division
+                case "4":
+                    var resultado = v1 / v2;
+                    break;
+            }
+            document.getElementById("numero1").disabled = true;
+            return resultado;
+        }
+
+        //para que al hacer clear de los campos se desbloquee el primer campo para reiniciar
+        function unlock() {
+            document.getElementById("numero1").disabled = false;
+            document.getElementById("numero2").disabled = false;
+            document.getElementById("continuar").disabled = false;
+            document.getElementById("final").disabled = false;
+        }
+
+        //realiza la ultima operación pero bloqueando los campos y el boton de continuar
+        function resultado() {
+            var valor1 = parseInt(document.getElementById("numero1").value, 10);
+            var valor2 = parseInt(document.getElementById("numero2").value, 10);
+
+            //los resetea a 0
+            document.getElementById("numero1").value = " ";
+            document.getElementById("numero2").value = " ";
+
+            //deshabilita los campos
+            document.getElementById("numero1").disabled = true;
+            document.getElementById("numero2").disabled = true;
+
+            //deshabilita el boton de continuar y resultado final
+            document.getElementById("continuar").disabled = true;
+            document.getElementById("final").disabled = true;
+
+            var resul = operacion(valor1, valor2);
+            alert("El resultado de todas las operaciones es: " + resul);
+
+        }
+    </script>
+
+</body>
+
+</html>
