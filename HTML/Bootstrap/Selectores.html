@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="selectores.css">
+    <title>Selectores</title>
+</head>
+
+<body>
+    <article class="containter">
+        <section>
+            <p>Los links salen el verde:
+                <pre>
+    a:link {
+    color: greenyellow
+    }
+        </pre>
+                <a href="##">Link sin visitar</a>
+            </p>
+            <p>
+                Los links visitados salen en rojo:
+                <pre>
+    a:visited {
+        color: red
+    }
+        </pre>
+                <a href="#">Link visitado (clickar)</a>
+            </p>
+        </section>
+        <section>
+            <ul>
+                <li>
+                    Universal(*): Sirve para seleccionar todos los elementos
+                </li>
+                <li>
+                    De etiqueta(X): Sirve para seleccionar todos los elementos de esa etiqueta, se pueden concatenar etiquetas poniendo una coma entre ellas
+                </li>
+                <li>
+                    Descendente (X X): Sirve para elegir etiquetas o elementos dentro de otras etiquetas.
+                </li>
+                <li>
+                    Selector de clase (.X): Sirve para elegir una etiqueta o elemento en particular añadiendole en la etiqueta class="nombreclase"
+                </li>
+                <li>
+                    Selectores de id (#X): Exactamente igual que antes pero con la clase id="nombreid"
+                </li>
+                <li>
+                    Selector de hijos (X>X): Similar al descendente pero se utiliza para seleccionar un elemento que es hijo directo de otro elemento
+                </li>
+                <li>
+                    Selector adyacente (X+X): El selector adyacente se emplea para seleccionar elementos que en el código HTML de la página se encuentran justo a continuación de otros elementos
+                </li>
+                <li>
+                    Los cuatro tipos de selectores de atributos son:
+                    <ul type="square">
+                        <li>[nombre_atributo], selecciona los elementos que tienen establecido el atributo llamado nombre_atributo, independientemente de su valor.</li>
+                        <li>[nombre_atributo=valor], selecciona los elementos que tienen establecido un atributo llamado nombre_atributo con un valor igual a valor.</li>
+                        <li>[nombre_atributo~=valor], selecciona los elementos que tienen establecido un atributo llamado nombre_atributo y al menos uno de los valores del atributo es valor.</li>
+                        <li>[nombre_atributo|=valor], selecciona los elementos que tienen establecido un atributo llamado nombre_atributo y cuyo valor es una serie de palabras separadas con guiones, pero que comienza con valor. Este tipo de selector sólo
+                            es útil para los atributos de tipo lang que indican el idioma del contenido del elemento.</li>
+                    </ul>
+                </li>
+
+                <li>
+                    Pseudoclases (X:pseudoclase): son una palabra clave añadida a los selectores, que especifica un estado especial del elemento a seleccionar.
+                    <ul type="square">
+                        <li>:link -Un enlace que no se ha visitado</li>
+                        <li>:visited -Un enlace que se ha visitado</li>
+                        <li>:active -Un elemento (como un botón) que el usuario está activando.</li>
+                        <li>:hover -Cuando "se pasa por encima" del elemento</li>
+                        <li>:focus -Cuando el usuario hace clic, toca un elemento o lo selecciona con la tecla "Tab" del teclado.</li>
+                        <li>:first-child -El primer elemento de un grupo de elementos.</li>
+                        <li>:last-child -El ultimo elemento de un grupo de elementos.</li>
+                        <li>:nth-child(n) -Uno o más elementos en función de su posición entre un grupo de hermanos.</li>
+                        <li>:nth-last-child(n) -Selecciona uno o más elementos en función de su posición entre un grupo de hermanos, contando desde el final.</li>
+                        <li>:nth-of-type(type) -Selecciona uno o más elementos de un tipo dado, en función de su posición entre un grupo de hermanos.</li>
+                        <li>:first-of-type(type) -Representa el primer elemento de su tipo entre un grupo de elementos hermanos.</li>
+                        <li>:last-of-type(type) -Representa el ultimo elemento de su tipo entre un grupo de elementos hermanos.</li>
+                        <li>:empty Representa cualquier elemento que no tenga hijos</li>
+                        <li>:target -Representa un elemento único (el elemento objetivo) con un id que coincide con el fragmento de la URL.</li>
+                        <li>:checked -Representa cualquier radio,checkbox u option que este seleccionado</li>
+                        <li>:enabled -Cualquier elemento habilitado.</li>
+                        <li>:disabled -Cualquier elemento deshabilitado.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </article>
+</body>
+
+</html>
