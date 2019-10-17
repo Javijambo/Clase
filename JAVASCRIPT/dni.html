@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+
+        function num() {
+            var n = document.getElementById("nums").value;
+            if (n == "") {
+                alert("Introduzca los digitos de su DNI");
+            } else {
+                var resto = n % 23;
+                var letra = letras[resto];
+                document.getElementById("dni").value = n + "-" + letra;
+            }
+        }
+    </script>
+    <form action="#">
+        DNI sin letra: <input type="number" id="nums" min="000000001" max="999999999">
+        <button onclick="num()">Obtener Letra</button> DNI completo: <input type="text" name="dni" id="dni" disabled="true">
+    </form>
+</body>
+
+</html>

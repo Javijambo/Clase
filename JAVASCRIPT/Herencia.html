@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //-------------------------------ANIMAL------------------------------------
+        function Animal(nombre, especie, npatas, cola) {
+            this.nombre = nombre;
+            this.especie = especie;
+            this.npatas = npatas;
+            this.cola = cola;
+
+            //------------GET ANIMAL----------------
+            this.getNombre = function getNombre() {
+                return this.nombre;
+            }
+            this.getEspecie = function getEspecie() {
+                return this.especie;
+            }
+            this.getNpatas = function getNpatas() {
+                return this.npatas;
+            }
+            this.getCola = function getCola() {
+                    return this.cola;
+                }
+                //------------SET ANIMAL----------------
+            this.setNombre = function setNombre(nombre2) {
+                this.nombre = nombre2;
+            }
+            this.setEspecie = function setEspecie(espe2) {
+                this.especie = espe2;
+            }
+            this.setNpatas = function setNpatas(patas2) {
+                this.npatas = patas;
+            }
+            this.setCola = function setCola(cola2) {
+                this.cola = cola2;
+            }
+        }
+
+        //-------------------------------VACA------------------------------------
+        function Vaca(nombre, especie, npatas, cola, litrosleche, tieneleche) {
+            this.base = Animal;
+            this.base(nombre, especie, npatas, cola);
+            this.litrosleche = parseInt(litrosleche);
+            this.tieneleche = tieneleche;
+
+            this.mostrarDatos = function mostrar() {
+                document.write(this.nombre + " " + this.especie + " " + this.npatas + " " + this.cola + " " + this.litrosleche + " " + this.tieneleche + "<br>");
+            }
+
+            this.ordenar = function ordenar(litros) {
+                this.litrosleche = this.litrosleche - parseInt(litros);
+            }
+        }
+
+
+        //------------------------------TIGRE------------------------------------
+        function Tigre(nombre, especie, npatas, cola, victimas) {
+            this.base = Animal;
+            this.base(nombre, especie, npatas, cola);
+            this.victimas = parseInt(victimas);
+            this.mostrarDatos = function mostrar() {
+                document.write(this.nombre + " " + this.especie + " " + this.npatas + " " + this.cola + " " + this.victimas + "<br>");
+            }
+
+            this.comerPersona = function comerPersona(v) {
+                this.victimas = this.victimas + parseInt(v);
+            }
+        }
+
+
+        var vaca1 = new Vaca("Linda ", "lechera", "4", "si", "100", "si");
+        vaca1.mostrarDatos();
+        vaca1.ordenar(10);
+        vaca1.mostrarDatos();
+
+        document.write("<br>");
+
+        var tigre1 = new Tigre("tigger", "muñeco", "4", "si", "100")
+        tigre1.mostrarDatos();
+        tigre1.comerPersona(10);
+        tigre1.mostrarDatos();
+    </script>
+</body>
+
+</html>
