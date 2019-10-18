@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Página sencilla</title>
+</head>
+ 
+<body>
+    <p>Esta página es <strong>muy sencilla</strong></p>
+    <p id="provisional">Este parrafo es provisional</p>
+    <script>
+    
+    // Crear nodo de tipo Element
+var parrafo = document.createElement("p");
+ 
+ // Crear nodo de tipo Text
+ var contenido = document.createTextNode("Hola Mundo!");
+  
+ // Añadir el nodo Text como hijo del nodo Element
+ parrafo.appendChild(contenido);
+  
+ // Añadir el nodo Element como hijo de la pagina
+ document.body.appendChild(parrafo);
+ 
+ 
+ //--------------
+ var parrafo = document.getElementById("provisional");
+ parrafo.parentNode.removeChild(parrafo);
+    </script>
+</body>
+</html>

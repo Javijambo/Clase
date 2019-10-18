@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hey</p>
+    <p>Hola</p>
+    <p>Hey</p>
+    <script>
+        var arr = document.getElementsByTagName("p");
+        for (var x = 0; x < arr.length; x++) {
+        arr[x].innerHTML = "Hola, ¿que tal?";
+        }
+
+        /*
+        Lo que tendremos después será:
+        <p>Hola, ¿que tal?</p>
+        <p>Hola, ¿que tal?</p>
+        <p>Hola, ¿que tal?</p>
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pruebas con objetos</title>
+    <script>
+    
+    function Star(constelacion,tipo,claseEspectral,magnitud){
+        this.nombre=constelacion;
+        this.tipo= tipo;
+        this.claseEspectral= claseEspectral;
+        this.magnitud=magnitud;
+    }
+</script>
+</head>
+<body>
+    <script >
+            var Polaris =new Star ("Polaris","Ursa Minor","Doble/Cefeida","F7",2.0);
+            console.log(Polaris.nombre);  
+            console.log(Polaris.claseEspectral);
+            console.log(Polaris.tipo);
+            console.log(Polaris.magnitud);
+        
+    </script>
+    </body>
+</html>

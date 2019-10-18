@@ -1,0 +1,11 @@
+ console.log("availTop:", window.screen.availTop);
+ console.log("availLeft:", window.screen.availLeft);
+ console.log("availHeight:", window.screen.availHeight);
+ console.log("availWidth:", window.screen.availWidth);
+ console.log("colorDepth:", window.screen.colorDepth);
+ console.log("height:", window.screen.height);
+ console.log("left:", window.screen.left);
+ console.log("orientation:", window.screen.orientation);
+ console.log("pixelDepth:", window.screen.pixelDepth);
+ console.log("top:", window.screen.top);
+ console.log("width:", window.screen.width);

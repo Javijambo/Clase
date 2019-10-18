@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pruebas con forms</title>
+
+    <script type="text/javascript">
+    function suma(num1,num2){
+      let suma=parseInt(num1)+parseInt(num2);
+      alert("Hola, la suma es igual a: "+ suma);
+    }
+
+    </script>
+  </head>
+  <body>
+    <form name="fdatos">
+      Escribe un número: <input type="text" size="10" name="numero1" />
+      Escribe otro número: <input type="text" size="10" name="numero2" />
+      <input type="button" value="Pulsa aquí" onclick="suma(numero1.value,numero2.value)"/>
+    </form>
+  </body>
+</html>

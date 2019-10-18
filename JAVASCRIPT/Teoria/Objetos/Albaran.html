@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        function Albaran(numero, nomcliente, tarea, presupuesto) {
+                this.numAlbaran=100;
+                this.nomCliente='Pepe';
+                this.descTarea = 'task1';
+                this.importePpto=1200;
+                }
+        function Factura(numFact, impFact,numero,nomcliente,tarea,presupuesto) {
+                Albaran.call(this, numero,nomcliente,tarea,presupuesto);
+                this.numFactura=numFact;
+                this.impFactura=impFact;
+            }
+            Factura.prototype = new Albaran();
+            Factura.prototype.constructor = Factura;
+
+            var factu1 = new Factura(512,1200,14,"Pepe","Mudanza",1100);
+            document.write (factu1.nomCliente);
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

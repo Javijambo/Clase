@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+        var opciones ="width= 750, height=350, scrollbar=yes";
+        var miVentana=window.open("http://tutrabajo.org","Tu Trabajo",opciones);
+
+        document.write("Path: "+location.pathname);
+        
+    </script>
+
+    <form>
+        <p>
+            <input type="button" value="Atrás" onclick="history.back()"/>
+            <input type="button" value="Adelante" onclick="history.forward()"/>
+        </p>
+    </form>
+</body>
+</html>

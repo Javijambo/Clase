@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion de productos mediante clases</title>
+    <script>
+            var mi_array = [];
+            function Producto(codigo, nombre, precio) {
+                this.codigo = codigo;
+                this.nombre = nombre;
+                this.precio = precio;
+                this.imprimeDatos = function() {
+                    var pintar = '';
+                    pintar = this.codigo + ' → ' + this.nombre + " - Pvp: " + this.precio + '<br />';
+                    return pintar;
+                }
+            }
+            mi_array[0] = new Producto(01, 'Moscatel', 5);
+            mi_array[1] = new Producto(02, 'Tarta', 12);
+            mi_array[2] = new Producto(03, 'Queso', 6);
+            for (let x of mi_array) {   // bucle que recorre todos los elementos del array
+                document.write(x.imprimeDatos() + '<br />');
+            }
+        </script>
+</head>
+<body>
+</body>
+</html>
