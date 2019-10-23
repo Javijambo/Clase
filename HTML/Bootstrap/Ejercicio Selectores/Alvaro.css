@@ -1,0 +1,35 @@
+.destacado {
+    color: orange;
+}
+
+a :first-child {
+    color: blue;
+}
+
+h2 {
+    color: blue;
+}
+
+table tr th {
+    color: orange;
+}
+
+table strong {
+    color: orange;
+}
+
+tfoot tr th {
+    color: red;
+}
+
+tbody tr:last-child th {
+    color: red;
+}
+
+strong:first-child {
+    color: red;
+}
+
+p:nth-last-of-type(2) {
+    color: greenyellow;
+}

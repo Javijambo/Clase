@@ -1,0 +1,88 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" id="stylesheet" href="Alvaro.css">
+
+    <title>Ejercicio</title>
+
+</head>
+<script>
+    function cambiar() {
+        var indice = document.getElementById('css');
+        var css = indice.options[indice.selectedIndex].value;
+        document.getElementById('stylesheet').href = css;
+    }
+</script>
+
+<body>
+    <select name="css" id="css">
+        <option value="Alvaro.css">Alvaro</option>
+    </select>
+
+    <button onclick="cambiar()">Cambiar estilo</button>
+    <h1 id="titulo">Loremipsum dolor sit amet</h1>
+
+
+    <!--+++++++++++++++++++++++++++++++-->
+    <p>Nullapretium. Sed tempus nunc vitae neque.
+        <strong>Suspendissegravida</strong>, metus a scelerisquesollicitudin, lacus velit ultriciesnisl, nonummytempusnequediamquisfelis.
+        <span class="destacado">Etiamsagittis tortor</span> sed arcusagittistristique.
+    </p>
+
+    <h2 id="subtitulo">Aliquamtincidunt, semegetvolutpat porta</h2>
+
+    <p>Vivamusvelit dui, placeratvel, feugiat in, ornare et, urna. <a href="#">Aeneanturpismetus, <em>aliquam non</em>,
+            tristique in</a>, pretiumvarius, sapien. Proin vitae nisi. Suspendisse<span class="especial">porttitorpurus
+            ac elit</span>. Suspendisseeleifendodio at dui. In in elitsedmetuspretiumelementum.
+    </p>
+
+    <table summary="Descripción de la tabla y su contenido">
+        <caption>Título de la tabla</caption>
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" class="especial">Títulocolumna 1</th>
+                <th scope="col" class="especial">Títulocolumna 2</th>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Títulocolumna 1</th>
+                <th scope="col">Títulocolumna 2</th>
+            </tr>
+        </tfoot>
+
+        <tbody>
+            <tr>
+                <th scope="row" class="especial">Títulofila 1</th>
+                <td>Donecpurusipsum</td>
+                <td>Curabitur<em>blandit</em></td>
+            </tr>
+            <tr>
+                <th scope="row">Títulofila 2</th>
+                <td>Donec<strong>purusipsum</strong></td>
+                <td>Curabiturblandit</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="adicional">
+        <p>Donecpurusipsum, posuere id, venenatis at, <span>placerat ac,
+                lorem</span>. Curabiturblandit, erossedgravidaaliquet, risusjusto portalorem, utmollislectustortor in orci. Pellentesquenecaugue.</p>
+
+        <p>Fuscenecfeliseudiampretiumadipiscing. <span id="especial">Nunc
+                elitelit, vehicula vulputate</span>, venenatis in, posuere id, lorem. Etiamsagittis, tellus in ultrices accumsan, diamnisifeugiat ante, eucongue magna mi non nisl.</p>
+
+        <p>Vivamusultricesaliquetaugue. <a href="#">Donecarcupede, pretium
+                vitae</a>, rutrumaliquet, tinciduntblandit, pede. Aliquam in nisi. Suspendissevolutpat. Nullafacilisi. Ut ullamcorpernisiquismi.
+        </p>
+    </div>
+
+</body>
+
+</html>
