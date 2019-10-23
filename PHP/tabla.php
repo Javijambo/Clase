@@ -5,8 +5,10 @@ $username = "alvaro";
 $password = "root"; 
 $database = "alvaro"; 
 $mysqli = new mysqli("localhost", $username, $password, $database); 
-$query = "SELECT * FROM tabla1";
- 
+$query = "SELECT * FROM tabla1 where DNI='".$dni."'";
+$dnis="SELECT dni FROM tabla1;";
+if(isset($_POST[])) 
+ $dni=$_POST['dni'];
  
 echo '<table border="1" cellspacing="2" cellpadding="2"> 
       <tr> 
