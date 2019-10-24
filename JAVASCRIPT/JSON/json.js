@@ -33,16 +33,16 @@ function init() {
         var indice = document.getElementById("vehiculos");
         var v = indice.options[indice.selectedIndex].value;
 
-        alert(v);
         var coche = JSON.parse(MustangJson);
         var avion = JSON.parse(AvionJson);
         var barco = JSON.parse(BarcoJson);
         if (v == coche.tipo) {
-            document.body.innerHTML += ("<li>Medio: " + MustangJson.medio + "</li> <li>Velocidad: " + coche.velocidad + "</li><li>Capacidad: " + MustangJson.capacidad + "</li></ul></h3> <br>");
+            document.body.innerHTML += ("<li>Medio: " + coche.medio + "</li> <li>Velocidad: " + coche.velocidad + "</li><li>Capacidad: " + coche.capacidad + "</li></ul></h3> <br>");
         } else if (v == barco.tipo) {
-            document.body.innerHTML += ("<li>Medio: " + BarcoJson.medio + "</li> <li>Velocidad: " + BarcoJson.velocidad + "</li><li>Capacidad: " + BarcoJson.capacidad + "</li></ul></h3> <br>");
+            document.body.innerHTML += ("<li>Medio: " + avion.medio + "</li> <li>Velocidad: " + avion.velocidad + "</li><li>Capacidad: " + avion.capacidad + "</li></ul></h3> <br>");
         } else if (v == avion.tipo) {
-            document.body.innerHTML += ("<li>Medio: " + AvionJson.medio + "</li> <li>Velocidad: " + AvionJson.velocidad + "</li><li>Capacidad: " + AvionJson.capacidad + "</li></ul></h3> <br>");
+            document.body.innerHTML += ("<li>Medio: " + barco.medio + "</li> <li>Velocidad: " + barco.velocidad + "</li><li>Capacidad: " + barco.capacidad + "</li></ul></h3> <br>");
         }
+
     }
 }
