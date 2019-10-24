@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <form action="#" oninput="validar()">
+        Nombre: <input type="text" id="nombre">
+        <br> Apellidos: <input type="text" id="Apellidos">
+        <br> N_Factura: <input type="text" id="N_Factura">
+        <br> Email: <input type="text" id="Email">
+        <br> Importe: <input type="text" id="Importe">
+        <br> Fecha: <input type="date" id="fecha"> <br>
+        <input type="submit" id="boton">
+    </form>
+
+    <script>
+        function validar() {
+            var name = document.getElementById("nombre").value;
+            var surname = document.getElementById("Apellidos").value;
+            var bill = document.getElementById("N_Factura").value;
+            var email = document.getElementById("Email").value;
+            var amount = document.getElementById("Importe").value;
+
+            var patronN = /[a-z]/gi;
+            var patronA = /[a-z]/gi;
+            var patronF = /^\d{6}$/;
+            var patronE = /^[a-zA-Z0-9-._]+@+[a-zA-Z0-9-._]+\..{2,3}$/;
+            var pamount = /^\d[,]\d{0,2}$/;
+
+
+            if (patronN.test(name)) {
+                alert("introduzca un nombre correcto");
+            }
+
+            if (patronA.test(surname)) {
+                alert("introduzca un apellido correcto");
+            }
+            if (patronF.test(bill)) {
+                alert("introduzca una factura correcto");
+            }
+
+            if (patronN.test(name)) {
+                alert("introduzca un nombre correcto");
+            }
+
+            if (patronN.test(name)) {
+                alert("introduzca un nombre correcto");
+            }
+            if (patronN.test(name)) {
+                alert("introduzca un nombre correcto");
+            }
+
+            if (patronN.test(name)) {
+                alert("introduzca un nombre correcto");
+            }
+
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>
