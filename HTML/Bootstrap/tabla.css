@@ -1,0 +1,25 @@
+body {
+    color: #ffffff;
+}
+
+.bg-info {
+    background-color: #17a2b8;
+}
+
+.bg-success {
+    background-color: #28a745;
+}
+
+table {
+    background-color: #343a40;
+    border-collapse: collapse;
+}
+
+tr:hover {
+    background-color: #6c757d;
+}
+
+td,
+th {
+    padding: 10px;
+}
