@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Drag and drop</title>
+</head>
+<body>
+<style>
+    #objetivo {
+        width: 633px;
+        height: 207px;
+        border: thin solid black;
+        background-color: #ff3;
+        position: absolute;
+        top: 210px;
+    }
+    #lista {
+        width: 207px;
+        height: 207px;
+        border: thin solid black;
+        position: absolute;
+        top: 210px;
+        left: 650px;
+    }
+    img {
+        cursor: move;
+        padding: 10px;
+        -moz-user-select: none;
+    }
+</style>
+
+<img src="mariposa.gif" draggable="true" id="mariposa" ondragstart="iniciaArrastre(event)" />
+<img src="mariquita.gif" draggable="true" id="mariquita" ondragstart="iniciaArrastre(event)" />
+<img src="abeja.gif" draggable="true" id="abeja" ondragstart="iniciaArrastre(event)" />
+<div id="objetivo" ondragover="DragOver(event)" ondrop="Drop(event)" ondragenter="Enter(event)" ondragleave="Leave(event)">Arrastra aquí la imagen</div>
+<div id="lista">Orden de arrastre:</div>
+
+<script>
+    let imagen;
+    let objetivo;
+    function iniciaArrastre(event) {
+        imagen = event.target.getAttribute('id');
+    }
+    function DragOver(event) {
+        event.preventDefault();
+    }
+    function Enter(event) {
+        event.target.style.background = '#ff9';
+    }
+    function Leave(event) {
+        event.target.style.background = '#ff3';
+    }
+    function Drop(event) {
+        if (event.target.innerHTML == 'Arrastra aquí la\'imagen') {
+            event.target.innerHTML = '';
+        }
+        event.target.appendChild(document.getElementById(imagen));
+        document.getElementById(imagen).draggable = false;
+        document.getElementById('lista').innerHTML = 
+        document.getElementById('lista').innerHTML + "<br>" + imagen;
+        event.target.style.background = '#ff3';
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+</script>
+
+</body>
+</html>
