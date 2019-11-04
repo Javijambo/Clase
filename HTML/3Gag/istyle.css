@@ -6,32 +6,104 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 25%;
-    background-color: #f1f1f1;
+    width: 20%;
+    background-color: #111;
     position: fixed;
     height: 100%;
     overflow: auto;
+    z-index: 1;
+    top: 0;
 }
 
 li a {
     display: block;
-    color: #000;
     padding: 8px 16px;
     text-decoration: none;
+    color: #818181;
+    font-size: 35px;
 }
 
 li a.active {
-    background-color: #4CAF50;
+    background-color: rgb(177, 0, 184);
     color: white;
 }
 
 li a:hover:not(.active) {
-    background-color: #555;
-    color: white;
+    color: rgb(177, 0, 184);
 }
 
 .todo {
-    margin-left: 25%;
+    margin-left: 22%;
     padding: 1px 16px;
-    height: 1000px;
+    margin-right: 22%;
+}
+
+h1 {
+    font-size: large;
+    color: white;
+}
+
+.card {
+    background-color: rgb(177, 0, 184);
+}
+
+.texto {
+    font-size: 30px;
+}
+
+
+/* The sidebar menu */
+
+.sidenav {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+
+/* The navigation menu links */
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    font-size: 35px;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav a:hover {
+    color: rgb(177, 0, 184);
+}
+
+
+/* Style page content */
+
+.main {
+    margin-left: 160px;
+    padding: 0px 10px;
+}
+
+.titulo {
+    color: rgb(177, 0, 184);
+    padding-top: 20px;
+}
+
+.banner {
+    top: 0;
+    width: 100%;
+    right: 25%;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    color: violet;
 }
