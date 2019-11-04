@@ -15,7 +15,7 @@
                 "command": "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
             },
             "args": [
-                "localhost/${relativeFile}"
+                "localhost/${workspaceFolderBasename}/${relativeFile}"
             ],
             "presentation": {
                 "reveal": "never"
@@ -29,12 +29,16 @@
                 "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
             },
             "args": [
-                "localhost/${relativeFile}"
+                "localhost/${workspaceFolderBasename}/${relativeFile}"
             ],
             "presentation": {
                 "reveal": "never"
             },
-            "problemMatcher": []
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
