@@ -1,0 +1,90 @@
+<!doctype html>
+<title>Music Artists</title>
+<script>
+function displayArtists() {
+
+  // Our JSON data
+  var data = 
+    {
+      "artists" : [
+        {
+          "artistname" : "Deep Purple",
+          "formed" : "1968",
+          "albums" : [
+            {
+              "albumname" : "Machine Head",
+              "year" : "1972",
+              "genre" : "Rock"
+            }, 
+            {
+              "albumname" : "Stormbringer",
+              "year" : "1974",
+              "genre" : "Rock"
+            }
+          ]
+        },
+        {
+          "artistname" : "Joe Satriani",
+          "born" : "1956",
+          "albums" : [
+            {
+              "albumname" : "Flying in a Blue Dream",
+              "year" : "1989",
+              "genre" : "Instrumental Rock"
+            }, 
+            {
+              "albumname" : "The Extremist",
+              "year" : "1992",
+              "genre" : "Instrumental Rock"
+            },
+            {
+              "albumname" : "Shockwave Supernova",
+              "year" : "2015",
+              "genre" : "Instrumental Rock"
+            }
+          ]
+        },
+        {
+          "artistname" : "Snoop Dogg",
+          "born" : "1971",
+          "albums" : [
+            {
+              "albumname" : "Tha Doggfather",
+              "year" : "1996",
+              "genre" : "Gangsta Rap"
+            }, 
+            {
+              "albumname" : "Snoopified",
+              "year" : "2005",
+              "genre" : "Gangsta Rap"
+            }
+          ]
+        }
+      ]
+    }
+    
+    // Put the data into a variable and format with HTML tags
+    var output = "<h1>Músicos</h1>";
+    
+    // Loop through the artists
+    for (var i in data.artists) {
+        output += "<h2>" + data.artists[i].artistname + "</h2>"; 
+        output += "<ul>";
+        
+        // Loop through the albums for the current artist
+        for (var j in data.artists[i].albums) {
+          output += "<li>" + data.artists[i].albums[j].albumname;
+      }
+      output += "</ul>";
+    }
+
+    // Output the data to the "artistlist" element
+    document.getElementById("artistlist").innerHTML=output;
+}    
+
+// Load the above function when the window loads
+window.onload = displayArtists;
+</script>
+
+<!-- The output appears here -->
+<div id="artistlist"></div>

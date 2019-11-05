@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>               
+                let cadena = 'Escribo 3 numeros 123'
+                let patron = /\d+/y;
+                patron.lastIndex = 8;
+                let prueba = cadena.match(patron);
+                console.log(`prueba: ${prueba}`);
+                console.log(`lastIndex: ${patron.lastIndex}`);        
+            </script>
+</body>
+</html>

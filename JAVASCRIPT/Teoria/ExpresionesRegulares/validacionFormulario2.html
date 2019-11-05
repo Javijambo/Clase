@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://example.com" method="POST">
+        <fieldset>
+        <legend>Autenticación</legend>
+        <label>Usuario:<input type="text" name="usuario" minlength="4" maxlength="8" required/></label><br>
+        <label>Correo:<input type="email" name="correo" required/></label><br>
+        <label>Pin:<input type="number" name="pin" min="0" max="9999" required/></label><br>
+        <input type="submit" />
+        </fieldset>
+        </form>
+</body>
+</html>

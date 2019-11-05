@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form>
+                <label for='texto'>Una frase:</label>
+                <input type="text" id='texto' style="width: 300px;">
+                <button type="button" onclick='encuentraPalabras()' id="boton">Separar</button>
+        </form>
+        <p id="output"></p>
+        <script>
+                function encuentraPalabras() {
+                    let texto = document.getElementById('texto').value;
+                    //let patron = /\s*[a-zA-Z]+\s*/g;
+                    let patron_minus = /\s*[a-z]+\s*/gi; //se añade el flag /i ('case insensitive') para ignorar mayúsculas.
+                    let palabras = texto.match(patron_minus);
+                    console.log(palabras);
+                    let textoaEscribir = '';
+                    if (palabras) {
+                        palabras.forEach(function(elemento, indice) {
+                            textoaEscribir = `${textoaEscribir} ${indice+1}: ${elemento.trim()}<br>`; //${textoaEscribir} son plantillas de texto. Se usa el acento ` (tecla circunflejo)
+                            console.log(textoaEscribir);
+                        })
+                        document.getElementById('output').innerHTML = `El texto insertado contiene ${palabras.length} palabras: <br> ${textoaEscribir}`;
+                    } else {
+                        document.getElementById('output').innerHTML = "El texto insertado no contiene ninguna palabra";
+                    }
+                    
+                }
+        </script>
+</body>
+</html>

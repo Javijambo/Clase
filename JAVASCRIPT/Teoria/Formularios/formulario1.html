@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form id="miFormulario">
+        <input type="date" id="fecha">
+        <button type="button" onclick="leeFormulario()" id="boton">Enviar</button>
+    </form>
+    <p id="output"></p>
+   
+        <script>
+       // const hoy = new Date();
+            function leeFormulario(){
+                document.getElementById("output").innerHTML=`La fecha seleccionada es: 
+                ${document.getElementById('fecha').value}`;
+            }
+       /* const año = hoy.getFullYear(); // CON ESTE BLOQUE DE CODIGO CARGAMOS POR DEFECTO LA FECHA ACTUAL EN EL CAMPO DATE
+        const mes = hoy.getMonth() + 1;
+        const día = hoy.getDate();
+        const fechaActual = `${año}-${mes}-${día}`;
+        document.getElementById("fecha").value = fechaActual;
+        */
+        </script>
+        
+       
+</body>
+</html>

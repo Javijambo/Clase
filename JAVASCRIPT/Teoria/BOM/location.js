@@ -21,4 +21,4 @@ var enlace = document.createElement('a');
 
 
  // método Replace
- //document.location.replace('https://leanpub.com/javascript-inspirate'); // Recarga página nueva, sustituyendo la actual
+ //document.location.replace('http://www.google.es'); // Recarga página nueva, sustituyendo la actual

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function setCookie(name,value,expires,path,domain,secure){
+        document.cookie=name+"="+escape(value)+((expires)?"; expires="+expires.toGMTString():"")+
+        ((path)?"; path="+path:"")+
+        ((domain)?"; domain="+domain:"")+
+        ((secure)?"; secure":"");
+        var miCookie=document.cookie;
+        alert(miCookie);
+    }
+
+    function getCookie(name){
+        var nombre=name+"=";
+        var dc=document.cookie;
+        if (dc.length>0){
+            begin=dc.indexOf(cname);
+            if (begin != -1){
+                begin+=nombre.length;
+                end=dc.indexOf(";",begin);
+                if(end==-1)end =dc.length;
+                return unescape(dc.substring(begin,end));
+            }
+        }
+        return null;
+    }
+    setCookie("Flores","10","","","",false);
+    </script>
+</body>
+</html>

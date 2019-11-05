@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function eventHandler(event){
+        var evento = event||window.event;
+
+
+        console.log("-------------------------------------")
+        console.log("Type: "+evento.type);
+        console.log("Bubbles: "+evento.bubbles);
+        console.log("Cancelable: "+ evento.cancelable);
+        console.log("CurrentTarget: "+ evento.currentTarget);
+        console.log("DefaultPrevented: "+ evento.defaultPrevented);
+        console.log("EventPhase: "+ evento.eventPhase);
+        console.log("Target: "+ evento.target);
+        console.log("TimeLStamp:"+ evento.timeStamp);
+        console.log("IsTrusted: "+ evento.isTrusted);
+        console.log("=======================================")
+    }
+    document.addEventListener('click',function (evento){
+        eventHandler(evento);
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+<p id="original"></p>
+<p id="modificada"></p>
+<script>
+    
+    var frase = 'Javascript es un gran lenguaje';
+    console.log(frase);
+    document.getElementById("original").innerHTML=frase;
+    var frasemodificada= frase.replace(/[aeou]/g, 'i');   // 'Jiviscript is in grin lingiiji'
+    document.getElementById("modificada").innerHTML=frasemodificada;
+    console.log(frasemodificada);
+    </script>
+</body>
+</html>

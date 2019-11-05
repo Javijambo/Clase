@@ -1,0 +1,23 @@
+{
+    "application" :
+    {
+    "users" : [
+    {
+    "name" : "Joan Perelló",
+    "id" : 34532,
+    "email" : "jperello@domain.net"
+    }, {
+    } ],
+    "administrators" : [ 
+    {
+    "name" : "Andrea Álvarez",
+    "id" : 43229,
+    "email" : "aalvarez@domain.net"
+    },
+    {
+    "name" : "Enrique Fernández", 
+    "id" : 41321,
+    "email" : "efernandez@domain.net"
+    } ]
+    }
+}

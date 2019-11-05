@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventos sobre el código HTML</title>
+    <script>
+            function cambiarFondo(){
+                var color='rgb('+ Math.floor((Math.random()*255))+',';
+                color +=Math.floor((Math.random()*255))+',';
+                color +=Math.floor((Math.random()*255))+')';
+                document.body.style.backgroundColor=color;
+                console.info("Nuevo color: "+color);
+            }
+        </script>
+</head>
+<body onload="cambiarFondo()">    
+</body>
+</html>

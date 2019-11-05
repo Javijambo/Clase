@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Llamar y rellenar cajetines de texto">
+        <meta name="author" content="Francesc Ricart">
+        <title>Ejercicio javascript - Instrucciones básicas DOM</title>
+    </head>
+    <body>
+    
+    <form action="#saludo">
+        <label for="nombre">Nombre:</label><input type="text" id="nombre">
+        <label for="apellido">Apellido:</label><input type="text" id="apellido">
+        <input type="submit" value="Rellenar datos" onclick="enviarSaludo()">     
+    </form>
+    
+    <p id="saludo"></p>
+    
+    <script>
+    
+        function enviarSaludo(){
+            var nombre = document.getElementById("nombre");
+            var apellido = document.getElementById("apellido");
+            var saludo = document.querySelector("#saludo");
+            var texto = "hola " + nombre.value + " "+ apellido.value +", gracias por rellenar el formulario";
+            
+            saludo.innerHTML= texto;
+        }
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<application>
+   <users>
+<user>
+<name>Joan Perelló</name> <id>34532</id> <email>jperello@domain.net</email>
+      </user>
+      <user>
+<name>Silvia Pons</name> <id>12598</id> <email>silpons@domain.net</email>
+      </user>
+   </users>
+   <administrators>
+      <admin>
+        <name>Andrea Álvarez</name> <id>43229</id> <email>aalvarez@domain.net</email>
+      </admin>
+      <admin>
+        <name>Enrique Fernández</name> <id>41321</id> <email>efernandez@domain.net</email>
+      </admin>
+   </administrators>
+</application>

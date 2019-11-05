@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form>
+          <input type="text" id='texto'>
+          <button type="button" onclick='contieneNumeros()' id="boton">Comprueba si el 
+          texto insertado contiene números</button>
+        </form>
+        <p id="output"></p>
+        <script>
+          function contieneNumeros() {
+            let texto = document.getElementById('texto').value;
+            let numeroPatron = /\d+/;
+            let contieneNumeros = numeroPatron.test(texto); // PROBAMOS LA EXPRESION REGULAR
+            contieneNumeros ? document.getElementById('output').innerHTML = "El texto insertado contiene números" : document.getElementById('output').innerHTML = "El texto insertado NO contiene números";
+          }
+        </script>
+      
+</body>
+      
+</html>

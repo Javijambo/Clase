@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form>
+                <div style="float:left;">
+                    <textarea id='texto1' cols=50 rows=20 float=left></textarea>
+                    <button type="button" onclick='EliminaEspacios()' id=“botón”>Elimina espacios</button>
+                    <button type="button" onclick='borrarTodo()' id="botón2">Borrar todo</button>
+                    <textarea id='texto2' cols=50 rows=20 float=left></textarea>
+                </div>
+            </form>
+            <p id="output"></p>
+            <script>
+                let texto = 'pero ¿por que $ veo todas estas letras%% raras?';
+                document.getElementById('texto1').value = texto;
+                function EliminaEspacios() {
+                    texto = document.getElementById('texto1').value;
+                    
+                   // let patron = /[!£$¿?%&]/g;
+                    let patron = /\W/g; //con esta notación se eliminan también los espacios
+                    let textoSinEspacios = texto.replace(patron, '');
+                    document.getElementById('texto2').value = textoSinEspacios;
+                }
+                function borrarTodo() {
+                    document.getElementById('texto2').value = '';
+                    document.getElementById('texto1').value = '';
+                }
+            </script>
+</body>
+</html>

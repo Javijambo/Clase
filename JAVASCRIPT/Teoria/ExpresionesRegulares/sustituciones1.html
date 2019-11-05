@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  
+        <script>
+          let patron = /(\w+)\s(\w+)\s(\w+)/; //este patrón identifica grupos de caracteres (\w+ -> mas de 1 caracter)
+                                       // no especiales seguidos de un espacio (\s) y despues de otros caracteres no especiales (\w+)
+          let texto = 'Nombre: Jordi Pozo Cata 2019 ';
+          let resultado = texto.match(patron);   
+          //let nuevotexto= texto.replace(patron,'$2, $1');
+          let segundotexto= texto.replace(patron, '$1 \nApellido: $2 \nApellido: $3 \nAño:');
+          console.log(resultado);
+        // console.log(nuevotexto);
+         console.log(segundotexto);
+        </script>
+</body>
+</html>

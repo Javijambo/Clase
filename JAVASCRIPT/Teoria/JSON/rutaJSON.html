@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="file" allow="text/*" />
+        
+ <script>
+const input = document.querySelector('input')
+//filereader
+input.addEventListener('change',function(){
+    const reader = new FileReader()
+
+reader.onload = function(event) {
+  const text = reader.result
+  console.log(text)
+}
+
+reader.onerror = function(e) {
+  console.error(e)
+}
+//console.log(input.files[0]);
+reader.readAsText(input.files[0])
+    var data1=JSON.stringify(input.files[0]);
+    var data=JSON.parse(data1);
+    console.log(data);
+});
+
+
+
+</script>
+</body>
+</html>

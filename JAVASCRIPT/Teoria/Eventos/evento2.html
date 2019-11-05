@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+            function cambiarFondo(){
+                var color='rgb('+ Math.floor((Math.random()*255))+',';
+                color +=Math.floor((Math.random()*255))+',';
+                color +=Math.floor((Math.random()*255))+')';
+                document.body.style.backgroundColor=color;
+                console.info("Nuevo color: "+color);
+            }
+    </script>
+</head>
+<body>
+    <button id="btn1">Click aquí</button>
+        <script>
+                document.getElementById("btn1").addEventListener('click', cambiarFondo);
+    //            document.getElementById("btn1").removeEventListener('click', cambiarFondo); //eliminar evento
+        </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+        <style>
+            .colorPicker {
+                width: 50px;
+                height: 50px;
+                float: left;
+                margin: 5px;
+                border-style: solid;
+            }
+        </style>
+        <div class="colorPicker" id="negro" style="background-color:black"></div>
+        <div class="colorPicker" id="blanco" style="background-color:white"></div>
+    
+    
+        <div style="clear:both;"></div>
+        <div id="texto" style="width:400px; height: 400px; border-style:solid">
+            <p>Lorem ipsum dolor sit amet, quod cibo no has, pro ne elaboraret neglegentur, mea malis labitur ne. Eam ad ubique
+                accusata sensibus, nec mazim partem forensibus te, ut vis everti eloquentiam. Semper eleifend recteque no vix,
+                pro an vidisse expetendis, usu delectus corrumpit et. At cum sint velit dictas, ne vel tantas vidisse molestie,
+                habemus dolores sed an.
+            </p>
+            <p>
+                Et usu affert civibus contentiones, eu magna lorem latine vix. Sed id modo omnium impetus. Ea ius rebum primis virtute. Elitr
+                tamquam dolorum ut vim. In putent integre assentior vim.
+            </p>
+            <p>
+                Amet invidunt mei an. Ius no eius ancillae, ei prompta dissentiunt eum. Nobis nominavi theophrastus vel ut. Eam an errem
+                adipiscing.
+            </p>
+        </div>
+        <script>
+            function configuraFondo(colorFondo, colorTexto) {
+                document.getElementById("texto").style.backgroundColor = colorFondo;
+                document.getElementById("texto").style.color = colorTexto;
+            }
+            function configuraRaton(puntero) {
+                document.body.style.cursor = puntero;
+            }
+    
+            document.getElementById("negro").addEventListener('click', function () {
+                configuraFondo('black', 'white');
+            });
+            document.getElementById("blanco").addEventListener('click', function () {
+                configuraFondo('white','black');
+            })
+            document.getElementById("negro").addEventListener('mouseover', function () {
+                configuraRaton('pointer');
+            });
+            document.getElementById("blanco").addEventListener('mouseover', function () {
+                configuraRaton('pointer');
+            })
+            document.getElementById("negro").addEventListener('mouseout', function () {
+                configuraRaton('auto');
+            });
+            document.getElementById("blanco").addEventListener('mouseout', function () {
+                configuraRaton('auto');
+            })
+    
+        </script>
+    </body>
+    
+</html>

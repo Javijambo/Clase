@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+			td {
+				width: 40px;
+				height: 40px;
+			}
+		</style>
+</head>
+<body>
+    	
+                <h1>COORDENADAS</h1>
+                <hr />
+                <table border="3">
+                    <tbody>
+                        <tr><td>A</td><td>B</td><td>C</td></tr>
+                        <tr><td>D</td><td>E</td><td>F</td></tr>
+                        <tr><td>G</td><td>H</td><td>I</td></tr>
+                        <tr><td>J</td><td>K</td><td>L</td></tr>
+                        <tr><td>M</td><td>N</td><td>O</td></tr>
+                        <tr><td>P</td><td>Q</td><td>R</td></tr>
+                    </tbody>
+                </table>
+        
+        <script type="text/javascript">
+        
+                    //Se ponen los eventos
+                    var celdas = document.getElementsByTagName("td");
+        
+                    for(i=0;i<celdas.length;i++) {
+                        celdas[i].addEventListener("click",function (e) {
+                            
+                            var columna = 0,fila = 0;
+        
+                            //FILA
+                            var nodoTbody = this.parentNode.parentNode;
+                            for(fil=0;fil<nodoTbody.children.length;fil++) {
+                                for(col=0;col<nodoTbody.children[fil].children.length;col++) {
+                                    if(this == nodoTbody.children[fil].children[col]) {
+                                        fila = fil + 1;
+                                        columna = col + 1;
+                                    }
+                                }
+                            }
+        
+                            alert("FILA: " + fila + " <---> COLUMNA:" + columna);
+                        });
+                    }
+        
+        </script>
+</body>
+</html>

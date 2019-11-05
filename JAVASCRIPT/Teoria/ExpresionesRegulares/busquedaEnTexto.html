@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function cambiar() {
+         var texto = document.getElementById("original").innerHTML;
+         patron = /(\b[lL]o\b)+/g;
+         document.getElementById("nuevo").innerHTML=texto.replace(patron, '<b>$1</b>');
+         }
+         </script>
+         <p id="original">Aprés diré a la senyoria vostra les cerimònies que s'an de
+        fer en la capella. Ara diré los cavallers qui foren elets. Primerament, lo
+        rey elegí XXV cavallers e, ab lo rey foren XXVI. Lo rey fon lo primer qui
+        jurà de servar totes les ordinacions en los capítols contengudes e que no
+        fos cavaller negú qui demanàs aquest orde quel pogués haver. Tirant fon
+        elet lo primer de tots los altres cavallers, per ço com fon lo millor de
+        tots los cavallers. Aprés fon elet lo príncep de Gales, lo duch de
+        Betafort, lo duch de Lencastre, lo duch d’Atçètera, lo marquès de Sófolch,
+        lo marqués de Sant Jordi, lo marqués de Belpuig, Johan de Varoych, gran
+        conestable, lo comte de Nortabar, lo comte de Salasberi, lo comte d'
+        Estafort, lo comte de Vilamur, lo comte de les Marches Negres, lo comte de
+        la Joyosa Guarda, lo senyor d'Escala Rompuda, lo senyor de Puigvert, lo
+        senyor de Terranova, miçer Johan Stuart, miçer Albert de Riuçech. Aquests
+        foren del regne. Los strangers foren: lo duch de Berrí, lo duch d'Anjou,
+        lo comte de Flandes. Foren tots en nombre de XXVI cavallers.</p>
+         <button onclick="cambiar()">Cambiar</button>
+         <p id="nuevo"></p>
+</body>
+</html>

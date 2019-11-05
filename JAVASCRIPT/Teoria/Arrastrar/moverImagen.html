@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Drag and drop</title>
+
+</head>
+
+<body>
+    <style>
+    #objetivo {
+        width: 211px;
+        height: 207px;
+        border: thin solid black;
+        background-color: #ff3;
+        position: absolute;/*inmovilizamos el div objetivo para evitar desplazamientos al colocar la imagen */
+        top: 210px;
+    }
+    img {
+        cursor: move; /* facilitamos la visualización de la propiedad cogible de la imagen*/
+        padding: 10px;
+    }
+</style>
+
+<img src="mariposa.gif" draggable="true" id="mariposa" ondragstart="iniciaArrastre(event)" />
+<div id="objetivo" ondragover="DragOver(event)" ondrop="Drop(event)">Arrastra aquí la imagen</div>
+
+<script>
+    let imagen;
+    function iniciaArrastre(event) {
+        imagen = event.target.getAttribute('id');
+    }
+    function DragOver(event) {
+        event.preventDefault(); //cancelamos acción evento DragOver
+    }
+    function Drop(event) {
+        event.target.innerHTML = '';
+        event.target.appendChild(document.getElementById(imagen));
+        document.getElementById(imagen).draggable = false;
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+</script>
+
+</body>
+
+</html>

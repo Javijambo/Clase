@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Función .warp - JQuery</title>
+    <script src="//code.jquery.com/jquery-3.1.0.js"></script>
+<!-- Código jquery a ejecutar -->
+<script> 
+        $(document).ready(function() { 
+            $("button").click(function() { 
+                $("p").wrap("<div></div>"); // 'Envolvemos' el párrafo con un div que tiene un estilo asignado
+            }); 
+        }); 
+    </script> 
+    <style> 
+        div { 
+            background-color: lightgreen; 
+            padding: 20px; 
+            width: 200px; 
+            font-weight: bold; 
+            height: 60px; 
+            border: 2px solid green; 
+        } 
+    </style> 
+</head> 
+   
+<body> 
+    <!-- Botón y datos para comprobar el funcionamiento de WARP -->
+    <p>Bienvenidos!</p><br> 
+    <button>Púlsame!</button> 
+</body> 
+</html>
