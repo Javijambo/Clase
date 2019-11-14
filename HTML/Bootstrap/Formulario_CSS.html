@@ -13,7 +13,6 @@
 <body>
     <div class="container">
         <form>
-            <h1> Datos básicos:</h1>
             <article class="GNombre">
                 <label class="l">Nombre</label>
                 <input type="text" class="form-control">
@@ -24,9 +23,7 @@
             </article>
 
             <article class="GFichero">
-                <label class="l" for="customFileLang">Seleccionar Foto</label>
-                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-
+                <input type="file" id="file" class="upload">
             </article>
 
             <article class="GCheckbox">
@@ -40,7 +37,7 @@
                 <input type="text" id="precio">
             </article>
             <article id="select">
-                <label for="select2">Impuestos</label>
+                <label for="l">Impuestos</label>
                 <select class="select2">
                 <option>4%</option>
                 <option>7%</option>
@@ -48,6 +45,7 @@
                 <option>25%</option>
             </select>
             </article>
+
         </form>
     </div>
 </body>

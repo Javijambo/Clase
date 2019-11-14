@@ -1,8 +1,43 @@
 .container {
     padding: 20px;
-    width: 30%;
-    margin: auto;
+    margin-top: 7%;
+    margin-left: 38%;
+    width: 20%;
     box-shadow: 10px 10px 10px grey;
+}
+
+.upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+}
+
+.upload+label {
+    width: 200px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: 500;
+    color: white;
+    line-height: 2.6em;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: rgb(87, 110, 240);
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0px 3px 0px rgb(21, 41, 155);
+    transition: 150ms;
+}
+
+.upload:focus+label,
+.upload+label:hover {
+    background-color: rgb(87, 110, 240);
+    box-shadow: 0px 5px 0px rgb(21, 41, 155);
+    cursor: pointer;
+}
+
+.upload:focus+label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
 }
 
 input[type=text] {
@@ -37,16 +72,13 @@ input[type=checkbox] {
 .l {
     display: block;
     margin-top: 20px;
+    font-size: 25px;
+    color: rgb(0, 23, 156)
 }
 
 .precios {
     float: left;
     margin-right: 30px;
-}
-
-label,
-.l {
-    font-size: 20px;
 }
 
 input[type=text]:focus,

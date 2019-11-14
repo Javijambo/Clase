@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Author Alvaro-->
+<!--
+    El objetivo del ejercicio es moverse por un tablero de ajedrez como la figura del caballo moviendo una imagen con un caballo por el tablero.
+    El tablero lo creare con una función y cada celdas de la misma tiene un id formado por dos numeros: su posicion en el eje x y su posicion en el eje y.
+    Para el movimiento como si fuera un caballo voy a calcular las posiciones a las que podria moverse (dos hacia un eje + izquierda/derecha) y voy a permitir
+    el movimiento solo a las mismas, una vez posicionado se desactivan las posiciones posibles anteriores y se añaden las posiciones por las que ha pasado ya a
+    un array 
+
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Caballo Ganador, Caballo Ganador</title>
+</head>
+<script>
+    //creacion de tabla
+    function creartabla() {
+        var body = document.getElementsByTagName('body')[0];
+        var tbl = document.createElement('table');
+        tbl.style.width = '400px';
+        tbl.style.height = '300px';
+        tbl.setAttribute('border', '1');
+        tbl.setAttribute('cellspacing', '2');
+        tbl.setAttribute('cellpadding', '2');
+        var contador = 1;
+        for (var i = 1; i < 9; i++) {
+            var tr = document.createElement('tr');
+
+            for (var j = 1; j < 9; j++) {
+                if (i == 1 && j == 1) {
+                    var td = document.createElement('td');
+                    var id = "".concat(i, j)
+                    td.setAttribute('id', id);
+                    td.setAttribute('ondragover', 'DragOver(event)')
+                    td.setAttribute('onmousedown', 'posicionInicio(this.id)')
+                    td.setAttribute('ondrop', 'return null')
+                    td.setAttribute('bgcolor', 'magenta')
+                    var img = document.createElement('img');
+                    img.setAttribute('src', 'caballo.gif');
+                    img.setAttribute('width', '16px');
+                    img.setAttribute('draggable', 'true');
+                    img.setAttribute('id', 'caballo');
+                    img.setAttribute('ondragstart', 'iniciaArrastre(event)')
+                    td.appendChild(img);
+                    tr.appendChild(td);
+                    contador++;
+                } else if ((i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0)) {
+                    var id = "".concat(i, j)
+                    var td = document.createElement('td');
+                    td.appendChild(document.createTextNode(id));
+                    td.setAttribute('id', id);
+                    td.setAttribute('ondragover', 'DragOver(event)')
+                    td.setAttribute('onmousedown', 'posicionInicio(this.id)')
+                    tr.appendChild(td)
+                    td.setAttribute('bgcolor', 'black')
+                    td.setAttribute('style', 'color:white;')
+                    contador++;
+
+                } else {
+                    var id = "".concat(i, j)
+                    var td = document.createElement('td');
+                    td.appendChild(document.createTextNode(id));
+                    td.setAttribute('id', id);
+                    td.setAttribute('ondragover', 'DragOver(event)')
+                    td.setAttribute('onmousedown', 'posicionInicio(this.id)')
+                    tr.appendChild(td)
+                    contador++;
+                }
+            }
+            tbl.appendChild(tr);
+        }
+        body.appendChild(tbl);
+    }
+
+    let celdas = document.getElementsByTagName("td");
+    let celdas_bloqueadas = ['11'];
+
+    function iniciaArrastre(event) {
+        imagen = event.target.getAttribute('id');
+    }
+
+    function posicionInicio(id) { //obtenemos el id de la celda a la que se va a mover, la cual son dos numeros, el primero indica la posicion en el eje x 
+        // y el segundo la posicino en el eje y
+        var pos1 = id;
+        var arraypos = pos1.split("");
+        var x = parseInt(arraypos[0]); //obtener primer numero (eje x)
+        var y = parseInt(arraypos[1]); //obtener segundo numero (eje y)
+
+        var posiblesx = [x + 2, x + 2, x - 2, x - 2, x + 1, x - 1, x + 1, x - 1]; //las posiciones en eje X a las que se puede mover
+        var posiblesy = [y + 1, y - 1, y + 1, y - 1, y + 2, y + 2, y - 2, y - 2]; //las posiciones en eje Y a las que se puede mover
+        for (var i = 0; i < posiblesx.length; i++) {
+            //activamos el drop en las celdas donde se puede mover limitando para que no se salga del tablero,
+            // es decir cogemos solo las posiciones mayores de 0 y menores de 9 para x e y
+            if (posiblesx[i] > 0 && posiblesy[i] > 0 && posiblesx[i] < 9 && posiblesy[i] < 9) {
+                //nuevoid crea la posicion concatenando x con y para coger el id
+                var nuevoid = "".concat(posiblesx[i], posiblesy[i]);
+                //activamos la posicion 
+                document.getElementById(nuevoid).setAttribute('ondrop', 'Drop(event)');
+            }
+        }
+        for (var k = 0; k < celdas_bloqueadas.length; k++) { //desactivamos celdas por las que hemos pasado
+            if (celdas_bloqueadas[k] !== 'undefined') {
+                document.getElementById(celdas_bloqueadas[k]).setAttribute('ondrop', 'return false');
+            }
+        }
+
+    }
+
+    function DragOver(event) {
+        event.preventDefault();
+    }
+
+    function Drop(event) {
+        var pos = event.target.id;
+        //añadimos al array de celdas bloqueadas la celda donde acabamos de posicionarnos
+        celdas_bloqueadas.push(pos);
+        event.target.innerHTML = '';
+
+        //desactivmaos el drop en el resto de celdas para que no sigan activadas y podamos movernos de una forma no valida
+        for (var i = 0; i < celdas.length; i++) {
+            celdas[i].setAttribute('ondrop', 'return null');
+        }
+
+        event.target.setAttribute('ondragover', 'return false');
+        event.target.setAttribute('ondrop', 'return false');
+        //cambiamos el color del fondo para que sepamos las celdas que estan bloqueadas
+        event.target.setAttribute('bgcolor', 'magenta');
+        event.target.appendChild(document.getElementById(imagen));
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+</script>
+<style>
+    td {
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
+<body onload="creartabla()">
+</body>
+
+</html>

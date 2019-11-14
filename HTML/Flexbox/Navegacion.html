@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link id="stylesheet" rel="stylesheet" href="css/flex1.css">
+    <title>Document</title>
+</head>
+<script>
+    function cambiar() {
+        var indice = document.getElementById('css');
+        var css = indice.options[indice.selectedIndex].value;
+        document.getElementById('stylesheet').href = css;
+    }
+</script>
+
+<body>
+    <select name="css" id="css">
+        <option value="css/flex1.css">1</option>
+        <option value="css/flex2.css">2</option>
+        <option value="css/flex3.css">3</option>
+        <option value="css/flex4.css">4</option>
+        <option value="css/flex5.css">5</option>
+        <option value="css/flex6.css">6</option>
+    </select>
+
+    <nav>
+        <ul>
+            <li><a href="#">Index</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Contactanos</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
