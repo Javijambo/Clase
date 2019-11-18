@@ -1,0 +1,115 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DWEC06 - SOLUCION TAREA</title>
+    <link type="text/css" rel="stylesheet" href="tarea6.css" />
+</head>
+<script>
+    let color = 'color1';
+    let activado = 0;
+
+    function creartabla() {
+        var div1 = document.getElementById('zonadibujo');
+        var tbl = document.createElement('table');
+        tbl.setAttribute('border', '1');
+        tbl.setAttribute('bordercolor', '#D9DBDF');
+        tbl.setAttribute('cellspacing', '0');
+        tbl.setAttribute('cellpadding', '2');
+        var contador = 1;
+        for (var i = 1; i < 30; i++) {
+            var tr = document.createElement('tr');
+            for (var j = 1; j < 30; j++) {
+                var td = document.createElement('td');
+                td.setAttribute('id', contador);
+                td.setAttribute('name', 'celdas');
+                td.setAttribute('height', "10px");
+                td.setAttribute('width', "10px");
+                td.setAttribute('onclick', 'activar(this.id)');
+                tr.appendChild(td);
+                contador++;
+            }
+            tbl.appendChild(tr);
+        }
+        div1.appendChild(tbl);
+    }
+
+    function cambiarcolor(n) {
+        document.getElementById('amarillo').setAttribute('class', 'color1');
+        document.getElementById('verde').setAttribute('class', 'color2');
+        document.getElementById('negro').setAttribute('class', 'color3');
+        document.getElementById('rojo').setAttribute('class', 'color4');
+        document.getElementById('azul').setAttribute('class', 'color5');
+        document.getElementById('blanco').setAttribute('class', 'color6');
+        if (n == 1) {
+            document.getElementById('amarillo').setAttribute('class', 'color1 seleccionado');
+            color = "color1";
+        } else if (n == 2) {
+            document.getElementById('verde').setAttribute('class', 'color2 seleccionado');
+            color = "color2";
+        } else if (n == 3) {
+            document.getElementById('negro').setAttribute('class', 'color3 seleccionado');
+            color = "color3";
+        } else if (n == 4) {
+            document.getElementById('rojo').setAttribute('class', 'color4 seleccionado');
+            color = "color4";
+        } else if (n == 5) {
+            document.getElementById('azul').setAttribute('class', 'color5 seleccionado');
+            color = "color5";
+        } else if (n == 6) {
+            document.getElementById('blanco').setAttribute('class', 'color6 seleccionado');
+            color = "color6";
+        }
+    }
+
+    function activar(id) {
+        if (activado == 0) {
+            activado = 1;
+            var celdas = document.getElementsByName('celdas');
+            document.getElementById(id).setAttribute('class', color);
+            for (var i = 0; i < celdas.length; i++) {
+                celdas[i].setAttribute('onmouseover', 'cambiarfondo(this.id)');
+            }
+            document.getElementById("pincel").innerHTML = "Pincel ACTIVADO";
+        } else {
+            activado = 0;
+            var celdas = document.getElementsByName('celdas');
+            for (var i = 0; i < celdas.length; i++) {
+                celdas[i].setAttribute('onmouseover', 'null');
+            }
+            document.getElementById("pincel").innerHTML = "Pincel DESACTIVADO";
+        }
+    }
+
+    function cambiarfondo(n) {
+        var nuevo = document.getElementById(n);
+        nuevo.setAttribute('class', color);
+    }
+</script>
+
+<body onload=creartabla()>
+    <p>TABLERO DE DIBUJO EN JAVASCRIPT</p>
+    <table width="500" border="1" id="paleta" summary="Tabla de selección de colores">
+        <caption>
+            Haga CLICK en un color para comenzar a pintar
+        </caption>
+        <tr>
+            <td id="amarillo" onclick="cambiarcolor('1')" class="color1 seleccionado"></td>
+            <td id="verde" onclick="cambiarcolor( '2') " class="color2 "></td>
+            <td id="negro" onclick="cambiarcolor( '3') " class="color3 "></td>
+            <td id="rojo" onclick="cambiarcolor( '4') " class="color4 "></td>
+            <td id="azul" onclick="cambiarcolor( '5') " class="color5 "></td>
+            <td id="blanco" onclick="cambiarcolor( '6') " class="color6 "></td>
+        </tr>
+        <tr>
+            <td colspan="6 " id="pincel">Estado del pincel</td>
+        </tr>
+    </table>
+    <p></p>
+    <div id="zonadibujo">
+    </div>
+</body>
+
+</html>
