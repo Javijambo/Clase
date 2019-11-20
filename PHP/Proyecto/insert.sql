@@ -9,7 +9,7 @@ insert into Proveedor values('AMD');
 insert into Proveedor values('G.Skill');
 insert into Proveedor values('AMD');
 insert into Proveedor values('NZXT');
-insert into Proveedor values('Seagate');
+insert into Proveedor values('Seagate'); 
 insert into Proveedor values('Samsung');
 insert into Proveedor values('Corsair');
 insert into Proveedor values('EVGA');
@@ -67,4 +67,14 @@ insert into Grafica(Imagen,Marca,Serie,Modelo,Precio)values('590.jpg','MSI','RX 
 insert into Grafica(Imagen,Marca,Serie,Modelo,Precio)values('5700.jpg','Gigabyte','RX 5000','AMD Radeon RX 5700 XT Gaming OC 8GB GDDR6',449.99); 
 insert into Grafica(Imagen,Marca,Serie,Modelo,Precio)values('2080s.jpg','Aorus','Super','GeForce RTX 2080 Super Waterforce 8 GB GDDR6',934.99); 
 
-insert into Fuente_de_Alimentacion(Imagen,Marca,Modelo,Watios,Certificacion,Precio)values('rm70.jpg','Corsair','RM750 750W 80 Plus Gold Full Modular','80 Plus Gold',);
+insert into Fuente_de_Alimentacion(Imagen,Marca,Modelo,Watios,Certificacion,Precio)values('rm70.jpg','Corsair','RM750 750W 80 Plus Gold Full Modular',750,'80 Plus Gold',99.99);
+insert into Fuente_de_Alimentacion(Imagen,Marca,Modelo,Watios,Certificacion,Precio)values('cmps.jpg','Cooler Master','MWE Bronze 650 650W 80 Plus Bronze',650,'80 Plus Bronze',59.99);
+insert into Fuente_de_Alimentacion(Imagen,Marca,Modelo,Watios,Certificacion,Precio)values('evgaps.jpg','EVGA','Supernova G3 750W 80 Plus Gold Modular',750,'80 Plus Gold',136.99);
+insert into Fuente_de_Alimentacion(Imagen,Marca,Modelo,Watios,Certificacion,Precio)values('1200.jpg','Corsair','HX1200 1200W 80 Plus Platinum Modular',1200,'80 Plus Platinum',224.99);
+
+insert into Disco(Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('kingston.jpg','Kingston',' A400 SSD 240GB','SSD',240,32.99);
+insert into Disco(Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('samsung1.jpg','Samsung','860 EVO Basic SSD 500GB SATA3','SSD',500,81.99);
+insert into Disco(Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('samsung2.jpg','Samsung','970 EVO Plus 500GB SSD NVMe M.2','M.2',500,124.99);
+insert into Disco(Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('seagate.jpg','Seagate','BarraCuda 3.5" 1TB SATA3','HDD',1000,38.50);
+insert into Disco(Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('seagate2.jpg','Seagate','IronWolf NAS 4TB SATA3','HDD',4000,118.90);
+insert into Disco(Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('crucial.jpg','Crucial','Crucial MX500 M.2 2280 500GB','SSD',500,78.99); 
