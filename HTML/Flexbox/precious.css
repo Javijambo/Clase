@@ -1,0 +1,71 @@
+.your {
+    font-size: 50px;
+    animation: y 2s forwards;
+    opacity: 0;
+}
+
+.fucking {
+    font-size: 50px;
+    animation: f 2s forwards;
+    margin-left: 80%;
+    animation-delay: 1s;
+    opacity: 0;
+    margin-top: 0%;
+}
+
+.precious {
+    font-size: 50px;
+    animation: y 2s forwards;
+    animation-delay: 2s;
+    opacity: 0;
+    margin-top: 0%;
+}
+
+.when {
+    font-size: 50px;
+    animation: f 2s forwards;
+    margin-left: 80%;
+    animation-delay: 3s;
+    opacity: 0;
+    margin-top: 0%;
+}
+
+.smile {
+    animation: zoomIn 2s forwards;
+    text-align: center;
+    animation-delay: 4s;
+    opacity: 0;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        font-size: 50px;
+    }
+    100% {
+        font-size: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes y {
+    from {
+        transform: translateX(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(40%);
+        opacity: 1;
+    }
+}
+
+@keyframes f {
+    from {
+        transform: translateX(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-220%);
+        opacity: 1;
+    }
+}
