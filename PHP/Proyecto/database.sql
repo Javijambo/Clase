@@ -161,7 +161,7 @@ insert into caja(Imagen,Marca,Modelo,Precio) values('phantekcaja.jpg','Phanteks'
 insert into caja(Imagen,Marca,Modelo,Precio) values('msicaja.jpg','MSI','MAG Vampiric 010',64.99);
 insert into caja(Imagen,Marca,Modelo,Precio) values('cmcaja.jpg','Cooler Master','MasterCase H500P',159.61);
 insert into caja(Imagen,Marca,Modelo,Precio) values('cmcaja2.jpg','Cooler Master','MasterBox',47.95);
-insert into caja(Imagen,Marca,Modelo,Precio) values('corasircaja.jpg','Corsair','iCUE 220T RGB',99.99);
+insert into caja(Imagen,Marca,Modelo,Precio) values('corsaircaja.jpg','Corsair','iCUE 220T RGB',99.99);
 insert into caja(Imagen,Marca,Modelo,Precio) values('gigabytecaja.jpg','Aorus','Aorus AC300W',121.99 );
 insert into caja(Imagen,Marca,Modelo,Precio) values('corsaircaja2.jpg','Corsair','Crystal 680X',249.99);
 insert into caja(Imagen,Marca,Modelo,Precio) values('corsaircaja3.jpg','Corsair','Obsidian 1000D',154.99);
