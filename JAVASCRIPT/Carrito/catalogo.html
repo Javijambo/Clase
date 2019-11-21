@@ -1,0 +1,224 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carrito de la compra DEMO</title>
+    <style type="text/css">
+        body {
+            background: rgb(102, 153, 204);
+            font: 10pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+        }
+        
+        #inputs {
+            border: 1px inset rgb(153, 204, 255);
+            width: 40px;
+            background: rgb(148, 204, 252);
+            text-align: center;
+        }
+        
+        #boton {
+            background: rgb(102, 153, 204);
+            border: 1px outset rgb(153, 204, 255);
+            width: 80px;
+            font: 8pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+            background-color: #FFFACD;
+            color: #4B0082;
+        }
+    </style>
+    <script type="text/javascript">
+        function meterencarro(formu) {
+            unidades = formu.numpedido.value;
+            descripcion = formu.producto.value;
+            if (confirm("El siguiente producto se va a añadir al carro de la compra.\n\n " + descripcion + " \n\n¿Está de acuerdo?")) {
+                numeroregistro = 0;
+                numeroregistro = getcookie("numerodeorden");
+                numeroregistro++;
+                if (numeroregistro > 5)
+                    alert("ATENCIÓN \n Su carrito esta lleno.\n Por favor, acceda a la hoja de pedido.\n Gracias.");
+                else {
+                    actualizarbase = formu.numpedido.value + "|" + formu.precio.value + "|" + formu.referencia.value + "|" + formu.producto.value;
+                    nuevopedido = "Order." + numeroregistro;
+                    setcookie(nuevopedido, actualizarbase, null, "/");
+                    setcookie("numerodeorden", numeroregistro, null, "/");
+                    aviso = "PRODUCTO SELECCIONADO \n \n" + "Cantidad: " + unidades + " unidad/es.\n" +
+                        "Producto: \n" + descripcion + ".\n \n Pulse sobre Ver Carro para acceder\n a su lista de compra.\n Gracias";
+                    alert(aviso);
+                }
+            }
+        }
+
+        function getcookieval(offset) {
+            var endstr = document.cookie.indexOf(";", offset);
+            if (endstr == -1)
+                endstr = document.cookie.length;
+            return unescape(document.cookie.substring(offset, endstr));
+        }
+
+        function getcookie(name) {
+            var arg = name + "=";
+            var alen = arg.length;
+            var clen = document.cookie.length;
+            var i = 0;
+            while (i < clen) {
+                var j = i + alen;
+                if (document.cookie.substring(i, j) == arg) return getcookieval(j);
+                i = document.cookie.indexOf(" ", i) + 1;
+                if (i == 0) break;
+            }
+            return null;
+        }
+
+        function setcookie(name, value, expires, path, domain, secure) {
+            document.cookie = name + "=" + escape(value) +
+                ((expires) ? "; expires=" + expires.toGMTString() : "") +
+                ((path) ? "; path=" + path : "") +
+                ((domain) ? "; domain=" + domain : "") +
+                ((secure) ? "; secure" : "");
+        }
+    </script>
+</head>
+
+<body>
+    <p><strong>VENTA DE LAMINAS</strong><br />
+    </p>
+    <table width="700" border="1" cellspacing="1" cellpadding="5" style="font: 10pt Verdana, Geneva, Arial, Helvetica, sans-serif;">
+        <tbody>
+            <tr style="font: bold">
+                <td width="20">Foto </td>
+                <td width="100">Lamina</td>
+                <td width="80">Euros </td>
+                <td width="150">Descripcion</td>
+            </tr>
+            <tr>
+                <td><img src="imagenes/jeanGrey.jpg" width="93" height="113" border="1" alt="Jean Grey." /></td>
+                <td valign="top" style="font: 9pt; text-align: justify;"><b>Jean Grey (Phoenix).</b> Jean Grey, en versión Phoenix. Tamaño A4</td>
+                <td valign="top">15,00 &euro; </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td colspan="3" align="center" style="font: 7pt; color: #191970;">Indique cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="" name="order" id="order">
+                                    <input onclick="meterencarro(this.form)" type="button" id="boton" value="Adquirir" /><br />
+                                    <input maxlength="2" id="inputs" size="2" value="1" name="numpedido" /><br />
+                                    <a href="pedido.html"><img src="imagenes/varcarro.jpg" width="79" height="23" border="0" alt="" /></a><br />
+                                    <input type="hidden" value="15.00" name="precio" />
+                                    <input type="hidden" value="JeanGrey." name="producto" />
+                                    <input type="hidden" value="ID101" name="referencia" />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="imagenes/wwoman.jpg" width="88" height="104" border="1" alt="Wonder Woman" /></td>
+                <td valign="top" style="font: 9pt; text-align: justify;"><b>Wonder Woman.</b> Wonder Woman. Tamaño A3.
+                </td>
+                <td valign="top">35,00 &euro; </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td colspan="3" align="center" style="font: 7pt; color: #191970;">Indique cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="" name="order" id="order">
+                                    <input onclick="meterencarro(this.form)" type="button" id="boton" value="Adquirir" /><br />
+                                    <input maxlength="2" id="inputs" size="2" value="1" name="numpedido" /><br />
+                                    <a href="pedido.html"><img src="imagenes/varcarro.jpg" width="79" height="23" border="0" alt="" /></a><br />
+                                    <input type="hidden" value="35.00" name="precio" />
+                                    <input type="hidden" value="WonderWoman" name="producto" />
+                                    <input type="hidden" value="ID201" name="referencia" />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="imagenes/blackCat.jpg" width="84" height="110" border="1" alt="Black Cat." /></td>
+                <td valign="top" style="font: 9pt; text-align: justify;"><strong>Black Cat. </strong> Black Cat. Tamaño A4
+                </td>
+                <td valign="top">15,00 &euro; </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td colspan="3" align="center" style="font: 7pt; color: #191970;">Indique cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="" name="order" id="order">
+                                    <input onclick="meterencarro(this.form)" type="button" id="boton" value="Adquirir" /><br />
+                                    <input maxlength="2" id="inputs" size="2" value="1" name="numpedido" /><br />
+                                    <a href="pedido.html"><img src="imagenes/varcarro.jpg" width="79" height="23" border="0" alt="" /></a><br />
+                                    <input type="hidden" value="15.00" name="precio" />
+                                    <input type="hidden" value="BlackCat" name="producto" />
+                                    <input type="hidden" value="ID33" name="referencia" />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="imagenes/superGirl.jpg" width="71" height="107" border="1" alt="Supergirl" /></td>
+                <td valign="top" style="font: 9pt; text-align: justify;"><b>Supergirl</b><b>.</b> Supergirl. Tamaño A4
+                </td>
+                <td valign="top">15,00 &euro; </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td colspan="3" align="center" style="font: 7pt; color: #191970;">Indique cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="" name="order" id="order">
+                                    <input onclick="meterencarro(this.form)" type="button" id="boton" value="Adquirir" /><br />
+                                    <input maxlength="2" id="inputs" size="2" value="1" name="numpedido" /><br />
+                                    <a href="pedido.html"><img src="imagenes/varcarro.jpg" width="79" height="23" border="0" alt="" /></a><br />
+                                    <input type="hidden" value="15.00" name="precio" />
+                                    <input type="hidden" value="SuperGirl" name="producto" />
+                                    <input type="hidden" value="ID402" name="referencia" />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="imagenes/harley.jpg" width="76" height="105" border="1" alt="Harley" /></td>
+                <td valign="top" style="font: 9pt; text-align: justify;"><b>Harley Queen</b><b>.</b> Harley Queen. Tamaño A4</td>
+                <td valign="top">15,00 &euro; </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td colspan="3" align="center" style="font: 7pt; color: #191970;">Indique cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="" name="order" id="order">
+                                    <input onclick="meterencarro(this.form)" type="button" id="boton" value="Adquirir" /><br />
+                                    <input maxlength="2" id="inputs" size="2" value="1" name="numpedido" /><br />
+                                    <a href="pedido.html"><img src="imagenes/varcarro.jpg" width="79" height="23" border="0" alt="" /></a><br />
+                                    <input type="hidden" value="15.00" name="precio" />
+                                    <input type="hidden" value="Harley" name="producto" />
+                                    <input type="hidden" value="ID02" name="referencia" />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
