@@ -1,0 +1,194 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Hoja de pedido</title>
+    <style type="text/css">
+        body {
+            background: rgb(102, 153, 204);
+            font: 10pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+            text-align: left;
+        }
+        
+        #inputcarro {
+            border: 1px inset rgb(153, 204, 255);
+            width: 40px;
+            background: rgb(102, 153, 204);
+            text-align: center;
+            color: white;
+        }
+        
+        #inputs {
+            border: 1px inset rgb(153, 204, 255);
+            width: 280px;
+            background: rgb(102, 153, 204);
+            text-align: center;
+        }
+        
+        #boton {
+            background: rgb(102, 153, 204);
+            border: 1px outset rgb(153, 204, 255);
+            width: 80px;
+            font: 8pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+            background-color: #FFFACD;
+            color: #4B0082;
+        }
+        
+        div.marco {
+            border: 2px groove rgb(153, 204, 255);
+            width: 750px;
+            padding: 15px
+        }
+        
+        div.marco2 {
+            border: 2px groove rgb(153, 204, 255);
+            width: 700px;
+            padding: 15px
+        }
+        
+        p.texto {
+            letter-spacing: 3px;
+            color: rgb(0, 51, 102);
+            font-weight: bold
+        }
+        
+        span.label {
+            width: 150px;
+            vertical-align: top;
+            color: white;
+            float: left
+        }
+        
+        div {
+            margin-top: 15px
+        }
+    </style>
+    <script type="text/javascript">
+        function formatoeuros(input) {
+            var euros = Math.floor(input)
+            var tmp = new String(input)
+            for (var decimalAt = 0; decimalAt < tmp.length; decimalAt++) {
+                if (tmp.charAt(decimalAt) == ".")
+                    break;
+            }
+            var centimos = "" + Math.round(input * 100)
+            centimos = centimos.substring(centimos.length - 2, centimos.length)
+            euros += ((tmp.charAt(decimalAt + 2) == "9") && (centimos == "00")) ? 1 : 0;
+            return euros + "." + centimos
+        }
+
+        function quitardelcarrito(RemOrder) {
+            if (confirm("El producto seleccionado va a ser eliminado de su carro de la compra.\n¿Está de acuerdo?")) {
+                numerodeorden = localStorage.getItem("numerodeorden");
+                for (i = RemOrder; i < numerodeorden; i++) {
+                    nuevopedido1 = "Order." + (i + 1);
+                    nuevopedido2 = "Order." + (i);
+                    datos = localStorage.getItem(nuevopedido1);
+                    window.localStorage.setItem(nuevopedido2, datos);
+                }
+                nuevopedido = "Order." + numerodeorden;
+
+                window.localStorage.setItem("numerodeorden", numerodeorden - 1);
+                window.localStorage.removeItem(nuevopedido)
+
+                location.href = location.href;
+            }
+        }
+
+        function visualizarcarrito() {
+            numerodeorden = 0;
+            subtotal = 0;
+            preciototal = 0;
+            numerodeorden = localStorage.getItem("numerodeorden");
+            tablas = "";
+            for (i = 1; i <= numerodeorden; i++) {
+                nuevopedido = "Order." + i;
+                datos = "";
+                datos = localStorage.getItem("Order." + i);
+                ficha0 = datos.indexOf("|", 0);
+                ficha1 = datos.indexOf("|", ficha0 + 1);
+                ficha2 = datos.indexOf("|", ficha1 + 1);
+                campos = new Array;
+                campos[0] = datos.substring(0, ficha0);
+                campos[1] = datos.substring(ficha0 + 1, ficha1);
+                campos[2] = datos.substring(ficha1 + 1, ficha2);
+                campos[3] = datos.substring(ficha2 + 1, datos.length);
+                subtotal = subtotal + (campos[1] * campos[0]);
+                preciototal = formatoeuros(subtotal);
+                tablas += "<tr style='font: 9pt; text-align: justify; color=white'><td>" + campos[2] + "</td><td  style='color=navy'>" +
+                    campos[3] + "</td><td>" + campos[1] +
+                    " €</td><td><input type=text id='inputcarro' size=2 name=\"Cantidad" + i + "\" value=\"" +
+                    campos[0] + "\"></td>" +
+                    "<td><input type=button id=boton value=\"  Eliminar  \" onClick=\"quitardelcarrito(" + i + ")\">" +
+                    "&nbsp;<input type=button id=boton value=\"  Catalogo  \" onClick=\"parent.history.back()\"></td>" +
+                    "<input type=hidden name=\"Referencia" + i + "\" value=\"" + campos[2] + "\">" +
+                    "<input type=hidden name=\"Producto" + i + "\" value=\"" + campos[3] + "\">" +
+                    "<input type=hidden name=\"Euros" + i + "\" value=\"" + campos[1] + "\">";
+            }
+            document.write(tablas);
+            document.write("</td></tr><tr><td colspan=2 style='font: 9pt'>TOTAL CARRITO IVA INCLUIDO</td><td style='color: navy'>");
+            document.write(preciototal);
+            document.write(" €</td><td colspan=2 style='font: 6pt; text-align: center; color=white'>VENTA DE LÁMINAS. </td>");
+        }
+
+        function deletecookie(name, path, domain) {
+            if (getcookie(name)) {
+                document.cookie = name + "=" +
+                    ((path) ? "; path=" + path : "") +
+                    ((domain) ? "; domain=" + domain : "") +
+                    "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div><b>Productos acumulados en su carrito de la compra</b></div>
+    <form action="mailto:carritonulo@carrito.com" method="post" enctype="text/plain" id="cesta">
+        <table width="750" border="1" cellspacing="1" cellpadding="5" style="font: 10pt Verdana, Geneva, Arial, Helvetica, sans-serif;">
+            <tr style="font: bold">
+                <td width="50">&nbsp;C&oacute;digo&nbsp;</td>
+                <td width="160">Nombre</td>
+                <td width="100">&nbsp;Euros &nbsp;&nbsp;</td>
+                <td width="40">Ud</td>
+                <td width="160">Control </td>
+            </tr>
+            <tr>
+                <td>
+                    <script type="text/javascript">
+                        visualizarcarrito();
+                    </script>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div class="marco">
+            <p class="texto">DATOS PERSONALES</p>
+            <span class="label">Nombre</span><input type="text" name="Nombre" id="inputs" />
+            <br />
+            <span class="label">Apellido</span><input type="text" name="Apellido" id="inputs" />
+            <br />
+            <span class="label">Direcci&oacute;n</span>
+            <input type="text" name="Direccion" id="inputs" />
+            <br />
+            <span class="label">Poblaci&oacute;n</span>
+            <input type="text" name="Poblacion" id="inputs" />
+            <br />
+            <span class="label">Provincia</span><input type="text" name="Provincia" id="inputs" />
+            <br />
+            <span class="label">Tel&eacute;fono</span>
+            <input type="text" name="Telefono" id="inputs" />
+            <br />
+            <div align="center" class="marco2">
+                <input type="submit" value="Enviar" id="boton" />
+                <input type="reset" value="Borrar" id="boton" />
+                <p style='font: 9pt; text-align: center; color:white'>El pedido ser&aacute; colocado en la bandeja de salida de su programa de correo para ser enviado a un email inexistente llamado carritonulo@carrito.com
+                </p>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

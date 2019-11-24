@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>3GAG</title>
   <style>
     .overlay {
@@ -78,9 +77,8 @@
     .btn1 {
       font-size: 38px;
     }
-    .a{
 
-    }
+    .a {}
   </style>
 </head>
 <header>
@@ -88,34 +86,40 @@
 </header>
 
 <body>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script>
-   function anadir(t,i){
-         window.localStorage.setItem("item",t+" "+i);
-      }
 
-      function openNav() {
-        if (navigator.userAgent.match(/Android/i) ||
-          navigator.userAgent.match(/webOS/i) ||
-          navigator.userAgent.match(/iPhone/i) ||
-          navigator.userAgent.match(/iPad/i) ||
-          navigator.userAgent.match(/iPod/i) ||
-          navigator.userAgent.match(/BlackBerry/i) ||
-          navigator.userAgent.match(/Windows Phone/i)
-        ) {
-          document.getElementById("myNav").style.width = "100%";
-        } else {
-          document.getElementById("myNav").style.width = "18%";
-        }
-      }
+window.localStorage.setItem("numerodeorden", 0);
 
-      function closeNav() {
-        document.getElementById("myNav").style.width = "0%";
-      }
+function comprar(t,i,m,mo,stock) {
+  numeroregistro = localStorage.getItem("numerodeorden");
+  var pedido = prompt("Cuantas unidades del producto: " + m +" "+mo+" desea añadir al carrito?" );
+  if (pedido<=stock) {
+    numeroregistro++;
+    window.localStorage.setItem("numerodeorden", numeroregistro);
+      pedido = "Order." + numeroregistro;
+      var valor = t + "|" + i;
+      window.localStorage.setItem(pedido, valor);
+      alert("Cesta:\n" + "Cantidad: unidad/es.\n" + "Producto: \n" + m +" "+mo+".\n \nPulse sobre Carro para acceder a su lista de compra.Gracias");
+  }
+  else{
+    alert("El stock que tenemos de este producto es "+stock+"\n Por favor pida un numero de unidades dentro del disponible");
+  }
+}
+window.localStorage.setItem("numerodeorden", 0);
+function openNav() {
+    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+      numeroregistro = localStorage.getItem("numerodeorden");  
+      document.getElementById("myNav").style.width = "100%";
+    } else {
+        document.getElementById("myNav").style.width = "18%";
+    }
+}
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}
 
-     
-
-    </script>
+</script>
   <!-- MENU IZQUIERDO! -->
   <section id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
@@ -129,7 +133,6 @@
       <a id="tower" href="#">Torres</a>
     </article>
   </section>
-
   <nav class="navbar navbar-expand-lg displaynavbar-light bg-dark barra">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -154,37 +157,30 @@
           <a class="nav-link a" href="login.php">Login</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light btn1" type="submit">Mirar Carrito de Compra</button>
+      <button class="btn btn-outline-light btn1" type="button" >Carro</button>
     </div>
   </nav>
-
-  <a id="comp" href="pieza.php">Componentes</a>
-  <a id="registro" href="registro.php">Registro</a>
-  <a id="login" href="login.php">Login</a>
-  <a id="carrito" href="carrito.php">Ver Carrito</a>
-  <div class="container-fluid mt-4 ">
-    <div class="row justify-content-center" id="contenido">
-      <?php
-      $servername = "localhost";
-      $username = "alvaro";
-      $password = "alvaro";
-      $dbname = "alvaro";
-      $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-
-      //++++++++++++++++++++++++++++++++++++++++++++++++TorreS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-      $sql = "SELECT IdTorre,Imagen,Marca,Modelo,Precio FROM Torre;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      $todo = '';
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $tabla="'Torre'";
-        $id="' ".$record['IdTorre']."'";
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
-           
-            <div class="card mb-4 mr-4 pl-2" style="max-width: 540px;">
+  <div class="row justify-content-center" id="contenido">
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "alvaro";
+    $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
+    //++++++++++++++++++++++++++++++++++++++++++++++++TorreS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+    $sql = "SELECT IdTorre,Imagen,Marca,Modelo,Precio FROM Torre;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    $todo = '';
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $tabla = "'Torre'";
+      $id = "'".$record['IdTorre']."'";
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $stock= $record['Stock'];
+      $todo .= '
+            <div class="card mt-4 mb-4 mr-4 pl-2" >
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
                 <img src="img/' . $img . '" class="card-img">
@@ -193,25 +189,23 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b class="mt-3 ml-3">' . $precio . ' €</b> <button type="button" class="btn btn-info float-right mb-3 mr-3" onclick="comprar('.$tabla.','.$id.');" > Añadir al Carro </button>
-                  </p>
-                </div>
+                  <p class="card-text align-baseline"> Stock:<input class="form-control" type="text" placeholder="'.$stock.'" readonly><b >' . $precio . ' €</b> <button type="button" class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\',6);" > Añadir al Carro </button> </p>
+                  </div>
               </div>
             </div>
           </div>
           ';
-      }
-
-      $sql = "SELECT IdCPU,Imagen,Marca,Modelo,Precio FROM CPU;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $tabla="'CPU'";
-        $id=$record['IdCPU'];
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
+    }
+    $sql = "SELECT IdCPU,Imagen,Marca,Modelo,Precio FROM CPU;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $tabla = "'CPU'";
+      $id = $record['IdCPU'];
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $todo .= '
             <div class="card mb-3 mr-4" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
@@ -221,22 +215,22 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" onclick="añadir('.$tabla.','.$id.');" class="btn btn-info float-right mb-3 mr-3">Anadir al Carro</button> </p>
+                  <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\');"> Añadir al Carro</button> </p>
                 </div>
               </div>
             </div>
           </div>';
-      }
-      $sql = "SELECT IdMB,Imagen,Marca,Modelo,Precio FROM MB;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $tabla="'PSU'";
-        $id=$record['IdMB'];
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
+    }
+    $sql = "SELECT IdMB,Imagen,Marca,Modelo,Precio FROM MB;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $tabla = "'PSU'";
+      $id = $record['IdMB'];
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $todo .= '
             <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
@@ -246,20 +240,20 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" onclick="añadir('.$tabla.','.$id.');" class="btn btn-info float-right mb-3 mr-3">Añadir al Carro</button></p>
+                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\');">  Añadir al Carro</button></p>
                 </div>
               </div>
             </div>
           </div>';
-      }
-      $sql = "SELECT IdGPU,Imagen,Marca,Modelo,Precio FROM GPU;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
+    }
+    $sql = "SELECT IdGPU,Imagen,Marca,Modelo,Precio FROM GPU;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $todo .= '
             <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
@@ -269,20 +263,20 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" onclick="comprar('.$tabla.','.$id.');" class="btn btn-info float-right mb-3 mr-3">Añadir al Carro</button></p>
+                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\');">Añadir al Carro</button></p>
                 </div>
               </div>
             </div>
           </div>';
-      }
-      $sql = "SELECT IdRam,Imagen,Marca,Modelo,Precio FROM Ram;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
+    }
+    $sql = "SELECT IdRam,Imagen,Marca,Modelo,Precio FROM Ram;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $todo .= '
             <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
@@ -292,20 +286,20 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" onclick="comprar('.$tabla.','.$id.');" class="btn btn-info float-right mb-3 mr-3">Añadir al Carro</button></p>
+                  <p class="card-text"><b>' . $precio . ' €</b><button type="button" class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\');"> Añadir al Carro</button></p>
                 </div>
               </div>
             </div>
           </div>';
-      }
-      $sql = "SELECT IdPSU,Imagen,Marca,Modelo,Precio FROM PSU;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
+    }
+    $sql = "SELECT IdPSU,Imagen,Marca,Modelo,Precio FROM PSU;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $todo .= '
             <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
@@ -315,20 +309,20 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b>' . $precio . ' €</b> <button type="button" onclick="comprar('.$tabla.','.$id.');" class="btn btn-info float-right mb-3 mr-3">Añadir al Carro</button></p>
+                  <p class="card-text"><b>' . $precio . ' €</b> <button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\');"> Añadir al Carro</button></p>
                 </div>
               </div>
             </div>
           </div>';
-      }
-      $sql = "SELECT IdDisco,Imagen,Marca,Modelo,Precio FROM Disco;";
-      $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-      while ($record = mysqli_fetch_assoc($resultset)) {
-        $img = $record['Imagen'];
-        $marca = $record['Marca'];
-        $modelo = $record['Modelo'];
-        $precio = $record['Precio'];
-        $todo .= '
+    }
+    $sql = "SELECT IdDisco,Imagen,Marca,Modelo,Precio FROM Disco;";
+    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+    while ($record = mysqli_fetch_assoc($resultset)) {
+      $img = $record['Imagen'];
+      $marca = $record['Marca'];
+      $modelo = $record['Modelo'];
+      $precio = $record['Precio'];
+      $todo .= '
             <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-2">
@@ -338,17 +332,16 @@
                 <div class="card-body">
                   <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><b>' . $precio . ' €</b> <button type="button" onclick="comprar('.$tabla.','.$id.');" class="btn btn-info float-right mb-3 mr-3">Añadir al Carro</button></p>
+                  <p class="card-text"><b>' . $precio . ' €</b> <button type="button" class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\''.$marca.'\',\''.$modelo.'\');"> Añadir al Carro</button></p>
                 </div>
               </div>
             </div>
           </div>';
-      }
-      $todo .= '</div>';
-      echo $todo;
-      ?>
-    </div>
-
+    }
+    $todo .= '</div>';
+    echo $todo;
+    ?>
+  </div>
 </body>
 
 </html>
