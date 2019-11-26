@@ -87,8 +87,7 @@
   <h1 class="banner display-3 font-weight-bold card-title  text-center">Pagina Componentes</h1>
 </header>
 
-<body>
-<button onclick="visualizarcarrito();">prueba1</button>
+<body onload="visualizarcarrito();">
   <script>
     function visualizarcarrito() {
       numerodeorden = localStorage.getItem("numerodeorden");
@@ -108,7 +107,7 @@
           type: 'POST',
           data: {
             'tabla': tabla,
-            'producto': id,
+            'p': id,
           },
           success: function(response) {
             $('#todo').append(response);

@@ -71,16 +71,18 @@ while ($record = mysqli_fetch_assoc($resultset)) {
 $sql = "SELECT * FROM MB;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 while ($record = mysqli_fetch_assoc($resultset)) {
-  $tabla = "'PSU'";
+  $tabla = "'MB'";
   $id = $record['IdMB'];
   $img = $record['Imagen'];
   $marca = $record['Marca'];
   $modelo = $record['Modelo'];
   $precio = $record['Precio'];
   $stock = $record['Stock'];
+  
   if (!isset($_COOKIE[$id])) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
+
   $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
@@ -100,14 +102,14 @@ while ($record = mysqli_fetch_assoc($resultset)) {
 $sql = "SELECT * FROM GPU;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'GPU'";
+  $id = $record['IdGPU'];
   $img = $record['Imagen'];
   $marca = $record['Marca'];
   $modelo = $record['Modelo'];
   $precio = $record['Precio'];
   $stock = $record['Stock'];
-  if (!isset($_COOKIE[$id])) {
-    setcookie($id, $stock, time() + (86400 * 30), "/");
-  }
+  if (!isset($_COOKIE[$id])) { setcookie($id, $stock, time() + (86400 * 30), "/"); }
   $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
@@ -124,9 +126,13 @@ while ($record = mysqli_fetch_assoc($resultset)) {
           </div>
         </div>';
 }
+
+
 $sql = "SELECT * FROM Ram;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'Ram'";
+  $id = $record['IdRam'];
   $img = $record['Imagen'];
   $marca = $record['Marca'];
   $modelo = $record['Modelo'];
@@ -154,6 +160,8 @@ while ($record = mysqli_fetch_assoc($resultset)) {
 $sql = "SELECT * FROM PSU;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'PSU'";
+  $id = $record['IdPSU'];
   $img = $record['Imagen'];
   $marca = $record['Marca'];
   $modelo = $record['Modelo'];
@@ -181,6 +189,8 @@ while ($record = mysqli_fetch_assoc($resultset)) {
 $sql = "SELECT * FROM Disco;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'Disco'";
+  $id = $record['IdDisco'];
   $img = $record['Imagen'];
   $marca = $record['Marca'];
   $modelo = $record['Modelo'];
@@ -207,9 +217,8 @@ while ($record = mysqli_fetch_assoc($resultset)) {
 }
 $todo .= '</div>';
 ?>
-<!DOCTYPE html>
+<?php echo('<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -297,15 +306,17 @@ $todo .= '</div>';
 <body>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script>
+  if (localStorage.getItem("numerodeorden") === null) {
     window.localStorage.setItem("numerodeorden", 0);
+  }
 
     function getCookie(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
+      var ca = decodedCookie.split(";");
       for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) == " ") {
           c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
@@ -325,14 +336,13 @@ $todo .= '</div>';
         alert("introduzca un valor positivo");
       } else if (ventana <= stock) {
         var nuevostock = stock - ventana;
-        
         numeroregistro++;
         window.localStorage.setItem("numerodeorden", numeroregistro);
         pedido = "Order." + numeroregistro;
         var valor = t + "|" + i + "|" + ventana;
         window.localStorage.setItem(pedido, valor);
         document.getElementById(i).value = nuevostock;
-        alert("Cesta:\n" + "Cantidad: unidad/es.\n" + "Producto: \n" + m + " " + mo + ".\n \nPulse sobre Carro para acceder a su lista de compra.Gracias");
+        alert("Cesta:\n" + "Cantidad: "+ventana+" unidad/es.\n" + "Producto: \n" + m + " " + mo + ".\n \nPulse sobre Carro para acceder a su lista de compra.Gracias");
       } else {
         alert("El stock que tenemos de este producto es " + stock + "\n Por favor pida un numero de unidades dentro del disponible");
       }
@@ -390,12 +400,13 @@ $todo .= '</div>';
           <a class="nav-link a" href="login.php">Login</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light btn1" type="button" onclick="window.location.href='carrito.php'">Carro</button>
+      <button class="btn btn-outline-light btn1" type="button" onclick=" window.location.href=\'carrito.php\';">Carro</button>
     </div>
   </nav>
   <div class="row justify-content-center" id="contenido">
-    <?php echo $todo ?>
+    '.$todo.'
   </div>
 </body>
 
 </html>
+');

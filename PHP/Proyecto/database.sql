@@ -149,7 +149,7 @@ insert into Proveedor values('Cooler Master');
 insert into Proveedor values('Phanteks');
 insert into Proveedor values('Aorus');
 insert into Proveedor values('Crucial');
-
+insert into Proveedor values('Gigabyte');
 
 
 /*=================================TorreS==================================== */ 
