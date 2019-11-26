@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://code.jquery.com/jquery-3.4.1.min.js' type='text/javascript'></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>3GAG</title>
   <style>
@@ -20,6 +21,7 @@
       overflow-x: hidden;
       transition: 0.5s;
     }
+
     .overlay-content {
       position: relative;
       top: 10%;
@@ -27,6 +29,7 @@
       text-align: center;
       margin-top: 30px;
     }
+
     .overlay a {
       padding: 8px;
       text-decoration: none;
@@ -35,29 +38,35 @@
       display: block;
       transition: 0.3s;
     }
+
     .overlay a:hover,
     .overlay a:focus {
       color: #f1f1f1;
     }
+
     .overlay .closebtn {
       position: absolute;
       top: 20px;
       right: 45px;
       font-size: 60px;
     }
+
     @media screen and (max-height: 450px) {
       .overlay a {
         font-size: 20px
       }
+
       .overlay .closebtn {
         font-size: 40px;
         top: 15px;
         right: 40px;
       }
     }
+
     b {
       font-size: 24px;
     }
+
     .barra {
       font-size: 38px;
       position: -webkit-sticky;
@@ -66,11 +75,12 @@
       top: 0;
       z-index: 2;
     }
+
     .btn1 {
       font-size: 38px;
     }
-    .a{
-    }
+
+    .a {}
   </style>
 </head>
 <header>
@@ -78,61 +88,49 @@
 </header>
 
 <body>
+<button onclick="visualizarcarrito();">prueba1</button>
+  <script>
+    function visualizarcarrito() {
+      numerodeorden = localStorage.getItem("numerodeorden");
+      for (i = 1; i <= numerodeorden; i++) {
+        nuevopedido = "Order." + i;
+        datos = "";
+        datos = localStorage.getItem("Order." + i);
+        ficha0 = datos.indexOf("|", 0);
+        ficha1 = datos.indexOf("|", ficha0 + 1);
+        $.ajax({
+          url: 'carritoaux.php',
+          type: 'POST',
+          data: {
+            'tabla': ficha0,
+            'producto': ficha1,
+          },
+          success: function(response) {
+            $('#todo').append(response);
+          }
+        });
+    }
+  }
 
-<script>
+    function openNav() {
+      if (navigator.userAgent.match(/Android/i) ||
+        navigator.userAgent.match(/webOS/i) ||
+        navigator.userAgent.match(/iPhone/i) ||
+        navigator.userAgent.match(/iPad/i) ||
+        navigator.userAgent.match(/iPod/i) ||
+        navigator.userAgent.match(/BlackBerry/i) ||
+        navigator.userAgent.match(/Windows Phone/i)
+      ) {
+        document.getElementById("myNav").style.width = "100%";
+      } else {
+        document.getElementById("myNav").style.width = "18%";
+      }
+    }
 
-function visualizarcarrito() {
-            numerodeorden = 0;
-            subtotal = 0;
-            preciototal = 0;
-            numerodeorden = localStorage.getItem("numerodeorden");
-            tablas = "";
-            for (i = 1; i <= numerodeorden; i++) {
-                nuevopedido = "Order." + i;
-                datos = "";
-                datos = localStorage.getItem("Order." + i);
-                ficha0 = datos.indexOf("|", 0);
-                ficha1 = datos.indexOf("|", ficha0 + 1);
-                campos = new Array;
-                campos[0] = datos.substring(0, ficha0);
-                campos[1] = datos.substring(ficha0 + 1, ficha1);
-                subtotal = subtotal + (campos[1] * campos[0]);
-                preciototal = formatoeuros(subtotal);
-                tablas += "<tr style='font: 9pt; text-align: justify; color=white'><td>" + campos[2] + "</td><td  style='color=navy'>" +
-                    campos[3] + "</td><td>" + campos[1] +
-                    " €</td><td><input type=text id='inputcarro' size=2 name=\"Cantidad" + i + "\" value=\"" +
-                    campos[0] + "\"></td>" +
-                    "<td><input type=button id=boton value=\"  Eliminar  \" onClick=\"quitardelcarrito(" + i + ")\">" +
-                    "&nbsp;<input type=button id=boton value=\"  Catalogo  \" onClick=\"parent.history.back()\"></td>" +
-                    "<input type=hidden name=\"Referencia" + i + "\" value=\"" + campos[2] + "\">" +
-                    "<input type=hidden name=\"Producto" + i + "\" value=\"" + campos[3] + "\">" +
-                    "<input type=hidden name=\"Euros" + i + "\" value=\"" + campos[1] + "\">";
-            }
-            document.write(tablas);
-            document.write("</td></tr><tr><td colspan=2 style='font: 9pt'>TOTAL CARRITO IVA INCLUIDO</td><td style='color: navy'>");
-            document.write(preciototal);
-            document.write(" €</td><td colspan=2 style='font: 6pt; text-align: center; color=white'>VENTA DE LÁMINAS. </td>");
-        }
-        
-function openNav() {
-        if (navigator.userAgent.match(/Android/i) ||
-          navigator.userAgent.match(/webOS/i) ||
-          navigator.userAgent.match(/iPhone/i) ||
-          navigator.userAgent.match(/iPad/i) ||
-          navigator.userAgent.match(/iPod/i) ||
-          navigator.userAgent.match(/BlackBerry/i) ||
-          navigator.userAgent.match(/Windows Phone/i)
-        ) {
-          document.getElementById("myNav").style.width = "100%";
-        } else {
-          document.getElementById("myNav").style.width = "18%";
-        }
-      }
-      function closeNav() {
-        document.getElementById("myNav").style.width = "0%";
-      }
-     
-    </script>
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+  </script>
   <!-- MENU IZQUIERDO! -->
   <section id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
@@ -175,7 +173,8 @@ function openNav() {
     </div>
   </nav>
 
-  <div class="container-fluid mt-4 "> 
+  <div id="todo" class="container-fluid mt-4 ">
   </div>
 </body>
+
 </html>

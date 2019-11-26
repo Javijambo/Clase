@@ -23,9 +23,11 @@ CREATE TABLE Torre (
     Marca varchar(50) NOT NULL,
     Modelo varchar(50) NOT NULL,
     Precio DECIMAL(13 , 2 ) NOT NULL,
+    Stock INT default 5,
     PRIMARY KEY (IdTorre),
     FOREIGN KEY (Marca)
-        REFERENCES Proveedor (Marca)
+    
+    REFERENCES Proveedor (Marca)
 );
 
 CREATE TABLE CPU
@@ -36,6 +38,8 @@ CREATE TABLE CPU
   Precio DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
   Velocidad decimal(5,1),
+  Stock INT default 5,
+
   PRIMARY KEY (IdCPU),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
@@ -49,6 +53,8 @@ CREATE TABLE Ram
   Capacidad  SET('8GB 2x4GB','8GB','16Gb 2x8GB','16GB') NOT NULL,
   Precio  DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
+  Stock INT default 5,
+
   PRIMARY KEY (IdRam),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
@@ -61,6 +67,8 @@ CREATE TABLE GPU
   Serie set('RTX','GTX','RX 5000','RX 500','Super') NOT NULL,
   Precio  DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
+  Stock INT default 5,
+
   PRIMARY KEY (IdGPU),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
@@ -87,6 +95,8 @@ CREATE TABLE PSU
   Certificacion  SET('80 Plus Bronze','80 Plus Silver','80 Plus Gold','80 Plus Platinum') NOT NULL,
   Precio  DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
+  Stock INT default 5,
+
   PRIMARY KEY (IdPSU),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
@@ -100,6 +110,8 @@ CREATE TABLE Disco
   Capacidad INT NOT NULL,
   Precio DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
+  Stock INT default 5,
+
   PRIMARY KEY (IdDisco),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
