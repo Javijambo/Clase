@@ -96,14 +96,19 @@
         nuevopedido = "Order." + i;
         datos = "";
         datos = localStorage.getItem("Order." + i);
-        ficha0 = datos.indexOf("|", 0);
-        ficha1 = datos.indexOf("|", ficha0 + 1);
+        carro=datos.split("|");
+        tabla=carro[0];
+        id=carro[1];
+        stock=carro[2];
+        console.log(tabla);
+        console.log(id);
+        console.log(stock);
         $.ajax({
           url: 'carritoaux.php',
           type: 'POST',
           data: {
-            'tabla': ficha0,
-            'producto': ficha1,
+            'tabla': tabla,
+            'producto': id,
           },
           success: function(response) {
             $('#todo').append(response);

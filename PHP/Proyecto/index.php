@@ -1,28 +1,27 @@
-
 <?php
 
-    $servername = "localhost";
-    $username = "alvaro";
-    $password = "alvaro";
-    $dbname = "alvaro";
-    $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-    //++++++++++++++++++++++++++++++++++++++++++++++++TorreS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-    $sql = "SELECT * FROM Torre;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    $todo = '';
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $tabla = "'Torre'";
-      $id = $record['IdTorre'];
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      // Stock:<input class="form-control" type="text" placeholder="'.$stock.'" readonly>
-      $todo .= '
+$servername = "localhost";
+$username = "alvaro";
+$password = "alvaro";
+$dbname = "alvaro";
+$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
+//++++++++++++++++++++++++++++++++++++++++++++++++TorreS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+$sql = "SELECT * FROM Torre;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+$todo = '';
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'Torre'";
+  $id = $record['IdTorre'];
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  // Stock:<input class="form-control" type="text" placeholder="'.$stock.'" readonly>
+  $todo .= '
           <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -31,29 +30,29 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
                 </div>
             </div>
           </div>
         </div>
         ';
-    }
-    
-    $sql = "SELECT * FROM CPU;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $tabla = "'CPU'";
-      $id = $record['IdCPU'];
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      $todo .= '
+}
+
+$sql = "SELECT * FROM CPU;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'CPU'";
+  $id = $record['IdCPU'];
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  $todo .= '
           <div class="card mb-3 mr-4" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -62,27 +61,27 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
         </div>';
-    }
-    $sql = "SELECT * FROM MB;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $tabla = "'PSU'";
-      $id = $record['IdMB'];
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      $todo .= '
+}
+$sql = "SELECT * FROM MB;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $tabla = "'PSU'";
+  $id = $record['IdMB'];
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -91,25 +90,25 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
         </div>';
-    }
-    $sql = "SELECT * FROM GPU;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      $todo .= '
+}
+$sql = "SELECT * FROM GPU;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -118,25 +117,25 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
         </div>';
-    }
-    $sql = "SELECT * FROM Ram;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      $todo .= '
+}
+$sql = "SELECT * FROM Ram;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -145,25 +144,25 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
         </div>';
-    }
-    $sql = "SELECT * FROM PSU;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      $todo .= '
+}
+$sql = "SELECT * FROM PSU;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -172,25 +171,25 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
         </div>';
-    }
-    $sql = "SELECT * FROM Disco;";
-    $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
-    while ($record = mysqli_fetch_assoc($resultset)) {
-      $img = $record['Imagen'];
-      $marca = $record['Marca'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];
-      if (!isset($_COOKIE[$id])) {
-        setcookie($id, $stock, time() + (86400 * 30), "/");
-      } 
-      $todo .= '
+}
+$sql = "SELECT * FROM Disco;";
+$resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+while ($record = mysqli_fetch_assoc($resultset)) {
+  $img = $record['Imagen'];
+  $marca = $record['Marca'];
+  $modelo = $record['Modelo'];
+  $precio = $record['Precio'];
+  $stock = $record['Stock'];
+  if (!isset($_COOKIE[$id])) {
+    setcookie($id, $stock, time() + (86400 * 30), "/");
+  }
+  $todo .= '
           <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
@@ -199,15 +198,15 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="'.$_COOKIE[$id].'" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
                 <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
         </div>';
-    }
-    $todo .= '</div>';  
-    ?>
+}
+$todo .= '</div>';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -300,15 +299,33 @@
   <script>
     window.localStorage.setItem("numerodeorden", 0);
 
-    function comprar(t, i, m, mo, stock) {
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    function comprar(t, i, m, mo) {
       numeroregistro = localStorage.getItem("numerodeorden");
       var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
+
+      stock=getCookie(i);
 
       if (ventana == 0 || ventana === null) {
         alert("introduzca un valor positivo");
       } else if (ventana <= stock) {
         var nuevostock = stock - ventana;
-        console.log(nuevostock);
+        
         numeroregistro++;
         window.localStorage.setItem("numerodeorden", numeroregistro);
         pedido = "Order." + numeroregistro;
@@ -373,7 +390,7 @@
           <a class="nav-link a" href="login.php">Login</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light btn1" type="button" href="carrito.php">Carro</button>
+      <button class="btn btn-outline-light btn1" type="button" onclick="window.location.href='carrito.php'">Carro</button>
     </div>
   </nav>
   <div class="row justify-content-center" id="contenido">

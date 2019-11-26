@@ -9,7 +9,7 @@ $producto = $_POST['producto'];
 $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
 //++++++++++++++++++++++++++++++++++++++++++++++++TorreS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 $idnuevo="Id".$tabla;
-$sql = "SELECT * FROM $tabla where $idnuevo = $producto ;";
+$sql = "SELECT * FROM ".$tabla." where ".$idnuevo." = ".$producto.";";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 $todo = '';
 while ($record = mysqli_fetch_assoc($resultset)) {
