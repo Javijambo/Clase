@@ -31,7 +31,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
                 </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -180,7 +180,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -209,7 +209,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control input-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -296,7 +296,6 @@ $todo .= '</div>';
       font-size: 38px;
     }
 
-    .a {}
   </style>
 </head>
 <header>
@@ -306,7 +305,8 @@ $todo .= '</div>';
 <body>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script>
-  if (localStorage.getItem("numerodeorden") === null) {
+  var items = window.localStorage.getItem(\'numerodeorden\')
+  if (items === null || items.length === 0 || items === 0){
     window.localStorage.setItem("numerodeorden", 0);
   }
 
@@ -330,6 +330,7 @@ $todo .= '</div>';
       numeroregistro = localStorage.getItem("numerodeorden");
       var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
 
+      
       stock=getCookie(i);
 
       if (ventana == 0 || ventana === null) {
@@ -348,7 +349,6 @@ $todo .= '</div>';
       }
 
     }
-    window.localStorage.setItem("numerodeorden", 0);
 
     function openNav() {
       if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {

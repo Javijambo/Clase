@@ -88,17 +88,19 @@
 </header>
 
 <body onload="visualizarcarrito();">
+<button onclick="visualizarcarrito();"></button>
   <script>
+    var ids= new Array();
     function visualizarcarrito() {
       numerodeorden = localStorage.getItem("numerodeorden");
       for (i = 1; i <= numerodeorden; i++) {
         nuevopedido = "Order." + i;
         datos = "";
         datos = localStorage.getItem("Order." + i);
-        carro=datos.split("|");
-        tabla=carro[0];
-        id=carro[1];
-        stock=carro[2];
+        carro = datos.split("|");
+        tabla = carro[0];
+        id = carro[1];
+        stock = carro[2];
         console.log(tabla);
         console.log(id);
         console.log(stock);
@@ -108,13 +110,14 @@
           data: {
             'tabla': tabla,
             'p': id,
+            'stock': stock,
           },
           success: function(response) {
             $('#todo').append(response);
           }
         });
+      }
     }
-  }
 
     function openNav() {
       if (navigator.userAgent.match(/Android/i) ||
@@ -177,7 +180,17 @@
     </div>
   </nav>
 
-  <div id="todo" class="container-fluid mt-4 ">
+  <div class="container-fluid mt-4 ">
+    <table class="table" id="todo">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Imagen</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Precio Ud.</th>
+          <th scope="col">Cantidad</th>
+        </tr>
+      </thead>
   </div>
 </body>
 
