@@ -29,7 +29,7 @@
                 "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
             },
             "args": [
-                "localhost/clase/${workspaceFolderBasename}/${relativeFile}"
+                "localhost/${workspaceFolderBasename}/${relativeFile}"
             ],
             "presentation": {
                 "reveal": "never"
