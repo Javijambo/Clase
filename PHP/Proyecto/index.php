@@ -345,7 +345,7 @@ $todo .= '</div>';
       <button class="btn btn-outline-light btn1" type="button" onclick=" window.location.href=\'carrito.php\';">Carro</button>
     </div>
   </nav>
-  <div class="row justify-content-center" id="contenido">
+  <div class="row justify-content-center container-fluid" id="contenido">
     '.$todo.'
   </div>
 </body>
