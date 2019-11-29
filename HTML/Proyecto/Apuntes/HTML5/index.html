@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -15,79 +16,281 @@
 </header>
 
 <body>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- MENU IZQUIERDO! -->
+    <article id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="index.html#etiquetas">Metadatos</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </article>
+
+    <nav id="navbar" class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto ml-auto">
+            <li class="nav-item">
+                <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link a" href="index.html">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../CSS/index.html">CSS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../BOOTSTRAP/index.html">BOOTSTRAP</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../GRID/index.html">GRID</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../index.html">Ejercicios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="about.html">About me</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="main" class="ml-3 mr-3 justify-content-center">
+        <h2 class="text-center">En este apartado voy a explicar lo mas basico de html con codigo de codepen para visualizar los elementos y links a html en mas profundidad.</h2>
+        <article id="metadatos">
+            <h3>Estructura de HTML</h3>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lthtml&gt</td>
+                        <td>Una estructura HTML se empieza con la etiqueta &lthtml> y acaba con &lt/html>. Todo lo que esté en medio será la página web.</td>
+                    </tr>
+                    <tr>
+                        <td>&lthead&gt</td>
+                        <td>Representa una colección de metadatos acerca del documento, incluyendo enlaces a, o definiciones de, scripts y hojas de estilo.</td>
+                    </tr>
+                    <td>&ltlink&gt</td>
+                    <td>Usada para enlazar JavaScript y CSS externos con el documento HTML actual.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltmeta&gt</td>
+                        <td>Define los metadatos que no pueden ser definidos usando otro elemento HTML.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltstyle&gt</td>
+                        <td>Etiqueta de estilo usada para escribir CSS en línea."</td>
+                    </tr>
+                    <tr>
+                        <td>&lttitle&gt</td>
+                        <td>Define el título del documento, el cual se muestra en la barra de título del navegador o en las pestañas de página. Solamente puede contener texto y cualquier otra etiqueta contenida no será interpretada.</td>
+
+                    </tr>
+                    <tr>
+                        <td>&ltheader&gt</td>
+                        <td>Se encargan de indicar a los navegadores que lo que contienen es la cabecera de la página y que dentro seguramente llevarán lo típico, algún logotipo, el título de la página, quizás una descripción de la misma y poco más.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltbody&gt</td>
+                        <td>Representa el contenido principal de un documento HTML. Solo hay un elemento &ltbody> en un documento.</td>
+                    </tr>
+
+                    <tr>
+                        <td>&ltnav></td>
+                        <td>Define una sección que solamente contiene enlaces de navegación (menu)</td>
+                    </tr>
+                    <tr>
+                        <td>&ltsection></td>
+                        <td>Define una sección en un documento.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltarticle></td>
+                        <td>Define contenido autónomo que podría existir independientemente del resto del contenido.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltaside></td>
+                        <td>Define algunos contenidos vagamente relacionados con el resto del contenido de la página. Si es removido, el contenido restante seguirá teniendo sentido</td>
+                    </tr>
+                    <tr>
+                        <td>&ltfooter></td>
+                        <td>Define el pie de una página o sección. Usualmente contiene un mensaje de derechos de autoría, algunos enlaces a información legal o direcciones para dar información de retroalimentación.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </article>
+        <!--=============================================================================Listas=============================================================================-->
+        <article id="listas">
+            <h3>Listas</h3>
+            <p>Para crear listas utilizamos ul para listas desordenadas y ol para listas ordenadas, con li indicamos los elementos de dentro de las listas</p>
+            <p class="codepen" data-height="407" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="QWWeYrL" style="height: 407px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="Listas">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/QWWeYrL">
+                            Listas</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
+        <!--=============================================================================Tablas=============================================================================-->
+        <article id="tablas">
+            <h3>Tablas</h3>
+            <p>Chuleta de las tablas: <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics">Link</a></p>
+            <p class="codepen" data-height="483" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="abbeXaw" style="height: 483px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="Tablas">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/abbeXaw">
+                    Tablas</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                    on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
+        <!--=============================================================================Formularios=============================================================================-->
+        <article id="form">
+            <h3>Formularios</h3>
+            <p>Chuleta de los formularios: <a href="https://developer.mozilla.org/es/docs/Learn/HTML/Forms/Your_first_HTML_form">Link</a> </p>
+            <p class="codepen" data-height="457" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="WNNVPKe" style="height: 457px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="Formularios">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/WNNVPKe">
+                        Formularios</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                        on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
+
+        <!--=============================================================================Titulos=============================================================================-->
+        <article id="titulos">
+            <h3>Titulos</h3>
+            <p>Para crear titulos de distintos tamaños usamos de h1 para el tamaño mas grande a h6 para el tamaño mas pequeño</p>
+            <p class="codepen" data-height="513" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="LYEPYWg" style="height: 513px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="LYEPYWg">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/LYEPYWg">
+                LYEPYWg</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
+        <!--==========================================================================Formateo del texto=============================================================================-->
+
+        <article id="format">
+            <h3>Dar Formato al Texto</h3>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&ltb></td>
+                        <td>Texto en negrita</td>
+                    </tr>
+                    <tr>
+                        <td>&ltem&gt</td>
+                        <td>Texto con enfasis</td>
+                    </tr>
+                    <td>&lti&gt</td>
+                    <td>Texto en cursiva.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltsmall&gt</td>
+                        <td>Texto en letra pequeña.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltstrong&gt</td>
+                        <td>Texto en "importante".</td>
+                    </tr>
+                    <tr>
+                        <td>&ltsub&gt</td>
+                        <td>Texto por debajo de la linea central del resto (como caído)</td>
+
+                    </tr>
+                    <tr>
+                        <td>&ltsupr&gt</td>
+                        <td>Texto por encima de la linea central del resto (como levantado).</td>
+                    </tr>
+                    <tr>
+                        <td>&ltins&gt</td>
+                        <td>Texto insertado.</td>
+                    </tr>
+
+                    <tr>
+                        <td>&ltdel></td>
+                        <td>Texto tachado.</td>
+                    </tr>
+                    <tr>
+                        <td>&ltmark></td>
+                        <td>Texto Subrayado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article id="masinfo">
+            <h3>Mas Información</h3>
+            <p>
+                Aqui dejo links de interés para más informacion en detalle de elementos de html etc:
+                <a href="https://www.w3schools.com/html/">Link</a>
+            </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
+        window.onscroll = function() {
+            myFunction()
+        };
+        var contador = 0;
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
         function openNav() {
-            if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-                numeroregistro = localStorage.getItem("numerodeorden");
-                document.getElementById("myNav").style.width = "100%";
+            if (contador == 0) {
+                contador = 1;
+                document.getElementById("mySidebar").style.width = "20%";
+                document.getElementById("main").style.marginLeft = "20%";
             } else {
-                document.getElementById("myNav").style.width = "18%";
+                contador = 0;
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
             }
         }
 
         function closeNav() {
-            document.getElementById("myNav").style.width = "0%";
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function myFunction() {
+            if (navigator.userAgent.match(/Android/i) ||
+                navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i) ||
+                navigator.userAgent.match(/BlackBerry/i) ||
+                navigator.userAgent.match(/Windows Phone/i)
+            ) {
+
+            } else {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky")
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
         }
     </script>
-    <section id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
-        <article class="overlay-content">
-            <a id="mb" href="#">Indice</a>
-            <a id="cpu" href="#">CPUes</a>
-            <a id="ram" href="#">Ram</a>
-            <a id="gpu" href="#">Graficas</a>
-            <a id="psu" href="#">Fuentes de<br>Alimentacion</a>
-            <a id="ssd" href="#">Discos Duros</a>
-            <a id="tower" href="#">Torres</a>
-        </article>
-    </section>
-    <nav class="navbar navbar-expand-lg displaynavbar-light bg-dark barra">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <span class="nav-link" onclick="openNav()">Menú &#9776;</span>
-                </li>
-
-                <li class="nav-item active">
-                    <a class="nav-link a" href="index.html">Inicio<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" id="comp" href="pieza.php">HTML</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="registro.php">CSS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">BOOTSTRAP</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">FLEX</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">GRID</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">Ejercicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">About me</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-    <div class="row justify-content-center" id="contenido">
-
-    </div>
-
 
 </body>
 

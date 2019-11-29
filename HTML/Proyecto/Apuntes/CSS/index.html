@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -11,83 +12,248 @@
 </head>
 
 <header>
-    <h1 class="banner display-3 font-weight-bold text-center">Alvaro Minguez</h1>
+    <h1 class="banner display-3 font-weight-bold text-center">CSS</h1>
 </header>
 
 <body>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- MENU IZQUIERDO! -->
+    <article id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="index.html#etiquetas">Metadatos</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </article>
+
+    <nav id="navbar" class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto ml-auto">
+            <li class="nav-item">
+                <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link a" href="../html/index.html">HTML</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link a" href="index.html">CSS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../BOOTSTRAP/index.html">BOOTSTRAP</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../GRID/index.html">GRID</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../index.html">Ejercicios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="about.html">About me</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="main" class="ml-3 mr-3 justify-content-center">
+        <h2>En este apartado voy a explicar todo lo relacionado con CSS.</h2>
+
+         <!--=============================================================================Compatibilidad Navegadores=============================================================================-->
+        <article id="prioridad">
+            <h3>Prioridad en CSS</h3>
+                <p>Cuando tenemos varias reglas CSS en cascada que afectan a un mismo elemento, el orden de prioridad que determina como se mostrará el elemento es el siguiente:></P>
+                    <ol>
+                <li><p> !important: un estilo marcado como importante prevalecerá sobre el resto de estilos. En caso de tener varios estilos marcados con !important, prevalecerá el de mayor peso según las reglas que estamos explicando.</p>
+                </li>
+                <li>
+                <p> Origen de las reglas: las reglas del autor de la web prevalecerán sobre las reglas del lector de similar peso. Y tanto las reglas de autor como de lector prevalecerán sobre las del navegador.</p>
+               
+                <p>Peso de la regla: una regla con mayor peso prevalecerá sobre otra de menor peso.</p>
+                <p>Peso = ABC (número de 3 cifras, cada una de las cuales se calcula contando los selectores de cada tipo según se indica a continuación)</p>
+
+                <ul>
+                <li> A = nº de selectores de ID (selectores que acceden al atributo «id» del elemento mediante «#»)</li>
+                <li> B = nº de selectores de CLASE (selectores que acceden al atributo «class» del elemento mediante «.»)</li>
+                <li>C = nº de selectores de HTML (selectores que acceden al tag html)</li>
+                </ul>
+            </li>
+
+               <li> <p>Orden de especificación: cuando dos reglas tienen el mismo peso prevalecerá la última regla especificada.</p> </li>
+                    </ol>
+        </article>
+
+         <!--=============================================================================Selectores=============================================================================-->
+        <article id="metadatos">
+            <h3>Selectores</h3>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Selector</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#(id)</td>
+                        <td>Para seleccionar elementos de html cuyo id sea -> (id).</td>
+                    </tr>
+                    <tr>
+                        <td>.(class)</td>
+                        <td>Para seleccionar elementos de html cuya clase sea -> (class).</td>
+                    </tr>
+                    <td>*</td>
+                    <td>Selecciona todos los elementos de html. (no recomendable, como mucho para cambiar la fuente en todo el documento)</td>
+                    </tr>
+                    <tr>
+                        <td>X Y</td>
+                        <td>Selecciona todos los elementos Y dentro de X, util por ejemplo para seleccionar todos los li dentro de una lista ul/ol.</td>
+                    </tr>
+                    <tr>
+                        <td>X:link/X:visited</td>
+                        <td>Para indicar que un link no ha sido visitado(link) o que ha sido visitado(visited), para por ejemplo poner de color verde los no visitados y rojo los visitados.</td>
+                    </tr>
+                    <tr>
+                        <td>X:hover</td>
+                        <td>Selecciona que hacer cuando pasamos por encima del elemento X.</td>
+
+                    </tr>
+                    <tr>
+                        <td>X+Y</td>
+                        <td>Selecciona el elemento Y seguido inmediatamente del elemento X anterior.</td>
+                    </tr>
+                    <tr>
+                        <td>X>Y</td>
+                        <td>Selecciona el hijo (Y) directo del elemento X, basicamente es muy parecido al X Y.</td>
+                    </tr>
+
+                    <tr>
+                        <td>X[atributo]</td>
+                        <td>Selecciona los elementos X cuyo atributo(Y) coincida con el metido entre [], un ejemplo es input[type="text"] para seleccionar solo los elementos de tipo input con el atributo text.</td>
+                    </tr>
+                    <tr>
+                        <td>X:after/X:before</td>
+                        <td>Para añadir o cambiar cosas antes o despues del elemento seleccionado</td>
+                    </tr>
+                    <tr>
+                        <td> X:first-child/X:last-child</td>
+                        <td>Para seleccionar el primer o ultimo elemento hijo de X, por ejemplo el primer li o ultimo li de una lista ul/ol.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </article>
+        <!--=============================================================================Chetsheet=============================================================================-->
+        <article id="cheat">
+            <h3>Propiedades de CSS</h3>
+            <p>La variedad de propiedas de css que se puede aplicar a los distintos elementos de html es tan grande que voy a dejar un link a una pagina de lo que se denomina un CheatSheet Interactivo, es decir están casi todas o todas las propiedades que
+                se pueden aplicar a un elemento HTML pudiendo comprobar qué hace cada elemento de html.</p>
+            <p>Haz click en la imagen para acceder a la web</p>
+            <p>
+                <a href="https://htmlcheatsheet.com/css/" target="_blank"><img src="../../Imagenes/cheat.PNG" alt=""></a>
+            </p>
+        </article>
+        <article id="pre"> 
+        <h3> Compatibilidad <h3>
+            <p>Los navegadores tienen su propia version del estilo, para ello tenemos unos prefjos para indicar que hacer en cada navegador.</p>
+                    <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Selector</th>
+                                    <th scope="col">Descripcion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>-moz</td>
+                                    <td>Firefox.</td>
+                                </tr>
+                                <tr>
+                                    <td>-webkit </td>
+                                    <td>Chrome, Chromium y  Safari </td>
+                                </tr>
+                                <td>-ms</td>
+                                <td>Microsoft</td>
+                                </tr>
+                                <tr>
+                                    <td>-o</td>
+                                    <td>Opera</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        </article>
+        
+        <article id="pre"> 
+            <h3>Posicionamientos CSS</h3>
+            <p>El estándar de CSS define cinco modelos diferentes para posicionar una caja:</p>
+            <ul>
+                <li>Posicionamiento normal o estático: se trata del posicionamiento que utilizan los navegadores si no se indica lo contrario.
+                <li>Posicionamiento relativo: variante del posicionamiento normal que consiste en posicionar una caja según el posicionamiento normal y después desplazarla respecto de su posición original.</li>
+                <li>Posicionamiento absoluto: la posición de una caja se establece de forma absoluta respecto de su elemento contenedor y el resto de elementos de la página ignoran la nueva posición del elemento.</li>
+                <li>Posicionamiento fijo: variante del posicionamiento absoluto que convierte una caja en un elemento inamovible, de forma que su posición en la pantalla siempre es la misma independientemente del resto de elementos e independientemente de si el usuario sube o baja la página en la ventana del navegador.</li>
+                <li>Posicionamiento flotante: se trata del modelo más especial de posicionamiento, ya que desplaza las cajas todo lo posible hacia la izquierda o hacia la derecha de la línea en la que se encuentran.</li>
+            </ul>
+        </article>
+        <article id="masinfo">
+            <h3>Mas Información</h3>
+            <p>
+                Aqui dejo links de interés para más informacion en detalle de elementos de html etc:
+                <a href="https://www.w3schools.com/html/" target="_blank">Link</a>
+            </p>
+        </article>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
+        window.onscroll = function() {
+            myFunction()
+        };
+        var contador = 0;
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
         function openNav() {
-            if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-                numeroregistro = localStorage.getItem("numerodeorden");
-                document.getElementById("myNav").style.width = "100%";
+            if (contador == 0) {
+                contador = 1;
+                document.getElementById("mySidebar").style.width = "20%";
+                document.getElementById("main").style.marginLeft = "20%";
             } else {
-                document.getElementById("myNav").style.width = "18%";
+                contador = 0;
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
             }
         }
 
         function closeNav() {
-            document.getElementById("myNav").style.width = "0%";
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function myFunction() {
+            if (navigator.userAgent.match(/Android/i) ||
+                navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i) ||
+                navigator.userAgent.match(/BlackBerry/i) ||
+                navigator.userAgent.match(/Windows Phone/i)
+            ) {
+
+            } else {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky")
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
         }
     </script>
-    <section id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
-        <article class="overlay-content">
-            <a id="mb" href="#">Indice</a>
-            <a id="cpu" href="#">CPUes</a>
-            <a id="ram" href="#">Ram</a>
-            <a id="gpu" href="#">Graficas</a>
-            <a id="psu" href="#">Fuentes de<br>Alimentacion</a>
-            <a id="ssd" href="#">Discos Duros</a>
-            <a id="tower" href="#">Torres</a>
-        </article>
-    </section>
-    <nav class="navbar navbar-expand-lg displaynavbar-light bg-dark barra">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <span class="nav-link" onclick="openNav()">Menú &#9776;</span>
-                </li>
-
-                <li class="nav-item active">
-                    <a class="nav-link a" href="index.html">Inicio<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" id="comp" href="pieza.php">HTML</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="registro.php">CSS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">BOOTSTRAP</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">FLEX</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">GRID</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">Ejercicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">About me</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-    <div class="row justify-content-center" id="contenido">
-
-    </div>
-
 
 </body>
 
