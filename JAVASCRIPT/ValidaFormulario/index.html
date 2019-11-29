@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/form.css">
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="js/validaForm.js"></script>
+        <title>Formulario</title>
+    </head>
+    <body onchange="checkForm('#contacto')">
+        <form name="contacto" id="contacto" method="post">
+            <label for="nombre">Nombre</label>
+            <input name="nombre" id="nombre" size="30"/>
+            <label for="apellidos">Apellidos</label>
+            <input name="apellidos" id="apellidos" size="30"/>
+        <label for="email">Email</label>
+            <input name="email" id="email" size="45"/>
+            <label for="edad">Edad</label>
+            <select name="edad" id="edad">
+                <option></option>
+                <option value="18-25">18 a 25 años</option>
+                <option value="26-45">26 a 45 años</option>
+                <option value="46-65">46 a 55 años</option>
+                <option value="66+">Más de 65</option>
+            </select>
+            <label for="comentario">Comentario</label>
+            <textarea name="comentario" id="comentario" cols="40" rows="4"></textarea> 
+            <label for="legal"><input type="checkbox" name="legal" id="legal" /> Estoy de acuerdo</label>
+        <label>¿Quiere recibir nuestro boletín? 
+            <input type="radio" name="boletin" value="si" />Si 
+            <input type="radio" name="boletin" value="no" />No
+        </label>
+            <button class="submit" disabled>Enviar</button>
+        </form>
+        
+    </body>
+</html>

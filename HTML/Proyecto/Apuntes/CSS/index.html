@@ -63,31 +63,34 @@
     <section id="main" class="ml-3 mr-3 justify-content-center">
         <h2>En este apartado voy a explicar todo lo relacionado con CSS.</h2>
 
-         <!--=============================================================================Compatibilidad Navegadores=============================================================================-->
+        <!--=============================================================================Compatibilidad Navegadores=============================================================================-->
         <article id="prioridad">
             <h3>Prioridad en CSS</h3>
-                <p>Cuando tenemos varias reglas CSS en cascada que afectan a un mismo elemento, el orden de prioridad que determina como se mostrará el elemento es el siguiente:></P>
-                    <ol>
-                <li><p> !important: un estilo marcado como importante prevalecerá sobre el resto de estilos. En caso de tener varios estilos marcados con !important, prevalecerá el de mayor peso según las reglas que estamos explicando.</p>
+            <p>Cuando tenemos varias reglas CSS en cascada que afectan a un mismo elemento, el orden de prioridad que determina como se mostrará el elemento es el siguiente:></P>
+            <ol>
+                <li>
+                    <p> !important: un estilo marcado como importante prevalecerá sobre el resto de estilos. En caso de tener varios estilos marcados con !important, prevalecerá el de mayor peso según las reglas que estamos explicando.</p>
                 </li>
                 <li>
-                <p> Origen de las reglas: las reglas del autor de la web prevalecerán sobre las reglas del lector de similar peso. Y tanto las reglas de autor como de lector prevalecerán sobre las del navegador.</p>
-               
-                <p>Peso de la regla: una regla con mayor peso prevalecerá sobre otra de menor peso.</p>
-                <p>Peso = ABC (número de 3 cifras, cada una de las cuales se calcula contando los selectores de cada tipo según se indica a continuación)</p>
+                    <p> Origen de las reglas: las reglas del autor de la web prevalecerán sobre las reglas del lector de similar peso. Y tanto las reglas de autor como de lector prevalecerán sobre las del navegador.</p>
 
-                <ul>
-                <li> A = nº de selectores de ID (selectores que acceden al atributo «id» del elemento mediante «#»)</li>
-                <li> B = nº de selectores de CLASE (selectores que acceden al atributo «class» del elemento mediante «.»)</li>
-                <li>C = nº de selectores de HTML (selectores que acceden al tag html)</li>
-                </ul>
-            </li>
+                    <p>Peso de la regla: una regla con mayor peso prevalecerá sobre otra de menor peso.</p>
+                    <p>Peso = ABC (número de 3 cifras, cada una de las cuales se calcula contando los selectores de cada tipo según se indica a continuación)</p>
 
-               <li> <p>Orden de especificación: cuando dos reglas tienen el mismo peso prevalecerá la última regla especificada.</p> </li>
-                    </ol>
+                    <ul>
+                        <li> A = nº de selectores de ID (selectores que acceden al atributo «id» del elemento mediante «#»)</li>
+                        <li> B = nº de selectores de CLASE (selectores que acceden al atributo «class» del elemento mediante «.»)</li>
+                        <li>C = nº de selectores de HTML (selectores que acceden al tag html)</li>
+                    </ul>
+                </li>
+
+                <li>
+                    <p>Orden de especificación: cuando dos reglas tienen el mismo peso prevalecerá la última regla especificada.</p>
+                </li>
+            </ol>
         </article>
 
-         <!--=============================================================================Selectores=============================================================================-->
+        <!--=============================================================================Selectores=============================================================================-->
         <article id="metadatos">
             <h3>Selectores</h3>
 
@@ -155,48 +158,50 @@
                 se pueden aplicar a un elemento HTML pudiendo comprobar qué hace cada elemento de html.</p>
             <p>Haz click en la imagen para acceder a la web</p>
             <p>
-                <a href="https://htmlcheatsheet.com/css/" target="_blank"><img src="../../Imagenes/cheat.PNG" alt=""></a>
+                <a href="https://htmlcheatsheet.com/css/" target="_blank"><img src="../../Imagenes/cheat.PNG"></a>
             </p>
         </article>
-        <article id="pre"> 
-        <h3> Compatibilidad <h3>
+        <article id="pre">
+            <h3> Compatibilidad
+            </h3>
             <p>Los navegadores tienen su propia version del estilo, para ello tenemos unos prefjos para indicar que hacer en cada navegador.</p>
-                    <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Selector</th>
-                                    <th scope="col">Descripcion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>-moz</td>
-                                    <td>Firefox.</td>
-                                </tr>
-                                <tr>
-                                    <td>-webkit </td>
-                                    <td>Chrome, Chromium y  Safari </td>
-                                </tr>
-                                <td>-ms</td>
-                                <td>Microsoft</td>
-                                </tr>
-                                <tr>
-                                    <td>-o</td>
-                                    <td>Opera</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Selector</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>-moz</td>
+                        <td>Firefox.</td>
+                    </tr>
+                    <tr>
+                        <td>-webkit </td>
+                        <td>Chrome, Chromium y Safari </td>
+                    </tr>
+                    <td>-ms</td>
+                    <td>Microsoft</td>
+                    </tr>
+                    <tr>
+                        <td>-o</td>
+                        <td>Opera</td>
+                    </tr>
+                </tbody>
+            </table>
         </article>
-        
-        <article id="pre"> 
+
+        <article id="pre">
             <h3>Posicionamientos CSS</h3>
             <p>El estándar de CSS define cinco modelos diferentes para posicionar una caja:</p>
             <ul>
                 <li>Posicionamiento normal o estático: se trata del posicionamiento que utilizan los navegadores si no se indica lo contrario.
-                <li>Posicionamiento relativo: variante del posicionamiento normal que consiste en posicionar una caja según el posicionamiento normal y después desplazarla respecto de su posición original.</li>
-                <li>Posicionamiento absoluto: la posición de una caja se establece de forma absoluta respecto de su elemento contenedor y el resto de elementos de la página ignoran la nueva posición del elemento.</li>
-                <li>Posicionamiento fijo: variante del posicionamiento absoluto que convierte una caja en un elemento inamovible, de forma que su posición en la pantalla siempre es la misma independientemente del resto de elementos e independientemente de si el usuario sube o baja la página en la ventana del navegador.</li>
-                <li>Posicionamiento flotante: se trata del modelo más especial de posicionamiento, ya que desplaza las cajas todo lo posible hacia la izquierda o hacia la derecha de la línea en la que se encuentran.</li>
+                    <li>Posicionamiento relativo: variante del posicionamiento normal que consiste en posicionar una caja según el posicionamiento normal y después desplazarla respecto de su posición original.</li>
+                    <li>Posicionamiento absoluto: la posición de una caja se establece de forma absoluta respecto de su elemento contenedor y el resto de elementos de la página ignoran la nueva posición del elemento.</li>
+                    <li>Posicionamiento fijo: variante del posicionamiento absoluto que convierte una caja en un elemento inamovible, de forma que su posición en la pantalla siempre es la misma independientemente del resto de elementos e independientemente
+                        de si el usuario sube o baja la página en la ventana del navegador.</li>
+                    <li>Posicionamiento flotante: se trata del modelo más especial de posicionamiento, ya que desplaza las cajas todo lo posible hacia la izquierda o hacia la derecha de la línea en la que se encuentran.</li>
             </ul>
         </article>
         <article id="masinfo">
@@ -254,7 +259,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>
