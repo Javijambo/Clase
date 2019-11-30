@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css.css">
+    <title>Indice</title>
+    <!-- Bootstrap CSS -->
+</head>
+
+<header>
+    <h1 class="banner display-3 font-weight-bold text-center">Bootstrap</h1>
+</header>
+
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <article id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="index.html#etiquetas">Introduccion</a>
+        <a href="#">Instalacion</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </article>
+
+    <nav id="navbar" class="navbar navbar-expand navbar-expand-xs  navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto ml-auto">
+            <li class="nav-item">
+                <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link a" href="../HTML5/index.html">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../CSS/index.html">CSS</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link a" href="index.html">BOOTSTRAP</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../GRID/index.html">GRID</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="../index.html">Ejercicios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link a" href="about.html">About me</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="main" class="pl-3 pr-3 justify-content-center text-center">
+        <h2 class="text-center">
+            Introducción</h2>
+        <p>
+            Materialize es un framework basado en  Material Design,  un concepto creado por Google para unificar el diseño de sus aplicaciones sin importar la plataforma en que se muestren.</p>
+        <article id="instalacion" class=" pl-3 pr-3"> 
+            <h3>Puesta a punto de Materialize</h3>
+            <p>Para poder utlizar Materialize tenemos que añadir las librerías a nuestro archivo html.</p>
+            <p>&ltlink rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></p>
+            <p>&ltlink rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"></p>
+            <p>&ltscript type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"> &lt/script> </p>
+            <p>&ltscript src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"> &lt/script></p>
+        </article>
+        <!--=============================================================================Listas=============================================================================-->
+        <article id="poscionamiento"  >
+            <h3>Posicionamiento en Materialize</h3>
+            <p>Materialize utiliza un sistema de rejillas que permite usar hasta 12 columnas en una pagina sin importar el navegador, cada una de ellas tendra el mismo ancho siempre.</p>
+            <p> <img src="../../Imagenes/bootstrap.png" class="text-center"></p>
+            <p>Para posicionamiento en rejilla tanto columnas como filas, indicando en la class del section/article/div que queramos la clase <i>col n</i> donde n es el tamaño que queramos darle a la columna (de 1 a 12). Después en un sub div/section/article con clase de tipo row para indicarle la/s fila/s que queremos en dicha columna</p>
+            <p>Si queremos posicionar una columna a la derecha podemos poner en la clase <i>offset sn</i> donde n es el numero de columnas que queremos restantes a la derecha.</p>
+            <p></p>
+        </article>
+        <!--=============================================================================HELPERS=============================================================================-->
+        <article id="helper">
+            <h3>Helpers</h3>
+            <p>En Materialize tenemos clases para alinear contenidos. </p>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>valign-wrapper</td>
+                        <td >Alinea el contenido verticalmente</td>
+                    </tr>
+                    <tr>
+                        <td>left-align</td>
+                        <td >Alinea el TEXTO a la izquierda</td>
+                    </tr>
+                    <tr>
+                        <td>right-align</td>
+                        <td >Alinea el TEXTO a la derecha</td>
+                    </tr>
+                    <tr>
+                        <td>center-align</td>
+                        <td >Alinea el TEXTO a el centro</td>
+                    </tr>
+                    <tr>
+                        <td>left</td>
+                        <td >Hace un float a la izquierda</td>
+                    </tr>
+                    <tr>
+                        <td>right</td>
+                        <td >Hace un float a la derecha</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <!--=============================================================================Responsive=============================================================================-->
+        <article id="resposive" >
+            <h3>Responsive</h3>
+            <p>Para el metodo resposive tenemos 5 clases para indicarle el tamaño de pantalla</p>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Width del contenedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>s</td>
+                        <td>Dispositivos extra pequeños - ancho de pantalla inferior a 576 px</td>
+                        <td>90%</td>
+                    </tr>
+                    <tr>
+                        <td>m</td>
+                        <td>Dispositivos pequeños: ancho de pantalla mayor o igual a 576 px</td>
+                        <td>85%</td>
+                    </tr>
+                    <td>l</td>
+                    <td>Dispositivos medianos: ancho de pantalla mayor o igual a 720 px</td>
+                    <td>70%</td>
+                    </tr>
+                    <tr>
+                        <td>xl</td>
+                        <td>70%</td>
+                        <td>Dispositivos largos: ancho de pantalla mayor o igual a 960 px</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>  
+            Por ejemplo: <i>&ltdiv class="col s12 m4 l3"></i> Este div, en pantallas grandes ocupará 3 columnas, 4 en medianas y 12 en pequeñas.
+            </p>
+        </article>
+
+        <!--=============================================================================Titulos=============================================================================-->
+        <article id="forms">
+            <h3>Formularios</h3>
+            <p>Ejemplo de formulario con Materialize. Link con mas informacion:<a href="https://materializecss.com/text-inputs.html">Link</a> </p>
+            <p class="codepen" data-height="641" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="YzPKYXz" style="height: 641px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="form mat">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/YzPKYXz">
+                form mat</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                on <a href="https://codepen.io">CodePen</a>.</span>
+              </p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
+        <!--==========================================================================Paginacion=============================================================================-->
+        <article id="paginacion">
+                <h3>Paginacion</h3>
+                <p class="codepen" data-height="270" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="RwNbxWP" style="height: 270px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="RwNbxWP">
+                    <span>See the Pen <a href="https://codepen.io/javijambo/pen/RwNbxWP">
+                    RwNbxWP</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                    on <a href="https://codepen.io">CodePen</a>.</span>
+                  </p>
+                  <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            </article>
+        <!--========================================================================Sidenav==========================================================-->
+        <article id="carusel" >
+                <h3>Sidenav</h3>
+                <p>Ejemplo de Sidenav con bootstrap. Link<a href="http://www.freetimelearning.com/materialize-css/example-codes/side-nav-dropdown.html#"></p>
+                <p> Link con mas informacion:<a href="https://materializecss.com/sidenav.html">Link</a> </p>
+         </article>     
+        <article id="masinfo">
+            <h3>Mas Información</h3>
+            <p>
+                Aqui dejo links de interés para más informacion en detalle de elementos de bootstrap:
+                <a href="https://getbootstrap.com/">Link</a>
+            </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        window.onscroll = function() {
+            myFunction()
+        };
+        var contador = 0;
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function openNav() {
+            if (contador == 0) {
+                contador = 1;
+                document.getElementById("mySidebar").style.width = "20%";
+                document.getElementById("main").style.marginLeft = "20%";
+            } else {
+                contador = 0;
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function myFunction() {
+            if (navigator.userAgent.match(/Android/i) ||
+                navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i) ||
+                navigator.userAgent.match(/BlackBerry/i) ||
+                navigator.userAgent.match(/Windows Phone/i)
+            ) {
+
+            } else {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky")
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
