@@ -23,7 +23,10 @@
 .sidebar a:hover {
     color: #f1f1f1;
 }
-
+#carouselExampleIndicators{
+    width:20% !important;
+    height:20% !important;
+}
 .sidebar .closebtn {
     position: absolute;
     top: 0;
@@ -35,6 +38,10 @@
 #main {
     transition: margin-left .5s;
     padding: 16px;
+}
+#main article{
+    margin-top:3em;
+    margin-bot:3em;
 }
 
 @media screen and (max-height: 450px) {

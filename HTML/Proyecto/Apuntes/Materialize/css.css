@@ -24,6 +24,9 @@
     display: block;
     transition: 0.3s;
 }
+.prueba:target {
+   padding-top: 10em;
+}
 
 .sidebar a:hover {
     color: #f1f1f1;

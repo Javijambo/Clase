@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css.css">
-    <title>Indice</title>
+    <title>Grid</title>
     <!-- Bootstrap CSS -->
 </head>
 
 <header>
-    <h1 class="banner display-3 font-weight-bold text-center">Bootstrap</h1>
+    <h1 id="introduccion" class="banner display-3 font-weight-bold text-center">Grid</h1>
 </header>
 
 <body>
@@ -20,10 +20,11 @@
 
     <article id="mySidebar" class="sidebar text-center">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="index.html#etiquetas">Introduccion</a>
-        <a href="#">Instalacion</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="index.html#introduccion">Introducción</a>
+        <a href="index.html#posicionamiento">Posicionamiento</a>
+        <a href="index.html#alineamiento">Alineamiento</a>
+        <a href="index.html#res">Responsive</a>
+        <a href="index.html#masinfo">Mas Información</a>
     </article>
 
     <nav id="navbar" class="navbar navbar-expand navbar-expand-xs  navbar-dark bg-dark">
@@ -40,16 +41,16 @@
             <li class="nav-item">
                 <a class="nav-link a" href="../CSS/index.html">CSS</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link a" href="index.html">BOOTSTRAP</a>
+            <li class="nav-item ">
+                <a class="nav-link a" href="../bootstrap/index.html">BOOTSTRAP</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
+                <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link a" href="../GRID/index.html">GRID</a>
             </li>
             <li class="nav-item">
@@ -62,194 +63,153 @@
     </nav>
 
     <section id="main" class="container pl-3 pr-3 justify-content-center text-center">
-
-       <article class="row "> 
-            <article id="introduccion">
-                <h3>Introducción</h3>
-                <p>Introducción CSS Grid es un modelo de maquetación CSS en base a una rejilla con filas y columnas, lo que facilita el diseño de páginas web sin tener que usar floats y posicionamiento.</p>
-            </article>
+        <article>
+            <h3>Introducción</h3>
+            <p id="posicionamiento">Introducción CSS Grid es un modelo de maquetación CSS en base a una rejilla con filas y columnas, lo que facilita el diseño de páginas web sin tener que usar floats y posicionamiento.</p>
         </article>
         <!--=============================================================================Listas=============================================================================-->
-        <article id="posicionamiento">
+        <article>
             <h3>Posicionamiento</h3>
-             <article class="row">
-                 <p>El sistema de grid se basa en un elemento padre con uno o varios elementos hijo, utiliza un sistema de columnas para posicionar verticalmente los elementos y filas para horizontalmente</p>
-                <article class="col-6"> <p>Columnas</p><p> <img src="../../Imagenes/columna.png" class="text-center"></p> </article>
-                <article class="col-6"> <p>Filas</p> <p> <img src="../../Imagenes/fila.png" class="text-center"></p> </article>
-                <p>Con la propieda <i>grid-column-start</i> y <i>grid-column-end</i> indicamos donde empieza y donde acaba el elemento en columnas</p>
-             </article>
+            <article class="row">
+                <p>El sistema de grid se basa en un elemento padre con uno o varios elementos hijo, utiliza un sistema de columnas para posicionar verticalmente los elementos y filas para horizontalmente</p>
+                <article class="col-6">
+                    <p>Columnas</p>
+                    <p> <img src="../../Imagenes/columna.png" class="text-center"></p>
+                </article>
+                <article class="col-6">
+                    <p>Filas</p>
+                    <p> <img src="../../Imagenes/fila.png" class="text-center"></p>
+                </article>
+                <p id="alineamiento">Con la propieda <i>grid-column-start</i> y <i>grid-column-end</i> indicamos donde empieza y donde acaba el elemento en columnas</p>
+            </article>
         </article>
-          <!--=============================================================================Alineamiento=============================================================================-->
-    </article id="">
+        <!--=============================================================================Alineamiento=============================================================================-->
+        <article>
         <h3>Alineamiento</h3>
         <p>Para ello tenemos las clases Justify content y Align-content
-        <p> Justify-content se utiliza para alinear horizontalmente toda la cuadrícula dentro del contenedor</p>
-        <p> Align-content se utiliza para alinear verticalmente toda la cuadrícula dentro del contenedor</p>
-        <p>Tenemos distintas propiedas para utilizarlos:</p>
-    
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Elemento</th>
-                    <th scope="col">Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>start</td>
-                    <td>Los elementos se alinean al inicio del container.</td>
-                </tr>
-                <tr>
-                    <td>end</td>
-                    <td>Los elementos se alinean al inicio del container.</td>
-                </tr>
-                <tr>
-                    <td>center</td>
-                    <td>Los elementos estan alineados en el centro.</td>
-                </tr>
-                <tr>
-                    <td>space-between</td>
-                    <td>Los elementos se alinean equitativamente con el primer elemento y el ultimo.</td>
-                </tr>
-                <tr>
-                    <td>space-around</td>
-                    <td>Los elementos están distribuidos de forma que tengan el mismo espaciado entre ellos. </td>
-                </tr>
-                <tr>
-                    <td>space-evenly</td>
-                    <td>Los elementos se alinean de manera que el espacio de detras al elemento anterior y el espacio de delante del elemento siguiente sea el mismo.</td>
-                </tr>
-            </tbody>
-        </table>
-        <!--=============================================================================Responsive=============================================================================-->
-        <article id="resposive">
-            <h3>Responsive</h3>
-            <p>Para el metodo resposive tenemos 5 clases para indicarle el tamaño de pantalla</p>
+            <p> Justify-content se utiliza para alinear horizontalmente toda la cuadrícula dentro del contenedor</p>
+            <p> Align-content se utiliza para alinear verticalmente toda la cuadrícula dentro del contenedor</p>
+            <p>Tenemos distintas propiedas para utilizarlos:</p>
+
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Elemento</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Width del contenedor</th>
+                        <th scope="col">Descripción</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>s</td>
-                        <td>Dispositivos extra pequeños - ancho de pantalla inferior a 576 px</td>
-                        <td>90%</td>
+                        <td>start</td>
+                        <td>Los elementos se alinean al inicio del container.</td>
                     </tr>
                     <tr>
-                        <td>m</td>
-                        <td>Dispositivos pequeños: ancho de pantalla mayor o igual a 576 px</td>
-                        <td>85%</td>
-                    </tr>
-                    <td>l</td>
-                    <td>Dispositivos medianos: ancho de pantalla mayor o igual a 720 px</td>
-                    <td>70%</td>
+                        <td>end</td>
+                        <td>Los elementos se alinean al inicio del container.</td>
                     </tr>
                     <tr>
-                        <td>xl</td>
-                        <td>70%</td>
-                        <td>Dispositivos largos: ancho de pantalla mayor o igual a 960 px</td>
+                        <td>center</td>
+                        <td>Los elementos estan alineados en el centro.</td>
+                    </tr>
+                    <tr>
+                        <td>space-between</td>
+                        <td>Los elementos se alinean equitativamente con el primer elemento y el ultimo.</td>
+                    </tr>
+                    <tr>
+                        <td>space-around</td>
+                        <td>Los elementos están distribuidos de forma que tengan el mismo espaciado entre ellos. </td>
+                    </tr>
+                    <tr>
+                        <td>space-evenly</td>
+                        <td>Los elementos se alinean de manera que el espacio de detras al elemento anterior y el espacio de delante del elemento siguiente sea el mismo.</td>
                     </tr>
                 </tbody>
             </table>
-            <p>
-                Por ejemplo: <i>&ltdiv class="col s12 m4 l3"></i> Este div, en pantallas grandes ocupará 3 columnas, 4 en medianas y 12 en pequeñas.
-            </p>
+            <p>También tenemos los elementos grid-column, grid-row y grid area.</p>
+            <ul>
+        <li><p>Con grid-column podemos indicarle en que columnas colocar un elemento. Ejemplo: tenemos un elemento con <i>grid-column: 2 / 4;</i> Este elemento ocupará desde la columna 2 a la columna 4.</p></li>
+        <li><p>Con grid-row podemos indicarle en qué filas queremos colocar un elemento. Ej: tenemos un elemento con <i>grid-row: 3 / 6;</i> Este elemento ocupará desde la fila 3 a la fila 6.</p></li>
+        <li><p>Con grid-area podemos indicarle tanto las filas como las columnas que queramos como un template, para ello tenemos que indicar con grid-area y un nombre los elementos que queramos posicionar, despues usaremos grid template para indicar la posicion de cada uno de estos elemetos. Ejemplo:</p>
+        <p class="codepen" data-height="496" data-theme-id="default" data-default-tab="css,result" data-user="javijambo" data-slug-hash="YzPKbjY" style="height: 496px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="YzPKbjY">
+            <span>See the Pen <a href="https://codepen.io/javijambo/pen/YzPKbjY">
+            YzPKbjY</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span>
+          </p></li>
+        </ul>
+          <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+          <b id="res"></b>
         </article>
-
-
-        <!--=============================================================================Titulos=============================================================================-->
-        <article id="forms">
-            <h3>Formularios</h3>
-            <p>Ejemplo de formulario con Materialize.</p>
-            <p class="codepen" data-height="641" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="YzPKYXz" style="height: 641px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
-                data-pen-title="form mat">
-                <span>See the Pen <a href="https://codepen.io/javijambo/pen/YzPKYXz">
-                form mat</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+          
+        <!--=============================================================================Responsive=============================================================================-->
+        <article >
+            <h3>Responsive</h3>
+            <p>Para el metodo resposive tenemos que indicar en css a partir de que tamaño queremos que aplique algunas propiedades de grid y con otro tamaño otras</p>
+            <p>Ejemplo:</p>
+            <p class="codepen" data-height="657" data-theme-id="default" data-default-tab="css,result" data-user="javijambo" data-slug-hash="gObYJNQ" style="height: 657px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="gObYJNQ">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/gObYJNQ">
+                gObYJNQ</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                 on <a href="https://codepen.io">CodePen</a>.</span>
-            </p>
-            <p>Link con mas informacion:<a href="https://materializecss.com/text-inputs.html">Link</a> </p>
-            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+              </p>
+              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+              <p>Si tenemos una pantalla de menos de 700px los elementos se nos colocaran en una sola columna, si no tendran el display indicado en el grid-template. (el que aparece en pantalla, el mismo al ejemplo anterior)</p>
         </article>
 
-
-        <!--==========================================================================Paginacion=============================================================================-->
-        <article id="paginacion">
-            <h3>Paginacion</h3>
-            <p class="codepen" data-height="270" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="RwNbxWP" style="height: 270px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
-                data-pen-title="RwNbxWP">
-                <span>See the Pen <a href="https://codepen.io/javijambo/pen/RwNbxWP">
-                    RwNbxWP</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
-                    on <a href="https://codepen.io">CodePen</a>.</span>
-            </p>
-            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-        </article>
-
-
-        <!--========================================================================Sidenav==========================================================-->
-        <article id="carusel">
-            <h3>Sidenav</h3>
-            <p>Ejemplo de Sidenav con Naterialize.<a href="http://www.freetimelearning.com/materialize-css/example-codes/side-nav-dropdown.html#">Link</a> </p>
-            <p> Link con mas informacion:<a href="https://materializecss.com/sidenav.html">Link</a> </p>
-        </article>
+        <!--=============================================================================Info=============================================================================-->
         <article id="masinfo">
             <h3>Mas Información</h3>
             <p>
-                Aqui dejo links de interés para más informacion en detalle de elementos de bootstrap:
-                <a href="https://getbootstrap.com/">Link</a>
+                Aqui dejo links de interés para más informacion en detalle de elementos de grid:
+                <a href="https://www.w3schools.com/cssref/pr_grid.asp">Link</a>
             </p>
     </section>
 
 
-        </section>
+    </section>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script>
-            window.onscroll = function() {
-                myFunction()
-            };
-            var contador = 0;
-            var navbar = document.getElementById("navbar");
-            var sticky = navbar.offsetTop;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        window.onscroll = function() {
+            myFunction()
+        };
+        var contador = 0;
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
 
-            function openNav() {
-                if (contador == 0) {
-                    contador = 1;
-                    document.getElementById("mySidebar").style.width = "20%";
-                } else {
-                    contador = 0;
-                    document.getElementById("mySidebar").style.width = "0";
-                }
-            }
-
-            function closeNav() {
+        function openNav() {
+            if (contador == 0) {
+                contador = 1;
+                document.getElementById("mySidebar").style.width = "20%";
+            } else {
+                contador = 0;
                 document.getElementById("mySidebar").style.width = "0";
-                
             }
+        }
 
-            function myFunction() {
-                if (navigator.userAgent.match(/Android/i) ||
-                    navigator.userAgent.match(/webOS/i) ||
-                    navigator.userAgent.match(/iPhone/i) ||
-                    navigator.userAgent.match(/iPad/i) ||
-                    navigator.userAgent.match(/iPod/i) ||
-                    navigator.userAgent.match(/BlackBerry/i) ||
-                    navigator.userAgent.match(/Windows Phone/i)
-                ) {
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
 
+        }
+
+        function myFunction() {
+            if (navigator.userAgent.match(/Android/i) ||
+                navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i) ||
+                navigator.userAgent.match(/BlackBerry/i) ||
+                navigator.userAgent.match(/Windows Phone/i)
+            ) {
+
+            } else {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky")
                 } else {
-                    if (window.pageYOffset >= sticky) {
-                        navbar.classList.add("sticky")
-                    } else {
-                        navbar.classList.remove("sticky");
-                    }
+                    navbar.classList.remove("sticky");
                 }
             }
-        </script>
+        }
+    </script>
 
 </body>
 
