@@ -12,7 +12,7 @@
 </head>
 
 <header>
-    <h1 class="banner display-3 font-weight-bold text-center">Bootstrap</h1>
+    <h1 id="intro" class="banner display-3 font-weight-bold text-center">Bootstrap</h1>
 </header>
 
 <body>
@@ -20,10 +20,16 @@
 
     <article id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="index.html#etiquetas">Introduccion</a>
-        <a href="#">Instalacion</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="index.html#intro">Introduccion</a>
+        <a href="index.html#instalacion">Instalacion</a>
+        <a href="index.html#pos">Posicionamiento</a>
+        <a href="index.html#resposive">Resposive</a>
+        <a href="index.html#colores">Colores</a>
+        <a href="index.html#forms">Formularios</a>
+        <a href="index.html#card">Cards</a>
+        <a href="index.html#carusel">Carousel</a>
+        <a href="index.html#masinfo">Mas información</a>
+
     </article>
 
     <nav id="navbar" class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -44,7 +50,7 @@
                 <a class="nav-link a" href="index.html">BOOTSTRAP</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
+                <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
@@ -53,7 +59,7 @@
                 <a class="nav-link a" href="../GRID/index.html">GRID</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../index.html">Ejercicios</a>
+                <a class="nav-link a" href="../../Ejercicios.html">Ejercicios</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link a" href="about.html">About me</a>
@@ -64,153 +70,160 @@
     <section id="main" class="ml-3 mr-3 justify-content-center text-center">
         <h2 class="text-center">
             Introduccion</h2>
-        <p>
+        <p id="instalacion">
             Bootstrap es un framework CSS y Javascript diseñado para la creación de interfaces limpias y con un diseño responsive. Además, ofrece un amplio abanico de herramientas y funciones, de manera que los usuarios pueden crear prácticamente cualquier tipo de
             sitio web haciendo uso de los mismos. Esta mima página esta creada con bootstrap+css por ejemplo.</p>
-        <article id="instalacion" >
+        <article>
             <h3>Puesta a punto de Bootstrap</h3>
             <p>Para poder utlizar bootstrap tenemos que añadir las librerías a nuestro archivo html.</p>
             <p>&ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></p>
             <p>&ltscript src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">&lt/script></p>
             <p>&ltscript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">&lt/script> </p>
-            <p>&ltscript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">&lt/script></p>
+            <p id="pos">&ltscript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">&lt/script></p>
+
         </article>
         <!--=============================================================================Listas=============================================================================-->
-        <article id="poscionamiento ">
+        <article>
             <h3>Posicionamiento en Bootstrap</h3>
             <p>Bootstrap utiliza un sistema de rejillas que permite usar hasta 12 columnas en una pagina, puedes definir columnas del tamaño que elijamos.</p>
             <p> <img src="../../Imagenes/bootstrap.png" class="text-center"></p>
-            <p>Para posicionamiento en rejilla tanto columnas como filas, indicando en la class del section/article/div que queramos la clase "col" seguido del de un guión y el tamaño que queramos darle (de 1 a 12). Después en un sub div/section/article con clase de tipo row para indicarle la o las filas que queremos en dicha columna</p>
+            <p id="resposive">Para posicionamiento en rejilla tanto columnas como filas, indicando en la class del section/article/div que queramos la clase "col" seguido del de un guión y el tamaño que queramos darle (de 1 a 12). Después en un sub div/section/article
+                con clase de tipo row para indicarle la o las filas que queremos en dicha columna</p>
         </article>
         <!--=============================================================================Tablas=============================================================================-->
-        <article id="resposive">
+        <article>
             <h3>Responsive</h3>
             <p>Para el metodo resposive tenemos 5 clases para indicarle el tamaño de pantalla</p>
             <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Elemento</th>
-                            <th scope="col">Descripcion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>(Por defecto, no hace falta poner la clase)</td>
-                            <td>Dispositivos extra pequeños - ancho de pantalla inferior a 576 px</td>
-                        </tr>
-                        <tr>
-                            <td>-sm</td>
-                            <td>Dispositivos pequeños: ancho de pantalla mayor o igual a 576 px</td>
-                        </tr>
-                        <td>-md</td>
-                        <td>Dispositivos medianos: ancho de pantalla mayor o igual a 720 px</td>
-                        </tr>
-                        <tr>
-                            <td>-lg</td>
-                            <td>Dispositivos largos: ancho de pantalla mayor o igual a 960 px</td>
-                        </tr>
-                        <tr>
-                            <td>-xl</td>
-                            <td>Dispositivos xlarge: ancho de pantalla mayor o igual a 1140px.</td>
-                        </tr>
-                        <tr>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>(Por defecto, no hace falta poner la clase)</td>
+                        <td>Dispositivos extra pequeños - ancho de pantalla inferior a 576 px</td>
+                    </tr>
+                    <tr>
+                        <td>-sm</td>
+                        <td>Dispositivos pequeños: ancho de pantalla mayor o igual a 576 px</td>
+                    </tr>
+                    <td>-md</td>
+                    <td>Dispositivos medianos: ancho de pantalla mayor o igual a 720 px</td>
+                    </tr>
+                    <tr>
+                        <td>-lg</td>
+                        <td>Dispositivos largos: ancho de pantalla mayor o igual a 960 px</td>
+                    </tr>
+                    <tr>
+                        <td>-xl</td>
+                        <td>Dispositivos xlarge: ancho de pantalla mayor o igual a 1140px.</td>
+                    </tr>
 
-                    </tbody>
-                </table>
-            <p>  
-            Por ejemplo: &ltdiv class="col-md-6 col-sm-8"> Este div, en pantallas medianas ocupará 6/12  y en dispositivos pequeños ocupará 8/12 columnas disponibles.
+                </tbody>
+            </table>
+            <p id="colores">
+                Por ejemplo: &ltdiv class="col-md-6 col-sm-8"> Este div, en pantallas medianas ocupará 6/12 y en dispositivos pequeños ocupará 8/12 columnas disponibles.
             </p>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </article>
         <!--=============================================================================Formularios=============================================================================-->
-        <article id="colores">
-                <h3>Colores</h3>
-                <p>En Bootstrap tenemos colores para añadir tanto a texto, fondo, lo que queramos. </p>
-                <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Elemento</th>
-                                <th scope="col">Descripcion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>-primary</td>
-                                <td class="bg-primary">Color Azul oscuro</td>
-                            </tr>
-                            <tr>
-                                <td>-secondary</td>
-                                <td class="bg-secondary">Color Gris oscuro</td>
-                            </tr>
-                            <tr>
-                                <td>-success</td>
-                                <td class="bg-success">Color Verde</td>
-                            </tr>
-                            <tr>
-                                <td>-danger</td>
-                                <td class="bg-danger">Color Rojo</td>
-                            </tr>
-                            <tr>
-                                <td>-warning</td>
-                                <td class="bg-warning">Color Amarillo</td>
-                            </tr>
-                            <tr>
-                                <td>-info</td>
-                                <td class="bg-info">Color Azul claro</td>
-                            </tr>
-                            <tr>
-                                <td>-light</td>
-                                <td class="bg-light">Color Blanquecino</td>
-                            </tr>
-                            <tr>
-                                <td>-info</td>
-                                <td class="bg-dark">Color Negro</td>
-                            </tr>
-    
-                        </tbody>
-                    </table>
-                <p>  
-                Por ejemplo: &ltdiv class="col-md-6 col-sm-8"> Este div, en pantallas medianas ocupará 6/12  y en dispositivos pequeños ocupará 8/12 columnas disponibles.
-                </p>
-                <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-                <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-            </article>
+        <article>
+            <h3>Colores</h3>
+            <p>En Bootstrap tenemos colores para añadir tanto a texto, fondo, lo que queramos. </p>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>-primary</td>
+                        <td class="bg-primary">Color Azul oscuro</td>
+                    </tr>
+                    <tr>
+                        <td>-secondary</td>
+                        <td class="bg-secondary">Color Gris oscuro</td>
+                    </tr>
+                    <tr>
+                        <td>-success</td>
+                        <td class="bg-success">Color Verde</td>
+                    </tr>
+                    <tr>
+                        <td>-danger</td>
+                        <td class="bg-danger">Color Rojo</td>
+                    </tr>
+                    <tr>
+                        <td>-warning</td>
+                        <td class="bg-warning">Color Amarillo</td>
+                    </tr>
+                    <tr>
+                        <td>-info</td>
+                        <td class="bg-info">Color Azul claro</td>
+                    </tr>
+                    <tr>
+                        <td>-light</td>
+                        <td class="bg-light">Color Blanquecino</td>
+                    </tr>
+                    <tr>
+                        <td>-info</td>
+                        <td class="bg-dark">Color Negro</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <p id="forms">
+                Por ejemplo: &ltdiv class="col-md-6 col-sm-8"> Este div, en pantallas medianas ocupará 6/12 y en dispositivos pequeños ocupará 8/12 columnas disponibles.
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
 
         <!--=============================================================================Titulos=============================================================================-->
-        <article id="forms">
+        <article>
             <h3>Formularios</h3>
             <p>Ejemplo de formulario con bootstrap. Link con mas informacion:<a href="https://getbootstrap.com/docs/4.3/components/forms/">Link</a> </p>
-            <p class="codepen" data-height="662" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="XWJrMdy" style="height: 662px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="XWJrMdy">
-                    <span>See the Pen <a href="https://codepen.io/javijambo/pen/XWJrMdy">
+            <p class="codepen" data-height="662" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="XWJrMdy" style="height: 662px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="XWJrMdy">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/XWJrMdy">
                     XWJrMdy</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                     on <a href="https://codepen.io">CodePen</a>.</span>
-                  </p>
+            </p>
+            <b id="card"></b>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </article>
         <!--==========================================================================Cartas=============================================================================-->
-        <article id="card">
-                <h3>Cartas</h3>
-                <p>Ejemplo de Cartas con bootstrap. Link con mas informacion:<a href="https://getbootstrap.com/docs/4.3/components/card/">Link</a> </p>
-                <p class="codepen" data-height="701" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="rNaByLq" style="height: 701px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="rNaByLq">
-                        <span>See the Pen <a href="https://codepen.io/javijambo/pen/rNaByLq">
+        <article>
+            <h3>Cartas</h3>
+            <p>Ejemplo de Cartas con bootstrap. Link con mas informacion:<a href="https://getbootstrap.com/docs/4.3/components/card/">Link</a> </p>
+            <p class="codepen" data-height="701" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="rNaByLq" style="height: 701px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="rNaByLq">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/rNaByLq">
                         rNaByLq</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
-                      </p>
-                      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-            </article>
+            </p>
+            <b id="carusel"></b>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
         <!--========================================================================Carrusel==========================================================-->
-        <article id="carusel">
-                <h3>Carousel</h3>
-                <p>Ejemplo de Carousel con bootstrap. Link con mas informacion:<a href="https://getbootstrap.com/docs/4.3/components/carousel/">Link</a> </p>
-                <p class="codepen" data-height="594" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="NWPKpaX" style="height: 594px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Bootstrap 4 Carousel">
-                        <span>See the Pen <a href="https://codepen.io/javijambo/pen/NWPKpaX">
+        <article>
+            <h3>Carousel</h3>
+            <p>Ejemplo de Carousel con bootstrap. Link con mas informacion:<a href="https://getbootstrap.com/docs/4.3/components/carousel/">Link</a> </p>
+            <p class="codepen" data-height="594" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="NWPKpaX" style="height: 594px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="Bootstrap 4 Carousel">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/NWPKpaX">
                         Bootstrap 4 Carousel</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
-                      </p>
-                      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-         </article>     
-        <article id="masinfo">
+            </p>
+            <b id="masinfo"></b>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
+        <article>
             <h3>Mas Información</h3>
             <p>
                 Aqui dejo links de interés para más informacion en detalle de elementos de bootstrap:
