@@ -343,9 +343,9 @@ $todo .= '</div>';
           <a class="nav-link a" href="login.php">Login</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href=\'login.php\';">Login</button>
-      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'registro.php\';">Registro</button>
-      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'carrito.php\';">Carro</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href=\'login.html\';">Login</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'registro.html\';">Registro</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'carrito.html\';">Carro</button>
     </div>
   </nav>
   <div class="row justify-content-center container-fluid" id="contenido">

@@ -35,7 +35,7 @@ function getCookie(cname) {
 function comprar(t, id, m, mo, precio) {
     numeroregistro = localStorage.getItem("numerodeorden");
     var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
-    stock = getCookie(id);
+    var stock = getCookie(id);
 
     if (ventana == 0 || ventana === null) {
         alert("introduzca un valor positivo");
@@ -45,7 +45,7 @@ function comprar(t, id, m, mo, precio) {
             url: 'master.php',
             type: 'POST',
             data: {
-                'funcion': 'carrito',
+                'funcion': 'cookie',
                 'cookie': id,
                 'stock': nuevostock,
             },
@@ -82,10 +82,6 @@ function visualizarcarrito() {
         id = carro[1];
         stock = parseInt(carro[2], 10);
         precio = carro[3];
-        console.log(tabla);
-        console.log(id);
-        console.log(stock);
-        console.log(precio);
         total = total + (stock * precio);
         $.ajax({
             url: 'master.php',
@@ -95,13 +91,62 @@ function visualizarcarrito() {
                 'tabla': tabla,
                 'p': id,
                 'stock': stock,
-
             },
             success: function(response) {
                 $('#todo').append(response);
             }
         });
         document.getElementById("total").value = total.toFixed(2) + " €";
+    }
+}
+
+function realizarpedido() {
+    total = 0.00;
+    numerodeorden = localStorage.getItem("numerodeorden");
+    var pedido = "";
+    for (i = 1; i <= numerodeorden; i++) {
+        nuevopedido = "Order." + i;
+        datos = "";
+        datos = localStorage.getItem("Order." + i);
+        pedido = pedido + "," + datos;
+    }
+    console.log(pedido);
+    usuario = getCookie('usuario');
+    var total = document.getElementById('total').value;
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'pedido',
+            'pedido': pedido,
+            'usuario': usuario,
+            'total': total,
+        },
+        success: function(response) {
+            $('body').append(response);
+        }
+    });
+    numerodeorden = localStorage.getItem("numerodeorden");
+    for (i = 1; i <= numerodeorden; i++) {
+        datos = localStorage.getItem("Order." + i);
+        usuario = getCookie('usuario');
+        carro = datos.split("|");
+        tabla = carro[0];
+        id = carro[1];
+        stock =
+            $.ajax({
+                url: 'master.php',
+                type: 'POST',
+                data: {
+                    'funcion': 'actualizar',
+                    'tabla': tabla,
+                    'stock': usuario,
+                    'total': total,
+                },
+                success: function(response) {
+                    $('body').append(response);
+                }
+            });
     }
 }
 
@@ -126,31 +171,4 @@ function login() {
         }
     });
 
-}
-
-
-function realizarpedido() {
-    total = 0.00;
-    numerodeorden = localStorage.getItem("numerodeorden");
-    var pedido = "";
-    for (i = 1; i <= numerodeorden; i++) {
-        nuevopedido = "Order." + i;
-        datos = "";
-        datos = localStorage.getItem("Order." + i);
-        pedido = pedido + "," + datos;
-    }
-    console.log(pedido);
-    usuario = getCookie('usuario');
-    $.ajax({
-        url: 'master.php',
-        type: 'POST',
-        data: {
-            'funcion': 'pedido',
-            'pedido': pedido,
-            'usuario': usuario,
-        },
-        success: function(response) {
-            $('body').append(response);
-        }
-    });
 }
