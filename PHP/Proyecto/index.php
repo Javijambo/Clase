@@ -22,7 +22,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
   }
   // Stock:<input class="form-control" type="text" placeholder="'.$stock.'" readonly>
   $todo .= '
-          <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 540px;">
+          <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img">
@@ -31,7 +31,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
                 </div>
             </div>
           </div>
@@ -53,7 +53,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4" style="max-width: 540px;">
+          <div class="card mb-3 mr-4" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img" alt="...">
@@ -62,7 +62,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
   }
 
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
+          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img" alt="...">
@@ -93,7 +93,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
   $stock = $record['Stock'];
   if (!isset($_COOKIE[$id])) { setcookie($id, $stock, time() + (86400 * 30), "/"); }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
+          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img" alt="...">
@@ -120,7 +120,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
+          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img" alt="...">
@@ -151,7 +151,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -171,7 +171,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
+          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img" alt="...">
@@ -180,7 +180,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 540px;">
+          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
               <img src="img/' . $img . '" class="card-img" alt="...">
@@ -209,7 +209,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $stock . ');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
               </div>
             </div>
           </div>
@@ -223,7 +223,7 @@ $todo .= '</div>';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>3GAG</title>
+  <title>PC</title>
   <style>
     .overlay {
       height: 100%;
@@ -305,6 +305,7 @@ $todo .= '</div>';
 <body>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- MENU IZQUIERDO! -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script src="jscript.js"></script>
   <section id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
@@ -318,7 +319,7 @@ $todo .= '</div>';
       <a id="tower" href="#">Torres</a>
     </article>
   </section>
-  <nav class="navbar navbar-expand-lg displaynavbar-light bg-dark barra">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -342,7 +343,9 @@ $todo .= '</div>';
           <a class="nav-link a" href="login.php">Login</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light btn1" type="button" onclick=" window.location.href=\'carrito.php\';">Carro</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href=\'login.php\';">Login</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'registro.php\';">Registro</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'carrito.php\';">Carro</button>
     </div>
   </nav>
   <div class="row justify-content-center container-fluid" id="contenido">
