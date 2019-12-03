@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../../Estilo/css.css">
     <title>Indice</title>
     <!-- Bootstrap CSS -->
 </head>
@@ -18,7 +18,7 @@
 <body>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <article id="mySidebar" class="sidebar">
+    <article id="mySidebar" class="sidebar  text-center">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="index.html#intro">Introduccion</a>
         <a href="index.html#instalacion">Instalacion</a>
@@ -29,64 +29,69 @@
         <a href="index.html#card">Cards</a>
         <a href="index.html#carusel">Carousel</a>
         <a href="index.html#masinfo">Mas información</a>
-
     </article>
 
-    <nav id="navbar" class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto ml-auto">
             <li class="nav-item">
                 <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../../index.html">Inicio</a>
+                <a class="nav-link" href="../../index.html">Inicio</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link a" href="../HTML5/index.html">HTML</a>
+                <a class="nav-link" href="../HTML5/index.html">HTML</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../CSS/index.html">CSS</a>
+                <a class="nav-link" href="../CSS/index.html">CSS</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link a" href="index.html">BOOTSTRAP</a>
+                <a class="nav-link" href="index.html">BOOTSTRAP</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
+                <a class="nav-link" href="../materialize/index.html">MATERIALIZE</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
+                <a class="nav-link" href="../FLEX/index.html">FLEX</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../GRID/index.html">GRID</a>
+                <a class="nav-link" href="../GRID/index.html">GRID</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../../Ejercicios.html">Ejercicios</a>
+                <a class="nav-link" href="../../Ejercicios.html">Ejercicios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="about.html">About me</a>
+                <a class="nav-link" href="about.html">About me</a>
             </li>
         </ul>
     </nav>
 
-    <section id="main" class="ml-3 mr-3 justify-content-center text-center">
-        <h2 class="text-center">
-            Introduccion</h2>
-        <p id="instalacion">
-            Bootstrap es un framework CSS y Javascript diseñado para la creación de interfaces limpias y con un diseño responsive. Además, ofrece un amplio abanico de herramientas y funciones, de manera que los usuarios pueden crear prácticamente cualquier tipo de
-            sitio web haciendo uso de los mismos. Esta mima página esta creada con bootstrap+css por ejemplo.</p>
+    <section id="main" class="ml-4 mr-4 justify-content-center text-center">
+
+        <article>
+            <h2 class="text-center">
+                Introduccion</h2>
+            <p id="instalacion">
+                Bootstrap es un framework CSS y Javascript diseñado para la creación de interfaces limpias y con un diseño responsive. Además, ofrece un amplio abanico de herramientas y funciones, de manera que los usuarios pueden crear prácticamente cualquier tipo de
+                sitio web haciendo uso de los mismos. Esta mima página esta creada con bootstrap+css por ejemplo.</p>
+        </article>
         <article>
             <h3>Puesta a punto de Bootstrap</h3>
             <p>Para poder utlizar bootstrap tenemos que añadir las librerías a nuestro archivo html.</p>
-            <p>&ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></p>
+            <p>&ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            </p>
             <p>&ltscript src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">&lt/script></p>
-            <p>&ltscript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">&lt/script> </p>
-            <p id="pos">&ltscript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">&lt/script></p>
+            <p>&ltscript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">&lt/script>
+            </p>
+            <p id="pos">&ltscript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">&lt/script>
+            </p>
 
         </article>
         <!--=============================================================================Listas=============================================================================-->
         <article>
             <h3>Posicionamiento en Bootstrap</h3>
             <p>Bootstrap utiliza un sistema de rejillas que permite usar hasta 12 columnas en una pagina, puedes definir columnas del tamaño que elijamos.</p>
-            <p> <img src="../../Imagenes/bootstrap.png" class="text-center"></p>
+            <p> <img src="../../Imagenes/bootstrap.png" class="img-fluid text-center"></p>
             <p id="resposive">Para posicionamiento en rejilla tanto columnas como filas, indicando en la class del section/article/div que queramos la clase "col" seguido del de un guión y el tamaño que queramos darle (de 1 a 12). Después en un sub div/section/article
                 con clase de tipo row para indicarle la o las filas que queremos en dicha columna</p>
         </article>
@@ -191,8 +196,8 @@
             <p class="codepen" data-height="662" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="XWJrMdy" style="height: 662px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="XWJrMdy">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/XWJrMdy">
-                    XWJrMdy</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
-                    on <a href="https://codepen.io">CodePen</a>.</span>
+                            XWJrMdy</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                        on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <b id="card"></b>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -204,7 +209,7 @@
             <p class="codepen" data-height="701" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="rNaByLq" style="height: 701px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="rNaByLq">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/rNaByLq">
-                        rNaByLq</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                            rNaByLq</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <b id="carusel"></b>
@@ -217,7 +222,8 @@
             <p class="codepen" data-height="594" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="NWPKpaX" style="height: 594px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="Bootstrap 4 Carousel">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/NWPKpaX">
-                        Bootstrap 4 Carousel</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                            Bootstrap 4 Carousel</a> by javijambo (<a
+                            href="https://codepen.io/javijambo">@javijambo</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <b id="masinfo"></b>
@@ -229,6 +235,7 @@
                 Aqui dejo links de interés para más informacion en detalle de elementos de bootstrap:
                 <a href="https://getbootstrap.com/">Link</a>
             </p>
+        </article>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -243,19 +250,29 @@
 
         function openNav() {
             if (contador == 0) {
-                contador = 1;
-                document.getElementById("mySidebar").style.width = "20%";
-                document.getElementById("main").style.marginLeft = "20%";
+                if (navigator.userAgent.match(/Android/i) ||
+                    navigator.userAgent.match(/webOS/i) ||
+                    navigator.userAgent.match(/iPhone/i) ||
+                    navigator.userAgent.match(/iPad/i) ||
+                    navigator.userAgent.match(/iPod/i) ||
+                    navigator.userAgent.match(/BlackBerry/i) ||
+                    navigator.userAgent.match(/Windows Phone/i)
+                ) {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "100%";
+                } else {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "20%";
+                }
+
             } else {
                 contador = 0;
                 document.getElementById("mySidebar").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
             }
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
         }
 
         function myFunction() {

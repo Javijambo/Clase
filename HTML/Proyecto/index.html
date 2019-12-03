@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="estilo/css.css">
     <title>Indice</title>
     <!-- Bootstrap CSS -->
 </head>
@@ -17,32 +17,64 @@
 
 <body>
     <script>
+        window.onscroll = function() {
+            myFunction()
+        };
+        var contador = 0;
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
         function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
+            if (contador == 0) {
+                if (navigator.userAgent.match(/Android/i) ||
+                    navigator.userAgent.match(/webOS/i) ||
+                    navigator.userAgent.match(/iPhone/i) ||
+                    navigator.userAgent.match(/iPad/i) ||
+                    navigator.userAgent.match(/iPod/i) ||
+                    navigator.userAgent.match(/BlackBerry/i) ||
+                    navigator.userAgent.match(/Windows Phone/i)
+                ) {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "100%";
+                } else {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "20%";
+                }
+
+            } else {
+                contador = 0;
+                document.getElementById("mySidebar").style.width = "0";
+            }
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function myFunction() {
+            if (navigator.userAgent.match(/Android/i) ||
+                navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i) ||
+                navigator.userAgent.match(/BlackBerry/i) ||
+                navigator.userAgent.match(/Windows Phone/i)
+            ) {
+                navbar.classList.remove("sticky");
+            } else {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky")
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
         }
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <article id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-    </article>
-
-    <nav class="navbar navbar-expand-lg col-sm-12 navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto ml-auto">
-            <li class="nav-item">
-                <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
-            </li>
             <li class="nav-item active">
                 <a class="nav-link a" href="index.html">Inicio<span class="sr-only">(current)</span></a>
             </li>
@@ -56,7 +88,7 @@
                 <a class="nav-link a" href="Apuntes/BOOTSTRAP/index.html">BOOTSTRAP</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link a" href="Materialize/index.html">MATERIALIZE</a>
+                <a class="nav-link a" href="Materialize/index.html">MATERIALIZE</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link a" href="Apuntes/FLEX/index.html">FLEX</a>
@@ -73,55 +105,64 @@
         </ul>
     </nav>
 
-    <section class="row justify-content-center" id="contenido">
-        <section class="card" style="width: 18rem;">
-            <img src="imagenes/html.jpg" class="card-img-top">
-            <article class="card-body">
-                <h5 class="card-title">HTML</h5>
-                <p class="card-text">Teoría sobre HTML5</p>
-                <a href="#" class="btn btn-primary">Acceder</a>
-            </article>
-        </section>
+    <section class="container-fluid " id="contenido">
+        <article class="row justify-content-center">
+            <section class="card m-4" style="width: 18rem;">
+                <img src="imagenes/html.png" class="card-img-top">
+                <article class="card-body">
+                    <h5 class="card-title">HTML</h5>
+                    <p class="card-text">Teoría sobre HTML5</p>
+                    <a href="Apuntes/HTML5/index.html" class="btn btn-primary">Acceder</a>
+                </article>
+            </section>
 
-        <section class="card" style="width: 18rem;">
-            <img src="imagenes/css.jpg" class="card-img-top">
-            <article class="card-body">
-                <h5 class="card-title">CSS</h5>
-                <p class="card-text">Teoría sobre CSS</p>
-                <a href="#" class="btn btn-primary">Acceder</a>
-            </article>
-        </section>
+            <section class="card m-4" style="width: 18rem;">
+                <img src="imagenes/css.png" class="card-img-top">
+                <article class=" card-body ">
+                    <h5 class="card-title ">CSS</h5>
+                    <p class="card-text ">Teoría sobre CSS</p>
+                    <a href="Apuntes/CSS/index.html" class="btn btn-primary ">Acceder</a>
+                </article>
+            </section>
 
-        <section class="card" style="width: 18rem;">
-            <img src="imagenes/bootstrap.jpg" class="card-img-top">
-            <article class="card-body">
-                <h5 class="card-title">BootStrap</h5>
-                <p class="card-text">Teoría sobre Bootstrap</p>
-                <a href="#" class="btn btn-primary">Acceder</a>
-            </article>
-        </section>
+            <section class="card m-4 " style="width: 18rem; ">
+                <img src="imagenes/boot.png " class="card-img-top ">
+                <article class="card-body ">
+                    <h5 class="card-title ">BootStrap</h5>
+                    <p class="card-text ">Teoría sobre Bootstrap</p>
+                    <a href="Apuntes/BootStrap/index.html" class="btn btn-primary ">Acceder</a>
+                </article>
+            </section>
 
-        <section class="card" style="width: 18rem;">
-            <img src="imagenes/flex.jpg" class="card-img-top">
-            <article class="card-body">
-                <h5 class="card-title">Flex</h5>
-                <p class="card-text">Teoría sobre Flex</p>
-                <a href="#" class="btn btn-primary">Acceder</a>
-            </article>
-        </section>
+            <section class="card m-4" style="width: 18rem; ">
+                <img src="imagenes/flex.png " class="card-img-top ">
+                <article class="card-body ">
+                    <h5 class="card-title ">Flex</h5>
+                    <p class="card-text ">Teoría sobre Flex</p>
+                    <a href="Apuntes/Flex/index.html" class="btn btn-primary">Acceder</a>
+                </article>
+            </section>
 
-        <section class="card" style="width: 18rem;">
-            <img src="imagenes/grid.jpg" class="card-img-top">
-            <article class="card-body">
-                <h5 class="card-title">Grid</h5>
-                <p class="card-text">Teoría sobre Grid</p>
-                <a href="#" class="btn btn-primary">Acceder</a>
-            </article>
-        </section>
-
+            <section class="card m-4 " style="width: 18rem; ">
+                <img src="Imagenes/columna.png" class="card-img-top ">
+                <article class="card-body ">
+                    <h5 class="card-title ">Grid</h5>
+                    <p class="card-text ">Teoría sobre Grid</p>
+                    <a href="Apuntes/Grid/index.html" class="btn btn-primary">Acceder</a>
+                </article>
+            </section>
+            <section class="card m-4 " style="width: 18rem; ">
+                <img src="imagenes/ejercicio.png " class="card-img-top ">
+                <article class="card-body ">
+                    <h5 class="card-title ">Grid</h5>
+                    <p class="card-text ">Teoría sobre Grid</p>
+                    <a href="Ejercicios.html" class="btn btn-primary">Acceder</a>
+                </article>
+            </section>
+        </article>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
 
 </body>
 

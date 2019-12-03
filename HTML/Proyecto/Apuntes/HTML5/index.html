@@ -6,29 +6,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css.css">
-    <title>Indice</title>
+
+    <link rel="stylesheet" href="../../Estilo/css.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>HTML</title>
     <!-- Bootstrap CSS -->
 </head>
 
 <header>
-    <h1 class="banner display-3 font-weight-bold text-center">Alvaro Minguez</h1>
+    <h1 id="intro" class="banner display-3 font-weight-bold text-center">HTML</h1>
 </header>
 
 <body>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <article id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="index.html#intro">Introduccion</a>
+        <a href="index.html#estructura">Estructura</a>
+        <a href="index.html#lista">Listas</a>
+        <a href="index.html#tabla">Tablas</a>
         <a href="index.html#etiquetas">Metadatos</a>
         <a href="#">Services</a>
         <a href="#">Clients</a>
         <a href="#">Contact</a>
     </article>
 
-    <nav id="navbar" class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto ml-auto">
             <li class="nav-item">
                 <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
@@ -46,7 +49,7 @@
                 <a class="nav-link a" href="../BOOTSTRAP/index.html">BOOTSTRAP</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link a" href="../Materialize/index.html">MATERIALIZE</a>
+                <a class="nav-link a" href="../Materialize/index.html">MATERIALIZE</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
@@ -55,17 +58,21 @@
                 <a class="nav-link a" href="../GRID/index.html">GRID</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../index.html">Ejercicios</a>
+                <a class="nav-link a" href="../../Ejercicios.html">Ejercicios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="about.html">About me</a>
+                <a class="nav-link a" href="../../about.html">About me</a>
             </li>
         </ul>
     </nav>
 
-    <section id="main" class="ml-3 mr-3 justify-content-center">
-        <h2 class="text-center">En este apartado voy a explicar lo mas basico de html con codigo de codepen para visualizar los elementos y links a html en mas profundidad.</h2>
-        <article id="metadatos">
+    <section id="main" class="ml-3 mr-3 justify-content-center text-center">
+        <article id="estructura">
+            <h2 class="text-center">Introducción.</h2>
+            <p>HTML, siglas en inglés de HyperText Markup Language (‘lenguaje de marcas de hipertexto’), hace referencia al lenguaje de marcado para la elaboración de páginas web. Es un estándar que sirve de referencia del software que conecta con la elaboración
+                de páginas web en sus diferentes versiones, define una estructura básica y un código (denominado código HTML) para la definición de contenido de una página web, como texto, imágenes, videos, juegos, entre otros.</p>
+        </article>
+        <article>
             <h3>Estructura de HTML</h3>
 
             <table class="table">
@@ -119,7 +126,8 @@
                     </tr>
                     <tr>
                         <td>&ltarticle></td>
-                        <td>Define contenido autónomo que podría existir independientemente del resto del contenido.</td>
+                        <td>Define contenido autónomo que podría existir independientemente del resto del contenido.
+                        </td>
                     </tr>
                     <tr>
                         <td>&ltaside></td>
@@ -127,33 +135,33 @@
                     </tr>
                     <tr>
                         <td>&ltfooter></td>
-                        <td>Define el pie de una página o sección. Usualmente contiene un mensaje de derechos de autoría, algunos enlaces a información legal o direcciones para dar información de retroalimentación.</td>
+                        <td id="lista">Define el pie de una página o sección. Usualmente contiene un mensaje de derechos de autoría, algunos enlaces a información legal o direcciones para dar información de retroalimentación.
+                        </td>
                     </tr>
-
                 </tbody>
             </table>
         </article>
         <!--=============================================================================Listas=============================================================================-->
-        <article id="listas">
+        <article>
             <h3>Listas</h3>
             <p>Para crear listas utilizamos ul para listas desordenadas y ol para listas ordenadas, con li indicamos los elementos de dentro de las listas</p>
-            <p class="codepen" data-height="407" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="QWWeYrL" style="height: 407px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+            <p class="tabla" data-height="407" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="QWWeYrL" style="height: 407px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="Listas">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/QWWeYrL">
-                            Listas</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                                Listas</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                             on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </article>
         <!--=============================================================================Tablas=============================================================================-->
-        <article id="tablas">
+        <article>
             <h3>Tablas</h3>
             <p>Chuleta de las tablas: <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics">Link</a></p>
             <p class="codepen" data-height="483" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="abbeXaw" style="height: 483px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="Tablas">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/abbeXaw">
-                    Tablas</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
-                    on <a href="https://codepen.io">CodePen</a>.</span>
+                                Tablas</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -161,12 +169,13 @@
         <!--=============================================================================Formularios=============================================================================-->
         <article id="form">
             <h3>Formularios</h3>
-            <p>Chuleta de los formularios: <a href="https://developer.mozilla.org/es/docs/Learn/HTML/Forms/Your_first_HTML_form">Link</a> </p>
+            <p>Chuleta de los formularios: <a href="https://developer.mozilla.org/es/docs/Learn/HTML/Forms/Your_first_HTML_form">Link</a>
+            </p>
             <p class="codepen" data-height="457" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="WNNVPKe" style="height: 457px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="Formularios">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/WNNVPKe">
-                        Formularios</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
-                        on <a href="https://codepen.io">CodePen</a>.</span>
+                                Formularios</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </article>
@@ -178,8 +187,8 @@
             <p class="codepen" data-height="513" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="LYEPYWg" style="height: 513px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
                 data-pen-title="LYEPYWg">
                 <span>See the Pen <a href="https://codepen.io/javijambo/pen/LYEPYWg">
-                LYEPYWg</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
-                on <a href="https://codepen.io">CodePen</a>.</span>
+                                LYEPYWg</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
             </p>
             <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </article>
@@ -260,19 +269,29 @@
 
         function openNav() {
             if (contador == 0) {
-                contador = 1;
-                document.getElementById("mySidebar").style.width = "20%";
-                document.getElementById("main").style.marginLeft = "20%";
+                if (navigator.userAgent.match(/Android/i) ||
+                    navigator.userAgent.match(/webOS/i) ||
+                    navigator.userAgent.match(/iPhone/i) ||
+                    navigator.userAgent.match(/iPad/i) ||
+                    navigator.userAgent.match(/iPod/i) ||
+                    navigator.userAgent.match(/BlackBerry/i) ||
+                    navigator.userAgent.match(/Windows Phone/i)
+                ) {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "100%";
+                } else {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "20%";
+                }
+
             } else {
                 contador = 0;
                 document.getElementById("mySidebar").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
             }
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
         }
 
         function myFunction() {
@@ -284,7 +303,7 @@
                 navigator.userAgent.match(/BlackBerry/i) ||
                 navigator.userAgent.match(/Windows Phone/i)
             ) {
-
+                navbar.classList.remove("sticky");
             } else {
                 if (window.pageYOffset >= sticky) {
                     navbar.classList.add("sticky")

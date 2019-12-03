@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../../Estilo/css.css">
     <title>Flex</title>
 </head>
 
@@ -25,7 +25,7 @@
         <a href="#">Contact</a>
     </article>
 
-    <nav id="navbar" class="navbar navbar-expand navbar-expand-xs  navbar-dark bg-dark">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto ml-auto">
             <li class="nav-item">
                 <SPAN class="nav-link" ID="openbtn" onclick="openNav()"> &#9776;</SPAN>
@@ -43,7 +43,7 @@
                 <a class="nav-link a" href="index.html">BOOTSTRAP</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
+                <a class="nav-link a" href="../materialize/index.html">MATERIALIZE</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link a" href="../FLEX/index.html">FLEX</a>
@@ -52,7 +52,7 @@
                 <a class="nav-link a" href="../GRID/index.html">GRID</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link a" href="../index.html">Ejercicios</a>
+                <a class="nav-link a" href="../../Ejercicios.html">Ejercicios</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link a" href="about.html">About me</a>
@@ -61,16 +61,21 @@
     </nav>
 
     <section id="main" class="ml-4 mr-4 justify-content-center text-center">
-        <h2 class="text-center">
-            Introducción</h2>
-        <p>
-            Flex es uno de los nuevos valores HTML5 para propiedad CSS display, que nos permite maquetar nuestras páginas web de una manera mucho más fácil de lo que se hacía con la forma tradicional, en la que utilizábamos propiedades como float o position, entre otras.</p>
-      <!--=============================================================================Funcionamiento=============================================================================-->
-      <article id="funcionamiento"  >
-        <h3>Estructura de Flex</h3>
-        <p>Cuando trabajamos con flexbox necesitamos pensar en términos de dos ejes — el eje principal y el eje cruzado. El eje principal está definido por la propiedad flex-direction, y el eje cruzado es perpendicular a este. Todo lo que hacemos con flexbox está referido a estos dos ejes, por lo que vale la pena entender cómo trabajan desde el principio.</p>
-    </article>
-        
+        <article>
+            <h2 class="text-center">
+                Introducción</h2>
+            <p>
+                Flex es uno de los nuevos valores HTML5 para propiedad CSS display, que nos permite maquetar nuestras páginas web de una manera mucho más fácil de lo que se hacía con la forma tradicional, en la que utilizábamos propiedades como float o position, entre
+                otras.
+            </p>
+        </article>
+        <!--=============================================================================Funcionamiento=============================================================================-->
+        <article id="funcionamiento">
+            <h3>Estructura de Flex</h3>
+            <p>Cuando trabajamos con flexbox necesitamos pensar en términos de dos ejes — el eje principal y el eje cruzado. El eje principal está definido por la propiedad flex-direction, y el eje cruzado es perpendicular a este. Todo lo que hacemos con
+                flexbox está referido a estos dos ejes, por lo que vale la pena entender cómo trabajan desde el principio.</p>
+        </article>
+
         <!--=============================================================================EJE X=============================================================================-->
         <article id="eje">
             <h3>Eje Principal</h3>
@@ -85,32 +90,32 @@
                 <tbody>
                     <tr>
                         <td>row</td>
-                        <td>Con row los elementos se situan en fila de izquierda a derecha.<img src="../../Imagenes/row.png"></td>
+                        <td>Con row los elementos se situan en fila de izquierda a derecha.<img class="img-fluid" src="../../Imagenes/row.png"></td>
                     </tr>
                     <tr>
                         <td>row-reverse</td>
-                        <td>Con row-reverse los elementos se situan en fila de derecha a izquierda.<img src="../../Imagenes/rowreverse.png"></td>
+                        <td>Con row-reverse los elementos se situan en fila de derecha a izquierda.<img class="img-fluid" src="../../Imagenes/rowreverse.png"></td>
                     </tr>
                     <tr>
                         <td>column</td>
-                        <td>Con row-reverse los elementos se situan en columna de arriba a abajo.<img src="../../Imagenes/column.png"></td>
+                        <td>Con row-reverse los elementos se situan en columna de arriba a abajo.<img class="img-fluid" src="../../Imagenes/column.png"></td>
                     </tr>
                     <tr>
                         <td>column-reverse</td>
-                        <td>Con column-reverse los elementos se situan en columna de abajo a arriba.<img src="../../Imagenes/column-reverse.png"></td>
+                        <td>Con column-reverse los elementos se situan en columna de abajo a arriba.<img class="img-fluid" src="../../Imagenes/column-reverse.png"></td>
                     </tr>
                 </tbody>
             </table>
-            
+
         </article>
         <!--=============================================================================EJE Y=============================================================================-->
-        <article id="resposive" >
+        <article id="resposive">
             <h3>Eje cruzado</h3>
             <p>El ejecruzado va perpendicular al principal, por tanto, si tenemos de eje principal row (filas), el eje cruzado ira por las columnas(columnas).</p>
-            <img src="../../Imagenes/eje3.png">
+            <img class="img-fluid" src="../../Imagenes/eje3.png">
             <p>Si tenemos de eje principal column(columnas), el eje cruzado ira por las rows(columnas).</p>
-            <img src="../../Imagenes/eje2.png">
-           
+            <img class="img-fluid" src="../../Imagenes/eje2.png">
+
         </article>
 
         <!--=============================================================================wrap=============================================================================-->
@@ -118,74 +123,78 @@
             <h3>Flex Wrap</h3>
             <p>La propiedad flex-wrap controla si el contenedor flexible es de una o varias líneas , y la dirección del eje transversal , que determina la dirección en la que se apilan las nuevas líneas. </p>
             <p>En el ejemplo de abajo tenemos asignado en los contenedores rojos nowrap, en los amarillos wrap y en los azules wrap-reverse.</p>
-            <article class="mr-3 ml-3"> <p class="codepen" data-height="507" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="qBEWoBp" style="height: 507px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="qBEWoBp">
-                <span>See the Pen <a href="https://codepen.io/javijambo/pen/qBEWoBp">
+            <article class="mr-3 ml-3">
+                <p class="codepen" data-height="507" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="qBEWoBp" style="height: 507px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                    data-pen-title="qBEWoBp">
+                    <span>See the Pen <a href="https://codepen.io/javijambo/pen/qBEWoBp">
                 qBEWoBp</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                 on <a href="https://codepen.io">CodePen</a>.</span>
-              </p>
-              <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+                </p>
+                <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
             </article>
-              <p>Como vemos los bloques rojos intentan ocupar todo el espacio posible ajustando el tamaño de los bloques para poder colocarlos todos en la misma linea, los amarillos se ajustan al contenedor y los azules se ajustan al contenedor desde abajo.</p>
+            <p>Como vemos los bloques rojos intentan ocupar todo el espacio posible ajustando el tamaño de los bloques para poder colocarlos todos en la misma linea, los amarillos se ajustan al contenedor y los azules se ajustan al contenedor desde abajo.</p>
         </article>
         <!--==========================================================================Flow=============================================================================-->
         <article id="paginacion">
-                <h3>Flex Flow</h3>
-                <p>Flex flow es una manera para combinar flex direction y flex wrap para ahorrarnos codigo y trabajo. Indicamos en el primer valor el flex direction y en el segundo el wrap que queramos
-                </p>
-                <p class="codepen" data-height="565" data-theme-id="default" data-default-tab="css,result" data-user="javijambo" data-slug-hash="ExaYEPw" style="height: 565px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="ExaYEPw">
-                        <span>See the Pen <a href="https://codepen.io/javijambo/pen/ExaYEPw">
+            <h3>Flex Flow</h3>
+            <p>Flex flow es una manera para combinar flex direction y flex wrap para ahorrarnos codigo y trabajo. Indicamos en el primer valor el flex direction y en el segundo el wrap que queramos
+            </p>
+            <p class="codepen" data-height="565" data-theme-id="default" data-default-tab="css,result" data-user="javijambo" data-slug-hash="ExaYEPw" style="height: 565px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="ExaYEPw">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/ExaYEPw">
                         ExaYEPw</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
-                      </p>
-                      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-                      <p>El azul tiene flex-direction y wrap y el rojo tiene puesto flex-flow</p>
-            </article>
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+            <p>El azul tiene flex-direction y wrap y el rojo tiene puesto flex-flow</p>
+        </article>
         <!--========================================================================Content==========================================================-->
-        <article id="content" >
-                <h3>Justify-Content</h3>
-                <p>Justify content define el alineamiento a partir del eje principal</p>
-            
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Elemento</th>
-                            <th scope="col">Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>flex-start(defualt)</td>
-                            <td>Los elementos estan alineados al inicio de la linea.(Color rojo)</td>
-                        </tr>
-                        <tr>
-                            <td>flex-end</td>
-                            <td>Los elementos estan alineados al final de la linea(Color amarillo)</td>
-                        </tr>
-                        <tr>
-                            <td>center</td>
-                            <td>Los elementos estan alineados en el centro de la linea(Color azul)</td>
-                        </tr>
-                        <tr>
-                            <td>space-between</td>
-                            <td>Los elementos estan alineados equitativamente en la linea con el primer elemento al principio de la linea y el ultimo al final de la linea(Color verde)</td>
-                        </tr>
-                        <tr>
-                            <td>space-around</td>
-                            <td>Los elementos están distribuidos de forma que tengan el mismo espaciado entre ellos (Color rosa)</td>
-                        </tr>
-                        <tr>
-                            <td>space-evenly</td>
-                            <td>Los elementos estan alineados de manera que el espacio de atras al elemento anterior y el espacio de delante del elemento siguiente sea el mismo(Color negro)</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="codepen" data-height="524" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="wvBwmJv" style="height: 524px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="wvBwmJv">
-                        <span>See the Pen <a href="https://codepen.io/javijambo/pen/wvBwmJv">
+        <article id="content">
+            <h3>Justify-Content</h3>
+            <p>Justify content define el alineamiento a partir del eje principal</p>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Elemento</th>
+                        <th scope="col">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>flex-start(defualt)</td>
+                        <td>Los elementos estan alineados al inicio de la linea.(Color rojo)</td>
+                    </tr>
+                    <tr>
+                        <td>flex-end</td>
+                        <td>Los elementos estan alineados al final de la linea(Color amarillo)</td>
+                    </tr>
+                    <tr>
+                        <td>center</td>
+                        <td>Los elementos estan alineados en el centro de la linea(Color azul)</td>
+                    </tr>
+                    <tr>
+                        <td>space-between</td>
+                        <td>Los elementos estan alineados equitativamente en la linea con el primer elemento al principio de la linea y el ultimo al final de la linea(Color verde)</td>
+                    </tr>
+                    <tr>
+                        <td>space-around</td>
+                        <td>Los elementos están distribuidos de forma que tengan el mismo espaciado entre ellos (Color rosa)</td>
+                    </tr>
+                    <tr>
+                        <td>space-evenly</td>
+                        <td>Los elementos estan alineados de manera que el espacio de atras al elemento anterior y el espacio de delante del elemento siguiente sea el mismo(Color negro)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="codepen" data-height="524" data-theme-id="default" data-default-tab="html,result" data-user="javijambo" data-slug-hash="wvBwmJv" style="height: 524px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                data-pen-title="wvBwmJv">
+                <span>See the Pen <a href="https://codepen.io/javijambo/pen/wvBwmJv">
                         wvBwmJv</a> by javijambo (<a href="https://codepen.io/javijambo">@javijambo</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
-                      </p>
-                      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-        </article>  
+            </p>
+            <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+        </article>
 
         <article id="masinfo">
             <h3>Mas Información</h3>
@@ -207,19 +216,29 @@
 
         function openNav() {
             if (contador == 0) {
-                contador = 1;
-                document.getElementById("mySidebar").style.width = "20%";
-                document.getElementById("main").style.marginLeft = "20%";
+                if (navigator.userAgent.match(/Android/i) ||
+                    navigator.userAgent.match(/webOS/i) ||
+                    navigator.userAgent.match(/iPhone/i) ||
+                    navigator.userAgent.match(/iPad/i) ||
+                    navigator.userAgent.match(/iPod/i) ||
+                    navigator.userAgent.match(/BlackBerry/i) ||
+                    navigator.userAgent.match(/Windows Phone/i)
+                ) {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "100%";
+                } else {
+                    contador = 1;
+                    document.getElementById("mySidebar").style.width = "20%";
+                }
+
             } else {
                 contador = 0;
                 document.getElementById("mySidebar").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
             }
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
         }
 
         function myFunction() {

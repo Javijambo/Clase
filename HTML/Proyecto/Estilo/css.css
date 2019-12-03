@@ -51,6 +51,28 @@
 
 h3 {
     text-align: center !important;
+    color: rgb(170, 0, 212)!important;
 }
 
-@media screen and (max-height: 450px) {}
+h2 {
+    color: rgb(170, 0, 212)!important;
+}
+
+header {
+    background-color: rgb(170, 0, 212);
+    color: rgb(255, 255, 255)!important;
+    padding-bottom: 2px;
+    margin-bottom: 0px;
+}
+
+#navbar li a:hover {
+    color: rgb(170, 0, 212)!important;
+}
+
+#navbar li a:active {
+    color: rgb(170, 0, 212)!important;
+}
+
+#mySidebar a:hover {
+    color: rgb(170, 0, 212)!important;
+}
