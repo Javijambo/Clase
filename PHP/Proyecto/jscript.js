@@ -19,34 +19,34 @@ function getCookie(cname) {
     return "";
 }
 
-function comprar(t, i, m, mo) {
+function comprar(t, id, m, mo, precio) {
     numeroregistro = localStorage.getItem("numerodeorden");
     var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
-
-
-    stock = getCookie(i);
+    stock = getCookie(id);
 
     if (ventana == 0 || ventana === null) {
         alert("introduzca un valor positivo");
     } else if (ventana <= stock) {
+        var nuevostock = stock - ventana;
+
         $.ajax({
             url: 'cookie.php',
             type: 'POST',
             data: {
                 'cookie': id,
-                'stock': stock,
+                'stock': nuevostock,
             },
             success: function(response) {
                 $('#todo').append(response);
             }
         });
-        var nuevostock = stock - ventana;
+        
         numeroregistro++;
         window.localStorage.setItem("numerodeorden", numeroregistro);
         pedido = "Order." + numeroregistro;
-        var valor = t + "|" + i + "|" + ventana;
+        var valor = t + "|" + id + "|" + ventana + "|" + precio;
         window.localStorage.setItem(pedido, valor);
-        document.getElementById(i).value = nuevostock;
+        document.getElementById(id).value = nuevostock;
         alert("Cesta:\n" + "Cantidad: " + ventana + " unidad/es.\n" + "Producto: \n" + m + " " + mo + ".\n \nPulse sobre Carro para acceder a su lista de compra.Gracias");
     } else {
         alert("El stock que tenemos de este producto es " + stock + "\n Por favor pida un numero de unidades dentro del disponible");
@@ -65,4 +65,69 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
+}
+
+
+var ids = new Array();
+var total=0.00;
+function visualizarcarrito() {
+    numerodeorden = localStorage.getItem("numerodeorden");
+    for (i = 1; i <= numerodeorden; i++) {
+        nuevopedido = "Order." + i;
+        datos = "";
+        datos = localStorage.getItem("Order." + i);
+        carro = datos.split("|");
+        tabla = carro[0];
+        id = carro[1];
+        stock = parseInt(carro[2],10);
+        precio = carro[3];
+        console.log(tabla);
+        console.log(id);
+        console.log(stock);
+        console.log(precio);
+        total = total + (stock * precio);
+        $.ajax({
+            url: 'carritoaux.php',
+            type: 'POST',
+            data: {
+                'tabla': tabla,
+                'p': id,
+                'stock': stock,
+            },
+            success: function(response) {
+                $('#todo').append(response);
+            }
+        });
+        document.getElementById("total").value = total.toFixed(2)+" €";
+    }
+}
+
+function realizarpedido(){
+    total=0.00;
+    numerodeorden = localStorage.getItem("numerodeorden");
+    for (i = 1; i <= numerodeorden; i++) {
+        nuevopedido = "Order." + i;
+        datos = "";
+        datos = localStorage.getItem("Order." + i);
+        carro = datos.split("|");
+        tabla = carro[0];
+        id = carro[1];
+        stock = parseInt(carro[2],10);
+        precio = carro[3];
+        total = total + (stock * precio);
+
+        $.ajax({
+            url: 'realizarpedido.php',
+            type: 'POST',
+            data: {
+                'tabla': tabla,
+                'p': id,
+                'stock': stock,
+                'total': total.toFixed(2),
+            },
+            success: function(response) {
+                $('body').append(response);
+            }
+        });
+    }
 }

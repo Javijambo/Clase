@@ -84,60 +84,12 @@
   </style>
 </head>
 <header>
-  <h1 class="banner display-3 font-weight-bold card-title  text-center">Pagina Componentes</h1>
+  <h1 class="banner display-3 font-weight-bold card-title  text-center">Página Componentes</h1>
 </header>
 
 <body onload="visualizarcarrito();">
-<button onclick="visualizarcarrito();"></button>
-  <script>
-    var ids= new Array();
-    function visualizarcarrito() {
-      numerodeorden = localStorage.getItem("numerodeorden");
-      for (i = 1; i <= numerodeorden; i++) {
-        nuevopedido = "Order." + i;
-        datos = "";
-        datos = localStorage.getItem("Order." + i);
-        carro = datos.split("|");
-        tabla = carro[0];
-        id = carro[1];
-        stock = carro[2];
-        console.log(tabla);
-        console.log(id);
-        console.log(stock);
-        $.ajax({
-          url: 'carritoaux.php',
-          type: 'POST',
-          data: {
-            'tabla': tabla,
-            'p': id,
-            'stock': stock,
-          },
-          success: function(response) {
-            $('#todo').append(response);
-          }
-        });
-      }
-    }
-
-    function openNav() {
-      if (navigator.userAgent.match(/Android/i) ||
-        navigator.userAgent.match(/webOS/i) ||
-        navigator.userAgent.match(/iPhone/i) ||
-        navigator.userAgent.match(/iPad/i) ||
-        navigator.userAgent.match(/iPod/i) ||
-        navigator.userAgent.match(/BlackBerry/i) ||
-        navigator.userAgent.match(/Windows Phone/i)
-      ) {
-        document.getElementById("myNav").style.width = "100%";
-      } else {
-        document.getElementById("myNav").style.width = "18%";
-      }
-    }
-
-    function closeNav() {
-      document.getElementById("myNav").style.width = "0%";
-    }
-  </script>
+  <button onclick="visualizarcarrito();"></button>
+  <script src="jscript.js"></script>
   <!-- MENU IZQUIERDO! -->
   <section id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
@@ -146,7 +98,7 @@
       <a id="cpu" href="#">CPUes</a>
       <a id="ram" href="#">Ram</a>
       <a id="gpu" href="#">Graficas</a>
-      <a id="psu" href="#">Fuentes de<br>Alimentacion</a>
+      <a id="psu" href="#">Fuentes de<br>Alimentación</a>
       <a id="ssd" href="#">Discos Duros</a>
       <a id="tower" href="#">Torres</a>
     </article>
@@ -191,7 +143,19 @@
           <th scope="col">Cantidad</th>
         </tr>
       </thead>
-  </div>
-</body>
 
+      <tr>
+        <tfoot>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td >Total:</td>
+        <td><input id="total" size="5" disabled="true" type="text" class="form-control form-control-sm text-right" ></td>
+      </tr>
+      </tfoot>
+  </table>
+      <button type="button" class="btn btn-primary" onclick="realizarpedido();">Primary</button>
+  </div>
+ 
+</body>
 </html>
