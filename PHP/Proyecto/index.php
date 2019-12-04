@@ -1,5 +1,18 @@
-'
-<!DOCTYPE html>
+<?php
+$carrito="";
+if(isset($_COOKIE['user'])){
+  $carrito='
+  <button class="btn btn-outline-light ml-3" type="button" onclick="cerarsesion();">Cerrar Sesión</button>
+    <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'carrito.html\';">Carrito</button>
+    ';
+}
+else{
+  $carrito='
+      <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href=\'login.html\';">Login</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'registro.html\';">Registro</button>
+      ';
+}
+echo('<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -72,18 +85,6 @@
     <!-- MENU IZQUIERDO! -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="jscript.js"></script>
-    <section id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
-        <article class="overlay-content">
-            <a id="mb" href="#">Placas Base</a>
-            <a id="cpu" href="#">CPUes</a>
-            <a id="ram" href="#">Ram</a>
-            <a id="gpu" href="#">Graficas</a>
-            <a id="psu" href="#">Fuentes de<br>Alimentacion</a>
-            <a id="ssd" href="#">Discos Duros</a>
-            <a id="tower" href="#">Torres</a>
-        </article>
-    </section>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,15 +101,33 @@
                 <li class="nav-item">
                     <a class="nav-link a" id="comp" href="usuario.html">Zona Usuario</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link a" id="comp" href="admin.php">Zona Admin</a>
+                </li>
             </ul>
-            <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href='login.html';">Login</button>
-                <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href='registro.html';">Registro</button>
-   
+            '.$carrito.'
         </div>
     </nav>
-    <div class="row justify-content-center container-fluid" id="contenido">
-
+    <div class="justify-content-center text-center" id="contenido">
+        <h3 class="mt-4">Bienvenido</h3>
+    <p>
+        Notas Para acceder a Componentes es necesario recargar la pagina 6/7 veces para que se creen las cookies correctamente (bug)
+    </p>
+    <p>
+        Usuario de base de datos: alvaro
+    </p>
+    <p>
+        Contraseña base de datos: alvaro
+    </p>
+    <p>
+        Usuario administrador pagina: admin, contraseña: admin
+    </p>
+    <p>
+        Usuario normal pagina: alvaro, contraseña: alvaro
+    </p>
     </div>
 </body>
 
 </html>
+');
+?>

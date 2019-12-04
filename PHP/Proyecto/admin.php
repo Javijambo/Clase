@@ -131,7 +131,7 @@ if (isset($_COOKIE['user'])) {
     } else {
         echo '<script type="text/javascript">
         alert("Necesita Ser admin para poder acceder a esta pagina");
-        location.replace(\'inicio.html\');
+        location.replace(\'index.php\');
         </script>
         ';
     }

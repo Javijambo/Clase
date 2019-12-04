@@ -87,8 +87,10 @@
 </header>
 
 <body onload="visualizarcarrito();">
-    <script src="jscript.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- MENU IZQUIERDO! -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="jscript.js"></script>
     <section id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
         <article class="overlay-content">
@@ -96,40 +98,33 @@
             <a id="cpu" href="#">CPUes</a>
             <a id="ram" href="#">Ram</a>
             <a id="gpu" href="#">Graficas</a>
-            <a id="psu" href="#">Fuentes de<br>Alimentación</a>
+            <a id="psu" href="#">Fuentes de<br>Alimentacion</a>
             <a id="ssd" href="#">Discos Duros</a>
             <a id="tower" href="#">Torres</a>
         </article>
     </section>
-
-    <nav class="navbar navbar-expand-lg displaynavbar-light bg-dark barra">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <span class="nav-link" onclick="openNav()">Menú &#9776;</span>
-                </li>
-
                 <li class="nav-item active">
                     <a class="nav-link a" href="index.php">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link a" id="comp" href="pieza.php">Componentes</a>
+                    <a class="nav-link a" id="comp" href="componentes.php">Componentes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link a" href="registro.php">Registro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">Login</a>
+                    <a class="nav-link a" id="comp" href="usuario.html">Zona Usuario</a>
                 </li>
             </ul>
-            <button class="btn btn-outline-light btn1" type="submit">Mirar Carrito de Compra</button>
+            <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href='login.html';">Login</button>
+            <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href='registro.html';">Registro</button>
+
         </div>
     </nav>
-
     <div class="container-fluid mt-4 ">
         <table class="table" id="todo">
             <thead class="thead-dark">
@@ -152,7 +147,8 @@
             </tr>
             </tfoot>
         </table>
-        <button type="button" class="btn btn-primary" onclick="realizarpedido();">Primary</button>
+        <button type="button" class="btn btn-primary float-right mb-4 mr-4" onclick="realizarpedido();">Realizar pedido</button>
+        <button type="button" class="btn btn-primary float-right mr-4 mb-4" onclick="deleteAllCookies();">Vaciar Carrito</button>
     </div>
 
 </body>

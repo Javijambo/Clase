@@ -271,7 +271,13 @@ function pedidos($servername, $username, $password, $dbname)
   $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
   $sql = "SELECT * FROM pedido where nick='".$_COOKIE['user']."';";
   $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+ 
+  $array = array();
+
   while ($record = mysqli_fetch_assoc($resultset)) {
-  
+    $fecha=$record['idPedido'];
+    $pedido=$record['fecha'];
+    array_push($array,[$fecha,$pedido]);
   }
-}
+  echo$array;
+} 

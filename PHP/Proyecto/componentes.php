@@ -32,7 +32,7 @@ while ($record = mysqli_fetch_assoc($resultset)) {
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id   . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
                 </div>
             </div>
           </div>
@@ -54,20 +54,21 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4" style="max-width: 600px;">
+          <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
-              <img src="img/' . $img . '" class="card-img" alt="...">
+              <img src="img/' . $img . '" class="card-img">
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
-              </div>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+                </div>
             </div>
           </div>
-        </div>';
+        </div>
+        ';
 }
 $sql = "SELECT * FROM MB;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
@@ -83,22 +84,22 @@ while ($record = mysqli_fetch_assoc($resultset)) {
   if (!isset($_COOKIE[$id])) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
-
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-2">
-              <img src="img/' . $img . '" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
-              </div>
-            </div>
-          </div>
-        </div>';
+  <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
+  <div class="row no-gutters">
+    <div class="col-md-4 mt-2">
+      <img src="img/' . $img . '" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
+        <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+        <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+        </div>
+    </div>
+  </div>
+</div>
+';
 }
 $sql = "SELECT * FROM GPU;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
@@ -112,22 +113,22 @@ while ($record = mysqli_fetch_assoc($resultset)) {
   $stock = $record['Stock'];
   if (!isset($_COOKIE[$id])) { setcookie($id, $stock, time() + (86400 * 30), "/"); }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
+          <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
           <div class="row no-gutters">
             <div class="col-md-4 mt-2">
-              <img src="img/' . $img . '" class="card-img" alt="...">
+              <img src="img/' . $img . '" class="card-img">
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
                 <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
-              </div>
+                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+                </div>
             </div>
           </div>
-        </div>';
+        </div>
+        ';
 }
-
 
 $sql = "SELECT * FROM Ram;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
@@ -143,20 +144,21 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-2">
-              <img src="img/' . $img . '" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
-              </div>
-            </div>
-          </div>
-        </div>';
+  <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
+  <div class="row no-gutters">
+    <div class="col-md-4 mt-2">
+      <img src="img/' . $img . '" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
+        <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+        <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+        </div>
+    </div>
+  </div>
+</div>
+';
 }
 $sql = "SELECT * FROM PSU;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
@@ -172,20 +174,21 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-2">
-              <img src="img/' . $img . '" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
-              </div>
-            </div>
-          </div>
-        </div>';
+  <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
+  <div class="row no-gutters">
+    <div class="col-md-4 mt-2">
+      <img src="img/' . $img . '" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
+        <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+        <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+        </div>
+    </div>
+  </div>
+</div>
+';
 }
 $sql = "SELECT * FROM Disco;";
 $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
@@ -201,20 +204,21 @@ while ($record = mysqli_fetch_assoc($resultset)) {
     setcookie($id, $stock, time() + (86400 * 30), "/");
   }
   $todo .= '
-          <div class="card mb-3 mr-4 pl-2" style="max-width: 600px;">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-2">
-              <img src="img/' . $img . '" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
-                <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
-                <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',' . $id . ',\'' . $marca . '\',\'' . $modelo . '\',' . $precio . ');"> Añadir al Carro</button> </p>
-              </div>
-            </div>
-          </div>
-        </div>';
+  <div class="card mt-4 mb-4 mr-4 pl-2" style="max-width: 600px;">
+  <div class="row no-gutters">
+    <div class="col-md-4 mt-2">
+      <img src="img/' . $img . '" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title text-center">' . $marca . ' ' . $modelo . '</h3>
+        <p class="card-text">Unidades en Stock:<input id="' . $id . '" class="form-control form-control-sm" type="text" placeholder="' . $_COOKIE[$id] . '" readonly style="max-width: 80px; text-align:right; float:right;"></p>
+        <p class="card-text"><b>' . $precio . ' €</b><button type="button"class="btn btn-info align-baseline mb-3 ml-4" onclick="this.disabled=true;comprar(' . $tabla . ',\'' . $id . '\',\'' . $marca . '\',\'' . $modelo . '\',' . $precio .');"> Añadir al Carro</button> </p>
+        </div>
+    </div>
+  </div>
+</div>
+';
 }
 $todo .= '</div>';
 $carrito="";

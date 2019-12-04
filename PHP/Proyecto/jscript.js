@@ -40,11 +40,11 @@ function getCookie(cname) {
 }
 
 function comprar(t, id, m, mo, precio) {
-    var stock = getCookie(id);
+    var stock = document.getElementById(id).getAttribute("placeholder");;
     if (getCookie('user') == "") {
         alert('Inicie sesión o registrese para poder comprar elementos')
     } else {
-        if (stock != 0) {
+        if (stock !== 0) {
             numeroregistro = localStorage.getItem("numerodeorden");
             var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
 
@@ -174,8 +174,9 @@ function realizarpedido() {
         },
         success: function(response) {
             if (aux == 1 && response == "success") {
-                localStorage.clear();
                 alert('Pedido Realizado con Éxito');
+                window.localStorage.clear();
+                location.replace('carrito.html');
             } else {
                 alert('algo salió mal');
             }
@@ -198,7 +199,7 @@ function login() {
         success: function(response) {
             if (response == true) {
                 alert('Bienvenido')
-                location.replace('index.php');
+                location.replace('componentes.php');
             } else {
                 alert('usuario o contraseña incorrectos');
             }
@@ -379,22 +380,15 @@ function comprobaruser() {
     }
 }
 
-function getpedidos() {
-    var usuario = getCookie('user');
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
 
-    $.ajax({
-        url: 'master.php',
-        type: 'POST',
-        data: {
-            'funcion': 'pedidos',
-            'user': user,
-        },
-        success: function(response) {
-            if (response == "success") {
-                $('#tabla').append(response);
-            }
-        }
-
-    });
-
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+    window.localStorage.clear();
+    location.replace('carrito.html');
 }
