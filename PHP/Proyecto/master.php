@@ -22,10 +22,14 @@ if ($funcion === 'carrito') {
   cambiarinfouser($servername, $username, $password, $dbname);
 } elseif ($funcion === 'registro') {
   registro($servername, $username, $password, $dbname);
-}
-elseif ($funcion === 'fcookie') {
+} elseif ($funcion === 'fcookie') {
   borrarcookie();
+} elseif ($funcion === 'mostrardatos') {
+  mostrardatos($servername, $username, $password, $dbname);
+} elseif ($funcion === 'cargarid') {
+  cargarids($servername, $username, $password, $dbname);
 }
+
 
 
 
@@ -148,56 +152,75 @@ function cambiarinfouser($servername, $username, $password, $dbname)
 }
 
 function registro($servername, $username, $password, $dbname)
-{ 
+{
   $nick = $_POST['nick'];
   $pass = $_POST['pass'];
   $email = $_POST['email'];
   $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-  $sql = "INSERT INTO clientes(nick,email,pass) values('" . $nick . "','" . $email . "'," . $pass . ");";
+  $sql = "INSERT INTO clientes(nick,email,pass) values('" . $nick . "','" . $email . "','" . $pass . "');";
   $result = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
   if ($result) {
-    echo "Bienvenido \n no es necesario iniciar sesión";
-    setcookie("user", $nick, time() - 3600, '/');
-    header('Refresh:3; URL=index.php');
+    echo "Bienvenido \n Es necesario iniciar sesión";
   } else {
     echo "error";
   }
 }
 
-function borrarcookie(){
-  setcookie ("user", "", time() - 3600,'/');
+function borrarcookie()
+{
+  setcookie("user", "", time() - 3600, '/');
 }
 
-function mostrar($servername, $username, $password, $dbname){
+function cargarids($servername, $username, $password, $dbname)
+{
   $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-  $tabla=$_POST['tabla'];
-  $id=$_POST['id'];
-  $nid="Id".$tabla
-  $sql = "SELECT * FROM ".$tabla." where ".$nid."='".$id."';";
+  $todo = '<select class="form-control" id="ids">';
+  $tabla = $_POST['tabla'];
+  $nid = "Id" . $tabla;
+  $sql = "SELECT " . $nid . " FROM " . $tabla . " order by ".$nid.";";
   $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
   while ($record = mysqli_fetch_assoc($resultset)) {
-      $img = $record['Imagen'];
-      $modelo = $record['Modelo'];
-      $precio = $record['Precio'];
-      $stock = $record['Stock'];   
+    $id = $record[$nid];
+    $todo .= '<option value="' . $id . '">' . $id . '</option>';
+  }
+  $todo.=' </select>';
+  echo $todo;
+}
+
+
+
+
+function mostrardatos($servername, $username, $password, $dbname)
+{
+  $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
+  $tabla = $_POST['tabla'];
+  $id = $_POST['id'];
+  $nid = "Id" . $tabla;
+  $sql = "SELECT * FROM " . $tabla . " where " . $nid . "='" . $id . "';";
+  $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+  while ($record = mysqli_fetch_assoc($resultset)) {
+    $img = $record['Imagen'];
+    $modelo = $record['Modelo'];
+    $precio = $record['Precio'];
+    $stock = $record['Stock'];
   }
   $todo = '
-  <img class="img-fluid" src="/img/'.$img.'">
+  <img class="img-fluid" src="/img/' . $img . '">
   <div class="form-group">
   <label>Modelo</label>
-  <input type="text" class="form-control" id="modelo" aria-describedby="emailHelp" value="'.$modelo.'">
+  <input type="text" class="form-control" id="modelo" aria-describedby="emailHelp" value="' . $modelo . '">
   <button>Modificar Stock</button>
   </div>
   <div class="form-group">
   <label>Stock</label>
-  <input type="text" class="form-control" id="stock" aria-describedby="emailHelp" value="'.$stock.'">
+  <input type="text" class="form-control" id="stock" aria-describedby="emailHelp" value="' . $stock . '">
   <button>Modificar Stock</button>
   </div>
   <div class="form-group">
   <label>Precio</label>
-  <input type="text" class="form-control" id="precio" aria-describedby="emailHelp" value="'.$precio.'">
+  <input type="text" class="form-control" id="precio" aria-describedby="emailHelp" value="' . $precio . '">
   <button>Modificar Precio</button>
   </div>
   ';
   echo $todo;
-  }
+}

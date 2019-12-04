@@ -1,4 +1,3 @@
-
 function openNav() {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
         numeroregistro = localStorage.getItem("numerodeorden");
@@ -42,10 +41,9 @@ function getCookie(cname) {
 
 function comprar(t, id, m, mo, precio) {
     var stock = getCookie(id);
-    if (getCookie('user')==null) {
+    if (getCookie('user') == null) {
         alert('Inicie sesión o registrese para poder comprar elementos')
-    }
-    else{
+    } else {
         if (stock != 0) {
             numeroregistro = localStorage.getItem("numerodeorden");
             var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
@@ -209,7 +207,8 @@ function login() {
     });
 
 }
-function cerarsesion(){
+
+function cerarsesion() {
     $.ajax({
         url: 'master.php',
         type: 'POST',
@@ -257,7 +256,7 @@ function actualizaruser() {
     });
 };
 
-function actualizaruser() {
+function registro() {
     $.ajax({
         url: 'master.php',
         type: 'POST',
@@ -274,3 +273,28 @@ function actualizaruser() {
     });
 }
 
+function cargarids() {
+    var e = document.getElementById("tabla");
+    var strUser = e.options[e.selectedIndex].value;
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'cargarid',
+            'tabla': strUser,
+        },
+        success: function(response) {
+            $('#form').append(response);
+            $('#cargar').remove();
+            document.getElementById('cargar2').setAttribute('onclick', 'mostrardatos()');
+        }
+    });
+}
+
+function refrescar() {
+    location.replace('admin.php');
+}
+
+function mostrardatos() {
+    alert('2');
+}
