@@ -1,3 +1,4 @@
+
 function openNav() {
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
         numeroregistro = localStorage.getItem("numerodeorden");
@@ -6,6 +7,13 @@ function openNav() {
         document.getElementById("myNav").style.width = "18%";
     }
 }
+
+//===================funcion que devuelve la fecha de hoy en formato date mysql====================================
+function mysqlDate(date) {
+    date = date || new Date();
+    return date.toISOString().split('T')[0];
+}
+
 
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
@@ -33,38 +41,46 @@ function getCookie(cname) {
 }
 
 function comprar(t, id, m, mo, precio) {
-    numeroregistro = localStorage.getItem("numerodeorden");
-    var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
     var stock = getCookie(id);
-
-    if (ventana == 0 || ventana === null) {
-        alert("introduzca un valor positivo");
-    } else if (ventana <= stock) {
-        var nuevostock = stock - ventana;
-        $.ajax({
-            url: 'master.php',
-            type: 'POST',
-            data: {
-                'funcion': 'cookie',
-                'cookie': id,
-                'stock': nuevostock,
-            },
-            success: function(response) {
-                $('#todo').append(response);
-            }
-        });
-
-        numeroregistro++;
-        window.localStorage.setItem("numerodeorden", numeroregistro);
-        pedido = "Order." + numeroregistro;
-        var valor = t + "|" + id + "|" + ventana + "|" + precio + "|" + ventana;
-        window.localStorage.setItem(pedido, valor);
-        document.getElementById(id).value = nuevostock;
-        alert("Cesta:\n" + "Cantidad: " + ventana + " unidad/es.\n" + "Producto: \n" + m + " " + mo + ".\n \nPulse sobre Carro para acceder a su lista de compra.Gracias");
-    } else {
-        alert("El stock que tenemos de este producto es " + stock + "\n Por favor pida un numero de unidades dentro del disponible");
+    if (getCookie('user')==null) {
+        alert('Inicie sesión o registrese para poder comprar elementos')
     }
+    else{
+        if (stock != 0) {
+            numeroregistro = localStorage.getItem("numerodeorden");
+            var ventana = prompt("Cuantas unidades del producto: " + m + " " + mo + " desea añadir al carrito?");
 
+            if (ventana == 0 || ventana === null) {
+                alert("introduzca un valor positivo");
+            } else if (ventana <= stock) {
+                var nuevostock = stock - ventana;
+                $.ajax({
+                    url: 'master.php',
+                    type: 'POST',
+                    data: {
+                        'funcion': 'cookie',
+                        'x': id,
+                        'y': nuevostock,
+                    },
+                    success: function(response) {
+                        $('#todo').append(response);
+                    }
+                });
+
+                numeroregistro++;
+                window.localStorage.setItem("numerodeorden", numeroregistro);
+                pedido = "Order." + numeroregistro;
+                var valor = t + "|" + id + "|" + ventana + "|" + precio + "|" + ventana;
+                window.localStorage.setItem(pedido, valor);
+                document.getElementById(id).value = nuevostock;
+                alert("Cesta:\n" + "Cantidad: " + ventana + " unidad/es.\n" + "Producto: \n" + m + " " + mo + ".\n \nPulse sobre Carro para acceder a su lista de compra.Gracias");
+            } else {
+                alert("El stock que tenemos de este producto es " + stock + "\n Por favor pida un numero de unidades dentro del disponible");
+            }
+        } else {
+            alert('No quedan unidades en stock, lo sentimos');
+        }
+    }
 }
 
 
@@ -82,6 +98,7 @@ function visualizarcarrito() {
         id = carro[1];
         stock = parseInt(carro[2], 10);
         precio = carro[3];
+        var date = mysqlDate();
         total = total + (stock * precio);
         $.ajax({
             url: 'master.php',
@@ -91,64 +108,84 @@ function visualizarcarrito() {
                 'tabla': tabla,
                 'p': id,
                 'stock': stock,
+                'date': date,
             },
             success: function(response) {
                 $('#todo').append(response);
             }
         });
-        document.getElementById("total").value = total.toFixed(2) + " €";
     }
-}
-
-function realizarpedido() {
-    total = 0.00;
-    numerodeorden = localStorage.getItem("numerodeorden");
-    var pedido = "";
-    for (i = 1; i <= numerodeorden; i++) {
-        nuevopedido = "Order." + i;
-        datos = "";
-        datos = localStorage.getItem("Order." + i);
-        pedido = pedido + "," + datos;
-    }
-    console.log(pedido);
-    usuario = getCookie('usuario');
-    var total = document.getElementById('total').value;
     $.ajax({
         url: 'master.php',
         type: 'POST',
         data: {
-            'funcion': 'pedido',
-            'pedido': pedido,
-            'usuario': usuario,
-            'total': total,
+            'funcion': 'cookie',
+            'x': 'total',
+            'y': total.toFixed(2),
         },
         success: function(response) {
-            $('body').append(response);
+            $('#todo').append(response);
         }
     });
-    numerodeorden = localStorage.getItem("numerodeorden");
-    for (i = 1; i <= numerodeorden; i++) {
+    document.getElementById("total").value = total.toFixed(2) + " €";
+
+}
+
+
+
+function realizarpedido() {
+    var aux = 0;
+    total = 0.00;
+    numerodeorden2 = localStorage.getItem("numerodeorden");
+    var pedido2 = "";
+    for (i = 1; i <= numerodeorden2; i++) {
+        nuevopedido = "Order." + i;
+        datos2 = "";
+        datos2 = localStorage.getItem("Order." + i);
+        pedido2 = pedido2 + "," + datos;
+
         datos = localStorage.getItem("Order." + i);
         usuario = getCookie('usuario');
         carro = datos.split("|");
         tabla = carro[0];
         id = carro[1];
-        stock =
-            $.ajax({
-                url: 'master.php',
-                type: 'POST',
-                data: {
-                    'funcion': 'actualizar',
-                    'tabla': tabla,
-                    'stock': usuario,
-                    'total': total,
-                },
-                success: function(response) {
-                    $('body').append(response);
+        stock = getCookie(id);
+
+        $.ajax({
+            url: 'master.php',
+            type: 'POST',
+            data: {
+                'funcion': 'actualizar',
+                'tabla': tabla,
+                'stock': stock,
+                'id': id,
+            },
+            success: function(response) {
+                if (response == "success") {
+                    aux = 1;
                 }
-            });
+            }
+        });
     }
+    usuario = getCookie('usuario');
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'pedido',
+            'pedido': pedido2,
+        },
+        success: function(response) {
+            if (aux == 1 && response == "success") {
+                localStorage.clear();
+                alert('Pedido Realizado con Éxito');
+            } else {
+                alert('algo salió mal');
+            }
+        }
+    });
 }
+
 
 function login() {
     var usuario = document.getElementById('user').value;
@@ -172,3 +209,68 @@ function login() {
     });
 
 }
+function cerarsesion(){
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'fcookie',
+        },
+        success: function(response) {
+            window.location.reload();
+            localStorage.clear();
+        }
+    });
+}
+
+function infouser() {
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'verinfo',
+        },
+        success: function(response) {
+            var todo = response.split("|");
+            document.getElementById('nick').value = todo[0];
+            document.getElementById('pass').value = todo[1];
+            document.getElementById('email').value = todo[2];
+        }
+    });
+}
+
+function actualizaruser() {
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'actualizaruser',
+            'nick': document.getElementById('nick').value,
+            'pass': document.getElementById('pass').value,
+            'email': document.getElementById('email').value,
+        },
+        success: function(response) {
+            alert(response);
+            document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            location.replace('login.html');
+        }
+    });
+};
+
+function actualizaruser() {
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'registro',
+            'nick': document.getElementById('nick').value,
+            'pass': document.getElementById('pass').value,
+            'email': document.getElementById('email').value,
+        },
+        success: function(response) {
+            alert(response);
+            location.replace('login.html');
+        }
+    });
+}
+

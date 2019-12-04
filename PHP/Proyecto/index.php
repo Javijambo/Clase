@@ -1,4 +1,5 @@
 <?php
+$i=0;
 
 $servername = "localhost";
 $username = "alvaro";
@@ -216,8 +217,20 @@ while ($record = mysqli_fetch_assoc($resultset)) {
         </div>';
 }
 $todo .= '</div>';
-?>
-<?php echo('<!DOCTYPE html>
+$carrito="";
+if(isset($_COOKIE['user'])){
+  $carrito='
+  <button class="btn btn-outline-light ml-3" type="button" onclick="cerarsesion();">Cerrar Sesión</button>
+    <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'carrito.html\';">Carrito</button>
+    ';
+}
+else{
+  $carrito='
+      <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href=\'login.html\';">Login</button>
+      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'registro.html\';">Registro</button>
+      ';
+}
+echo('<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -343,9 +356,7 @@ $todo .= '</div>';
           <a class="nav-link a" href="login.php">Login</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light ml-3" type="button" onclick="window.location.href=\'login.html\';">Login</button>
-      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'registro.html\';">Registro</button>
-      <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href=\'carrito.html\';">Carro</button>
+      '.$carrito.'
     </div>
   </nav>
   <div class="row justify-content-center container-fluid" id="contenido">
@@ -355,3 +366,4 @@ $todo .= '</div>';
 
 </html>
 ');
+?>

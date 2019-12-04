@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src='https://code.jquery.com/jquery-3.4.1.min.js' type='text/javascript'></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>3GAG</title>
+    <title>PC</title>
     <style>
         .overlay {
             height: 100%;
@@ -78,17 +76,14 @@
         .btn1 {
             font-size: 38px;
         }
-        
-        .a {}
     </style>
 </head>
-<header>
-    <h1 class="banner display-3 font-weight-bold card-title  text-center">Página Componentes</h1>
-</header>
 
-<body onload="visualizarcarrito();">
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="jscript.js"></script>
-    <!-- MENU IZQUIERDO! -->
     <section id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
         <article class="overlay-content">
@@ -96,17 +91,16 @@
             <a id="cpu" href="#">CPUes</a>
             <a id="ram" href="#">Ram</a>
             <a id="gpu" href="#">Graficas</a>
-            <a id="psu" href="#">Fuentes de<br>Alimentación</a>
+            <a id="psu" href="#">Fuentes de<br>Alimentacion</a>
             <a id="ssd" href="#">Discos Duros</a>
             <a id="tower" href="#">Torres</a>
         </article>
     </section>
-
-    <nav class="navbar navbar-expand-lg displaynavbar-light bg-dark barra">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -126,35 +120,39 @@
                     <a class="nav-link a" href="login.php">Login</a>
                 </li>
             </ul>
-            <button class="btn btn-outline-light btn1" type="submit">Mirar Carrito de Compra</button>
+            <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href='registro.php';">Registro</button>
         </div>
     </nav>
-
-    <div class="container-fluid mt-4 ">
-        <table class="table" id="todo">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Imagen</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Precio Ud.</th>
-                    <th scope="col">Cantidad</th>
-                </tr>
-            </thead>
-
-            <tr>
-                <tfoot>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Total:</td>
-                    <td><input id="total" size="5" disabled="true" type="text" class="form-control form-control-sm text-right"></td>
-            </tr>
-            </tfoot>
-        </table>
-        <button type="button" class="btn btn-primary" onclick="realizarpedido();">Primary</button>
+    <div class="row justify-content-center container-fluid" id="contenido">
+        <div class="row mt-4">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nick</label>
+                    <input type="text" class="form-control" id="nick" aria-describedby="emailHelp" placeholder="Enter user">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Contraseña</label>
+                    <input type="password" class="form-control" id="pass" placeholder="Password">
+                    <input type="checkbox" onclick="myFunction()"> Ver contraseña
+                </div>
+                <button type="button" class="btn btn-primary" onclick="registro();">Login</button>
+            </form>
+        </div>
     </div>
-
+    <script>
+        function myFunction() {
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
