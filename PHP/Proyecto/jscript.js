@@ -378,3 +378,23 @@ function comprobaruser() {
         infouser();
     }
 }
+
+function getpedidos() {
+    var usuario = getCookie('user');
+
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'pedidos',
+            'user': user,
+        },
+        success: function(response) {
+            if (response == "success") {
+                $('#tabla').append(response);
+            }
+        }
+
+    });
+
+}
