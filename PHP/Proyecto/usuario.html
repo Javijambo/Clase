@@ -79,7 +79,7 @@
     </style>
 </head>
 
-<body onload="infouser();">
+<body onload="comprobaruser();">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -114,13 +114,13 @@
                     <a class="nav-link a" id="comp" href="pieza.php">Componentes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link a" href="registro.php">Registro</a>
+                    <a class="nav-link a" href="registro.html">Registro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link a" href="login.php">Login</a>
                 </li>
             </ul>
-            <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href='registro.php';">Registro</button>
+            <button class="btn btn-outline-light ml-3" type="button" onclick=" window.location.href='registro.html';">Registro</button>
         </div>
     </nav>
     <div class="row justify-content-center container-fluid" id="contenido">
@@ -128,7 +128,7 @@
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nick</label>
-                    <input type="text" class="form-control" id="nick" aria-describedby="emailHelp" placeholder="Enter user">
+                    <input type="text" class="form-control" id="nick" placeholder="Enter user">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Email</label>

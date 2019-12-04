@@ -3,12 +3,11 @@ create database Alvaro;
 use Alvaro;
 CREATE TABLE Clientes
 (
-  IdCliente INT auto_increment,
-  Nombre varCHAR(15) NOT NULL,
-  Apellidos varCHAR(40) NOT NULL,
-  Id_Pedido INT ,
-  DNI INT NOT NULL,
-  PRIMARY KEY (IdCliente)
+  nick varchar(50) not null, 
+  pass varchar(100) not null,
+  email varCHAR(100) not null,
+  Id_Pedido INT default 0,
+  PRIMARY KEY (nick)
 );
 
 CREATE TABLE Proveedor
@@ -54,7 +53,6 @@ CREATE TABLE Ram
   Precio  DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
   Stock INT default 5,
-
   PRIMARY KEY (IdRam),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
@@ -82,6 +80,7 @@ CREATE TABLE MB
   socket Set('AM4','1151') NOT NULL,
   Precio  DECIMAL(13,2) NOT NULL,
   Marca varchar(50) NOT NULL,
+  Stock INT default 5,
   PRIMARY KEY (IdMB),
   FOREIGN KEY (Marca) REFERENCES Proveedor(Marca)
 );
@@ -118,13 +117,13 @@ CREATE TABLE Disco
 
 CREATE TABLE Pedido
 (
-  IdPedido INT auto_increment,
-  Fecha_Pedido INT NOT NULL,
-  IdCliente INT NOT NULL,
+  Idpedido INT auto_increment,
+  Fecha_Pedido INT DEFAULT 0,
+  nick Varchar(20) NOT NULL,
   IdComponentes longtext NOT NULL,
   Total DECIMAL(13,2),
-  PRIMARY KEY (IdPedido),
-  FOREIGN KEY (IdCliente) REFERENCES Clientes(IdCliente)
+  primary key(Idpedido),
+  FOREIGN KEY (nick) REFERENCES Clientes(nick)
 );
 
 
@@ -219,5 +218,8 @@ insert into Disco(IdDisco,Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('d03'
 insert into Disco(IdDisco,Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('d04','seagate.jpg','Seagate','BarraCuda 3.5" 1TB SATA3','HDD',1000,38.50);
 insert into Disco(IdDisco,Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('d05','seagate2.jpg','Seagate','IronWolf NAS 4TB SATA3','HDD',4000,118.90);
 insert into Disco(IdDisco,Imagen,Marca,Modelo,Tipo,Capacidad,Precio)values('d06','crucial.jpg','Crucial','Crucial MX500 M.2 2280 500GB','SSD',500,78.99); 
+
+insert into Clientes(nick,pass,email)values('admin','admin','email@gmail.com');
+insert into Clientes(nick,pass,email)values('alvaro','alvaro','email2@gmail.com');
 
 

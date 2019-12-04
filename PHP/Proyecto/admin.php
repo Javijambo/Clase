@@ -1,3 +1,7 @@
+<?php
+if (isset($_COOKIE['user'])) {
+    if ($_COOKIE['user'] == 'admin') {
+        echo '
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,23 +64,6 @@
                 right: 40px;
             }
         }
-
-        b {
-            font-size: 24px;
-        }
-
-        .barra {
-            font-size: 38px;
-            position: -webkit-sticky;
-            /* Safari */
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-
-        .btn1 {
-            font-size: 38px;
-        }
     </style>
 </head>
 <header>
@@ -116,13 +103,7 @@
                     <a class="nav-link a" href="index.php">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link a" id="comp" href="pieza.php">Componentes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="registro.php">Registro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link a" href="login.php">Login</a>
+                    <a class="nav-link a" id="comp" href="componentes.php">Componentes</a>
                 </li>
             </ul>
             <button class="btn btn-outline-light ml-3" type="button" onclick="cerarsesion();">Cerrar Sesión</button>
@@ -130,7 +111,7 @@
     </nav>
     <div class="container justify-content-center " id="contenido">
         <div id="form" class="form-group">
-        <button id="cargar" class="btn btn-primary mt-4 mb-4" type="button" onclick="refrescar();">Empezar de nuevo</button>
+        <button class="btn btn-primary mt-4 mb-4" type="button" onclick="refrescar();">Empezar de nuevo</button>
         <br>    
         <label for="tabla">Seleccionar Componente</label>
             <select class="form-control mb-4" id="tabla">
@@ -142,10 +123,23 @@
                 <option value="psu">Fuente de Alimentacion</option>
             </select>
         </div>
-        <button id="cargar" class="btn btn-primary w-10 mt-4 mb-4" type="button" onclick="cargarids();">Cargar ID</button>
-            <button id = "cargar2" class = "btn btn-primary w-10 mt-4 mb-4" type = "button" > Mostrar Datos </button>
-    
+        <button id="cargar" class="btn btn-primary w-10 mt-4 mb-4" type="button" onclick="cargarids();">Seleccionar ID</button>    
         </div>
 </body>
 
-</html>
+</html>';
+    } else {
+        echo '<script type="text/javascript">
+        alert("Necesita Ser admin para poder acceder a esta pagina");
+        location.replace(\'inicio.html\');
+        </script>
+        ';
+    }
+} else {
+    echo '<script type="text/javascript">
+        alert("Inicie sesion como administrador para acceder a esta pagina");
+        location.replace(\'login.html\');
+        </script>
+
+        ';
+}

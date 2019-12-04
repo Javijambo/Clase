@@ -28,6 +28,11 @@ if ($funcion === 'carrito') {
   mostrardatos($servername, $username, $password, $dbname);
 } elseif ($funcion === 'cargarid') {
   cargarids($servername, $username, $password, $dbname);
+} elseif ($funcion === 'modificar') {
+  modificarproducto($servername, $username, $password, $dbname);
+}
+elseif ($funcion === 'eliminar') {
+  eliminarproducto($servername, $username, $password, $dbname);
 }
 
 
@@ -132,7 +137,7 @@ function veruser($servername, $username, $password, $dbname)
   echo ($nick2 . "|" . $pass . "|" . $email);
 }
 
-
+//===========================================Cambiarz info de usuario====================================================
 function cambiarinfouser($servername, $username, $password, $dbname)
 {
   $nick = $_COOKIE['user'];
@@ -150,6 +155,8 @@ function cambiarinfouser($servername, $username, $password, $dbname)
     echo "error";
   }
 }
+
+//===========================================Registro====================================================
 
 function registro($servername, $username, $password, $dbname)
 {
@@ -177,18 +184,19 @@ function cargarids($servername, $username, $password, $dbname)
   $todo = '<select class="form-control" id="ids">';
   $tabla = $_POST['tabla'];
   $nid = "Id" . $tabla;
-  $sql = "SELECT " . $nid . " FROM " . $tabla . " order by ".$nid.";";
+  $sql = "SELECT " . $nid . " FROM " . $tabla . " order by " . $nid . ";";
   $resultset = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
   while ($record = mysqli_fetch_assoc($resultset)) {
     $id = $record[$nid];
     $todo .= '<option value="' . $id . '">' . $id . '</option>';
   }
-  $todo.=' </select>';
+  $todo .= ' </select>';
   echo $todo;
 }
 
 
 
+//===========================================Sacar info para admin====================================================
 
 function mostrardatos($servername, $username, $password, $dbname)
 {
@@ -205,22 +213,55 @@ function mostrardatos($servername, $username, $password, $dbname)
     $stock = $record['Stock'];
   }
   $todo = '
-  <img class="img-fluid" src="/img/' . $img . '">
-  <div class="form-group">
+  <div class="form-group mt-3">
   <label>Modelo</label>
   <input type="text" class="form-control" id="modelo" aria-describedby="emailHelp" value="' . $modelo . '">
-  <button>Modificar Stock</button>
   </div>
+  <img class="align-center h-25 w-25" src="img/' . $img . '">
   <div class="form-group">
   <label>Stock</label>
-  <input type="text" class="form-control" id="stock" aria-describedby="emailHelp" value="' . $stock . '">
-  <button>Modificar Stock</button>
+  <input type="number" class="form-control" id="stock" aria-describedby="emailHelp" value="' . $stock . '">
   </div>
   <div class="form-group">
   <label>Precio</label>
-  <input type="text" class="form-control" id="precio" aria-describedby="emailHelp" value="' . $precio . '">
-  <button>Modificar Precio</button>
+  <input type="number" class="form-control" id="precio" aria-describedby="emailHelp" step=".01" value="' . $precio . '">
   </div>
+  <button id="modificar" class="btn btn-primary w-10 mt-4 mb-4" type="button" onclick="modificar();">Modificar Producto</button>    
+  <button id="eliminar" class="btn btn-primary w-10 mt-4 mb-4" type="button" onclick="eliminar();">Eliminar Producto</button>    
   ';
   echo $todo;
+}
+
+function modificarproducto($servername, $username, $password, $dbname)
+{
+  $tabla = $_POST['tabla'];
+  $id = $_POST['id'];
+  $stock = $_POST['stock'];
+  $modelo = $_POST['modelo'];
+  $aux = $_POST['precio'];
+  $campo = "id" . $tabla;
+  $precio = str_replace(',', '.', $aux);
+  $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
+  $sql = "UPDATE " . $tabla . " set stock='$stock', modelo='$modelo', precio='$precio' where " . $campo . " ='$id'";
+  $result = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+  if ($result) {
+    echo "success";
+  } else {
+    echo "error";
+  }
+}
+
+function eliminarproducto($servername, $username, $password, $dbname)
+{
+  $tabla = $_POST['tabla'];
+  $id = $_POST['id'];
+  $campo = "id" . $tabla;
+  $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
+  $sql = "DELETE FROM " . $tabla . " where " . $campo . " = '" . $id . "';";
+  $result = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+  if ($result) {
+    echo "success";
+  } else {
+    echo "error";
+  }
 }

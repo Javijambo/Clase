@@ -41,7 +41,7 @@ function getCookie(cname) {
 
 function comprar(t, id, m, mo, precio) {
     var stock = getCookie(id);
-    if (getCookie('user') == null) {
+    if (getCookie('user') == "") {
         alert('Inicie sesión o registrese para poder comprar elementos')
     } else {
         if (stock != 0) {
@@ -128,7 +128,6 @@ function visualizarcarrito() {
     document.getElementById("total").value = total.toFixed(2) + " €";
 
 }
-
 
 
 function realizarpedido() {
@@ -285,8 +284,9 @@ function cargarids() {
         },
         success: function(response) {
             $('#form').append(response);
-            $('#cargar').remove();
-            document.getElementById('cargar2').setAttribute('onclick', 'mostrardatos()');
+            $('#tabla').attr('disabled', 'disabled');
+            $('#cargar').attr('onclick', 'mostrardatos();');
+            $('#cargar').html('Mostrar Datos');
         }
     });
 }
@@ -296,5 +296,85 @@ function refrescar() {
 }
 
 function mostrardatos() {
-    alert('2');
+    var e = document.getElementById("tabla");
+    var tabla = e.options[e.selectedIndex].value;
+    var f = document.getElementById("ids");
+    var id = f.options[f.selectedIndex].value;
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'mostrardatos',
+            'tabla': tabla,
+            'id': id,
+        },
+        success: function(response) {
+            $('#form').append(response);
+            $('#cargar').remove();
+            $('#ids').attr('disabled', 'disabled');
+        }
+
+    });
+}
+
+function modificar() {
+    var e = document.getElementById("tabla");
+    var tabla = e.options[e.selectedIndex].value;
+    var f = document.getElementById("ids");
+    var id = f.options[f.selectedIndex].value;
+    var modelo = document.getElementById('modelo').value;
+    var stock = document.getElementById('stock').value;
+    var precio = document.getElementById('precio').value;
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'modificar',
+            'tabla': tabla,
+            'id': id,
+            'modelo': modelo,
+            'stock': stock,
+            'precio': precio,
+        },
+        success: function(response) {
+            if (response == "success") {
+                alert("Modificacion Realizada correctamente");
+                location.replace('admin.php');
+            }
+        }
+
+    });
+}
+
+function eliminar() {
+    var e = document.getElementById("tabla");
+    var tabla = e.options[e.selectedIndex].value;
+    var f = document.getElementById("ids");
+    var id = f.options[f.selectedIndex].value;
+
+    $.ajax({
+        url: 'master.php',
+        type: 'POST',
+        data: {
+            'funcion': 'eliminar',
+            'tabla': tabla,
+            'id': id,
+        },
+        success: function(response) {
+            if (response == "success") {
+                alert("Se ha eliminado el producto correctamente");
+                location.replace('admin.php');
+            }
+        }
+
+    });
+}
+
+function comprobaruser() {
+    if (getCookie('user') == "") {
+        alert('Inicie sesión')
+        location.replace('login.html');
+    } else {
+        infouser();
+    }
 }
