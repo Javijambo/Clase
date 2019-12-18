@@ -1,0 +1,18 @@
+h1 {
+  color: white;
+  background-color: blueviolet;
+}
+p {
+  color: red;
+}
+nav {
+  background-color: coral;
+}
+nav a {
+  background-color: darkcyan;
+  color: whitesmoke;
+}
+footer {
+  color: #b80000;
+  background-color: aqua;
+}

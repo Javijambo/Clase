@@ -1,0 +1,58 @@
+body {
+    display: grid;
+    grid-template: "header header " "izquierda aside2" "footer  footer";
+}
+
+.container {
+    width: 80%;
+    background: #ddd;
+}
+
+.progress {
+    width: 1px;
+    height: 20px;
+    background: crimson;
+    transition: width .1s linear;
+}
+
+aside {
+    grid-area: aside2;
+}
+
+#izquierda {
+    grid-area: izquierda;
+    background-color: greenyellow;
+    margin-left: 0;
+    padding-left: -10%;
+}
+
+footer {
+    grid-area: footer;
+    text-align: center;
+    background-color: crimson;
+    padding: 20px;
+    color: whitesmoke;
+}
+
+header {
+    margin: 0;
+    font-size: 30px;
+    color: white;
+    background-color: crimson;
+    text-align: center;
+    grid-area: header;
+}
+
+#botones {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 0;
+}
+
+#botones button {
+    border-radius: 12px;
+    background-color: crimson;
+    color: whitesmoke;
+    padding: 10px 20px 10px 20px;
+    border: solid 1px whitesmoke;
+}
