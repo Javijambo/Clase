@@ -1,11 +1,14 @@
 body {
     display: grid;
-    grid-template: "header header " "izquierda aside2" "footer  footer";
+    grid-template: "header header" "izquierda aside2" "pie pie";
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .container {
-    width: 80%;
+    width: 98%;
     background: #ddd;
+    text-align: center;
+    padding: 5px;
 }
 
 .progress {
@@ -17,21 +20,26 @@ body {
 
 aside {
     grid-area: aside2;
+    background-color: rgb(23, 160, 11);
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Ma Shan Zheng', cursive;
 }
 
 #izquierda {
     grid-area: izquierda;
-    background-color: greenyellow;
-    margin-left: 0;
-    padding-left: -10%;
+    margin: 0;
+    padding: 10px;
+    background-color: rgb(23, 160, 11);
 }
 
 footer {
-    grid-area: footer;
+    grid-area: pie;
     text-align: center;
     background-color: crimson;
-    padding: 20px;
     color: whitesmoke;
+    padding: 20px;
 }
 
 header {
@@ -41,12 +49,13 @@ header {
     background-color: crimson;
     text-align: center;
     grid-area: header;
+    background-image: url("Imagenes/fondo.jpg");
 }
 
 #botones {
     display: flex;
     justify-content: space-evenly;
-    margin-left: 0;
+    padding-top: 20px;
 }
 
 #botones button {
