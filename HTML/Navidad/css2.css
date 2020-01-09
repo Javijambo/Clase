@@ -1,0 +1,31 @@
+body {
+    display: grid;
+    grid-template: "header " "img" " pie";
+}
+
+footer {
+    grid-area: pie;
+    text-align: center;
+    background-color: crimson;
+    color: whitesmoke;
+    padding: 20px;
+}
+
+.img {
+    grid-area: img;
+    background-color: rgb(23, 160, 11);
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+header {
+    font-size: 30px;
+    color: white;
+    background-color: crimson;
+    text-align: center;
+    grid-area: header;
+    background-image: url("Imagenes/fondo.jpg");
+    background-repeat: repeat-x;
+}

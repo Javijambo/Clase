@@ -4,11 +4,19 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+@media only screen and (max-width: 600px) {
+    body {
+        display: grid;
+        grid-template: "header" "izquierda""aside2" "pie";
+    }
+}
+
 .container {
     width: 98%;
     background: #ddd;
     text-align: center;
     padding: 5px;
+    margin-top: 10px;
 }
 
 .progress {
@@ -43,19 +51,19 @@ footer {
 }
 
 header {
-    margin: 0;
     font-size: 30px;
     color: white;
     background-color: crimson;
     text-align: center;
     grid-area: header;
     background-image: url("Imagenes/fondo.jpg");
+    background-repeat: repeat-x;
 }
 
 #botones {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 #botones button {
