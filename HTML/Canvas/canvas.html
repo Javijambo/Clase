@@ -56,23 +56,26 @@
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawPaddle();
+            console.log(paddleX + " " + paddley);
 
-            if (rightPressed) {
-                if (paddleX < canvas.width - paddleWidth + 6 && paddleX > 0) {
+            if (paddleX < canvas.width - paddleWidth && paddleX > 0) {
+                if (rightPressed) {
                     paddleX += 5;
-                } else if (paddley <= canvas.width - paddleHeight && paddley >= 0) {
-                    paddleWidth = 10;
-                    paddleHeight = -75;
-                    paddley -= 5;
                 }
-
-            } else if (leftPressed) {
-                if (paddleX < canvas.width - paddleWidth && paddleX > 0) {
+                if (leftPressed) {
                     paddleX -= 5;
-                } else if (paddley <= canvas.height - paddleHeight && paddley >= 0) {
-                    paddleWidth = 10;
-                    paddleHeight = -75;
+                }
+            } else if (paddleX > canvas.width - paddleWidth) {
+                if (rightPressed) {
                     paddley -= 5;
+                } else if (leftPressed) {
+                    paddley += 5;
+                }
+            } else if (paddleX < 0) {
+                if (rightPressed) {
+                    paddley += 5;
+                } else if (leftPressed) {
+                    paddley -= 2;
                 }
             }
 
