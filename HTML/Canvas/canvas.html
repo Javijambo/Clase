@@ -19,7 +19,9 @@
         var x = canvas.width / 2;
         var y = canvas.height - 30;
         var paddleHeight = 10;
-        var paddleWidth = 75;
+        var paddleWidth = 80;
+        var auxh = paddleHeight;
+        var auxw = paddleWidth;
         var paddleX = (canvas.width - paddleWidth) / 2;
         var paddley = (canvas.height - paddleHeight);
         var rightPressed = false;
@@ -44,44 +46,103 @@
             }
         }
 
-        function drawPaddle() {
+        function drawPaddle(x, y, h, w) {
             ctx.beginPath();
-            ctx.rect(paddleX, paddley, paddleWidth, paddleHeight);
+            ctx.rect(x, y, h, w);
             ctx.fillStyle = "#0095DD";
             ctx.fill();
             ctx.closePath();
         }
         bandera = 0;
+        var estado = "abajo";
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawPaddle();
+            drawPaddle(paddleX, paddley, paddleWidth, paddleHeight);
+            //console.log(estado);
+            if (estado == "abajo") {
+                console.log(paddley, canvas.height - paddleHeight, paddleX);
+                if (rightPressed && paddleX <= canvas.width - paddleWidth + 5 && paddleX >= 0) {
+                    paddleX += 5;
 
-            if (rightPressed && paddleX < canvas.width - paddleHeight * 2 && paddley > canvas.height - paddleWidth * 2) {
-                paddleHeight = 10;
-                paddleWidth = 75;
-                paddley = canvas.height - paddleHeight;
-                paddleX += 5;
+                } else if (leftPressed && paddleX <= canvas.width - paddleWidth && paddleX > 0) {
+                    paddleX -= 5;
 
-            } else if (leftPressed && paddleX > 0 && paddley > canvas.height - paddleWidth * 2 && paddley >= 0) {
-                paddleHeight = 10;
-                paddleWidth = 75;
-                paddley = canvas.height - paddleHeight;
-                paddleX -= 5;
+                } else if (rightPressed && paddleX >= canvas.width - paddleWidth) {
+                    repintar("derecha");
+                    paddleHeight = auxw;
+                    paddleWidth = auxh;
+                    paddleX = canvas.width - paddleWidth;
+                    paddley = canvas.height - paddleHeight;
+                    estado = "derecha";
 
-            } else if (rightPressed && paddleX >= canvas.width - paddleHeight * 2 && paddley >= 0) {
-                paddleHeight = 75;
-                paddleWidth = 10;
-                paddleX = canvas.width - paddleWidth;
-                paddley -= 5;
+                } else if (leftPressed && paddleX <= 0) {
+                    paddleHeight = auxw;
+                    paddleWidth = auxh;
+                    paddleX = 0;
+                    paddley = canvas.height - paddleHeight;
+                    estado = "izquierda";
+                }
 
-            } else if (leftPressed && paddleX >= canvas.width - paddleWidth && paddley >= 0) {
-                paddleHeight = 75;
-                paddleWidth = 10;
-                paddleX = canvas.width - paddleWidth;
-                paddley += 5;
+
+            } else if (estado == "derecha") {
+                if (rightPressed && paddley <= canvas.height - paddleHeight && paddley > 0) {
+                    paddley -= 5;
+
+                } else if (leftPressed && paddley < canvas.height - paddleHeight && paddley >= 0) {
+                    paddley += 5;
+
+                } else if (leftPressed && paddley >= canvas.height - paddleHeight) {
+                    paddleHeight = auxh;
+                    paddleWidth = auxw;
+                    paddleX = canvas.width - paddleWidth;
+                    paddley = canvas.height - paddleHeight;
+                    estado = "abajo";
+                }
+
+
+            } else if (estado == "izquierda") {
+
+
+                if (rightPressed && paddleX <= 0 && paddley >= 0 && paddley < canvas.height - paddleHeight) {
+                    paddley += 5;
+
+                } else if (leftPressed && paddleX <= 0 && paddley > 0) {
+                    paddley -= 5;
+
+                } else if (rightPressed && paddley >= canvas.height - paddleHeight) {
+                    paddleHeight = auxh;
+                    paddleWidth = auxw;
+                    paddleX = 0;
+                    paddley = canvas.height - paddleHeight;
+                    estado = "abajo";
+                }
             }
 
+            // if (rightPressed && paddleX < canvas.width - paddleWidth && paddley < canvas.height) {
+            //     paddleHeight = 10;
+            //     paddleWidth = 75;
+            paddley = canvas.height - paddleHeight;
+            //     paddleX += 5;
+
+            // } else if (leftPressed && paddleX > 0 && paddley > canvas.height - paddleHeight && paddley > 0) {
+            //     paddleHeight = 10;
+            //     paddleWidth = 75;
+            //     paddley = canvas.height - paddleHeight;
+            //     paddleX -= 5;
+
+            // } else if (rightPressed && paddleX >= canvas.width - paddleWidth && paddley > 1) {
+            //     paddleHeight = 75;
+            //     paddleWidth = 10;
+            //     paddleX = canvas.width - paddleWidth;
+            //     paddley -= 5;
+
+            // } else if (leftPressed && paddleX >= canvas.width - paddleWidth && paddley >= 0) {
+            //     paddleHeight = 75;
+            //     paddleWidth = 10;
+            //     paddleX = canvas.width - paddleWidth;
+            //     paddley += 5;
+            // }
         }
         setInterval(draw, 10);
     </script>
