@@ -1,0 +1,4 @@
+Notas y Añadidos
+He añadido 3 niveles distintos de dificultad (aumenta la velocidad de la pelota y tamaño del canvas) que se pueden elegir con un prompt así como añadir una segunda pelota
+El raton solo funciona en la parte inferior, he intentado en los laterales pero al final se movía diagonalmente
+La segunda pelota no pierde vida si rebota en los laterales (para no hacerlo más complicado de lo que es)

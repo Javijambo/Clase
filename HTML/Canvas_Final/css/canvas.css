@@ -1,0 +1,14 @@
+
+header{
+    text-align: center;
+
+}
+#canvas_container {
+    width: 100%;
+    text-align:center;
+ }
+ 
+ canvas {
+    display: inline;
+    border: 1px solid blue;
+ }
