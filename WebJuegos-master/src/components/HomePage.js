@@ -15,6 +15,7 @@ import Link from '@material-ui/core/Link';
 let images = {
   Tetris: require('../img/Tetris.PNG'),
   Memory: require('../img/Memory.PNG'),
+  Snake: require('../img/Snake.PNG')
 }
 function Copyright() {
   return (
