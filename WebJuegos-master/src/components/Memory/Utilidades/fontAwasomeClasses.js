@@ -1,0 +1,10 @@
+export default () => ["fa-allergies","fa-ambulance","fa-angry","fa-address-book","fa-address-card","fa-building","fa-comment","fa-dizzy","fa-frown","fa-grin-beam"
+,"fa-grin","fa-grin-alt","fa-grin-beam","fa-grin-tongue-wink","fa-grin-wink","fa-hand-lizard","fa-hand-paper","fa-hand-peace","fa-hand-spock","fa-handshake"
+,"fa-hdd","fa-heart","fa-hospital","fa-hourglass","fa-id-card","fa-image","fa-laugh-wink","fa-lemon","fa-life-ring","fa-lightbulb"
+,"fa-list-alt","fa-map","fa-meh","fa-meh-blank","fa-meh-rolling-eyes","fa-minus-square","fa-money-bill-alt","fa-moon","fa-newspaper","fa-object-group"
+,"fa-pause-circle","fa-play-circle","fa-plus-square","fa-question-circle","fa-registered","fa-sad-cry","fa-sad-tear","fa-save","fa-paper-plane","fa-object-ungroup"
+,"fa-share-square","fa-smile","fa-smile-beam","fa-smile-wink","fa-snowflake","fa-square","fa-star","fa-star-half","fa-tired","fa-times-circle"
+,"fa-thumbs-up","fa-thumbs-down","fa-surprise","fa-sun","fa-stop-circle","fa-sticky-note","fa-trash-alt","fa-user","fa-user-circle","fa-window-close"
+,"fa-archive","fa-arrow-alt-circle-down","fa-arrow-circle-right","fa-atlas","fa-at","fa-baby-carriage","fa-baby","fa-atom","fa-award","fa-battery-empty"
+,"fa-battery-full","fa-bed","fa-beer","fa-bell","fa-book-dead","fa-bong","fa-bowling-ball","fa-box","fa-boxes","fa-braille"
+,"fa-brain","fa-bread-slice","fa-briefcase-medical","fa-brush","fa-bug","fa-calendar-check","fa-car-side","fa-car-crash","fa-carrot","fa-chess-king"]
