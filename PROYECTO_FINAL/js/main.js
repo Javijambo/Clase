@@ -1,4 +1,4 @@
-window.addEventListener("load", function(event) {
+window.addEventListener("load", function() {
     var keyDownUp = function(event) {
             controller.keyDownUp(event.type, event.keyCode);
         }
@@ -11,7 +11,8 @@ window.addEventListener("load", function(event) {
         //renderizado
     var render = function() {
             display.dibujaMapa(loader.tile_set_image, game.world.tile_set.columnas, game.world.mapa, game.world.columnas, game.world.tile_set.tile_size);
-            display.dibujaPersonaje(game.world.personaje, game.world.personaje.color1, game.world.personaje.color2);
+            let frame_personaje = game.world.tile_set.array_frames[game.world.personaje.f_value];
+            display.dibujaObjeto(loader.tile_set_image, frame_personaje.x, frame_personaje.y, game.world.personaje.x, game.world.personaje.y, frame_personaje.width, frame_personaje.height);
             display.dibujaSierra(game.world.sierra, "#A9A9A9", "#C0C0C0");
             display.render();
         }
@@ -45,7 +46,6 @@ window.addEventListener("load", function(event) {
     var engine = new Engine(1000 / 30, render, update);
 
     //cargar
-
     loader.rqJSON("json/nivel" + game.world.id_nivel + ".json", (nivel) => {
         game.world.cargarNivel(nivel);
 
@@ -58,6 +58,7 @@ window.addEventListener("load", function(event) {
 
     display.buffer.canvas.height = game.world.height;
     display.buffer.canvas.width = game.world.width;
+    display.buffer.imageSmoothingEnabled = false;
 
     window.addEventListener("keydown", keyDownUp);
     window.addEventListener("keyup", keyDownUp);

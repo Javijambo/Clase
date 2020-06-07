@@ -9,8 +9,7 @@ Game.prototype = {
     constructor: Game
 }
 
-
-//////////////////////////////////////////////////////////OBJETO TILE SET/////////////////////////////////////////////////////////////////////
+//Tile set
 Game.TileSet = function(tile_size, columnas) {
 
     this.tile_size = tile_size;
@@ -40,9 +39,6 @@ Game.TileSet.Frame = function(x, y, width, height) {
 }
 Game.TileSet.Frame.prototype = { constructor: Game.TileSet.Frame };
 
-
-
-////////////////////////////////////////////////////////OBJETO WORLD/////////////////////////////////////////////////////////////////////
 Game.World = function(friccion = 0.10, gravedad = 2) {
 
     this.collider = new Game.Collider();
@@ -107,7 +103,6 @@ Game.World.prototype = {
         this.collider.collide(value, o, dcha * this.tile_set.tile_size, abajo * this.tile_set.tile_size, this.tile_set.tile_size);
     },
 
-    //funcion de actualizar el mundo
     update: function() {
 
         //actualizar por friccion y gravedad
@@ -122,31 +117,31 @@ Game.World.prototype = {
     }
 }
 
-///////////////////////////////////////////////////////////////////////////// COLISIONES /////////////////////////////////////////////////////////////////////////////
 //controla las colisiones dependiendo del tile que sea (por ejemplo si colisiona con pinchos, bloques etc)
 Game.Collider = function() {
-        //colisiones dependiendo del bloque que sea
-        this.collide = function(value, object, tile_x, tile_y, tile_size) {
-            switch (value) {
-                case 0:
-                    if (this.colisionSuperior(object, tile_y)) return;
-                    if (this.colisionIzq(object, tile_x)) return;
-                    if (this.colisionDcha(object, tile_x + tile_size)) return;
-                    this.colisionInferior(object, tile_y + tile_size);
-                    break;
-                case 2:
-                    this.colisionSuperior(object, tile_y);
-                    break;
-                case 3:
-                    this.colisionPinchosSup(object, tile_y - tile_size / 2.5)
-                    break;
-                case 4:
-                    this.colisionPinchosInf(object, tile_y + (tile_size / 2.5))
-                    break;
-            }
+    //colisiones dependiendo del bloque que sea
+    this.collide = function(value, object, tile_x, tile_y, tile_size) {
+        switch (value) {
+            case 0:
+                if (this.colisionSuperior(object, tile_y)) return;
+                if (this.colisionIzq(object, tile_x)) return;
+                if (this.colisionDcha(object, tile_x + tile_size)) return;
+                this.colisionInferior(object, tile_y + tile_size);
+                break;
+            case 2:
+                this.colisionSuperior(object, tile_y);
+                break;
+            case 3:
+                this.colisionPinchosSup(object, tile_y - tile_size / 2)
+                break;
+            case 4:
+                this.colisionPinchosInf(object, tile_y + (tile_size / 3.5))
+                break;
         }
     }
-    //funciones para cada tipo de colision
+}
+
+//funciones para cada tipo de colision
 Game.Collider.prototype = {
     constructor: Game.Collider,
 
@@ -191,14 +186,12 @@ Game.Collider.prototype = {
         return false;
     },
 
-    //Pinchos superiores
     colisionPinchosSup: function(o, tile_inf) {
         if (o.getArriba() > tile_inf && o.getArribaAux() <= tile_inf) {
             o.perderVida();
         }
         return false;
     },
-    //Pinchos inferiores
     colisionPinchosInf: function(o, tile_inf) {
         if (o.getArriba() < tile_inf && o.getArribaAux() >= tile_inf) {
             o.perderVida();
@@ -207,9 +200,7 @@ Game.Collider.prototype = {
     }
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////// CONSTRUCTOR OBJETO /////////////////////////////////////////////////////////////////////////////
+//constructor Objeto
 Game.Object = function(x, y, width, height) {
     this.height = height;
     this.width = width;
@@ -274,9 +265,6 @@ Game.Object.prototype = {
     },
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////// OBJETO ANIMACIONES /////////////////////////////////////////////////////////////////////////////
 Game.Object.Animator = function(frame_set, delay) {
     this.count = 0;
     if (delay >= 1) {
@@ -291,7 +279,7 @@ Game.Object.Animator = function(frame_set, delay) {
 Game.Object.Animator.prototype = {
     constructor: Game.Object.Animator,
 
-    //
+    //funcion para animar dependiendo si se está moviendo o no
     animar: function() {
         if (this.moving) {
             this.animacion();
@@ -299,19 +287,16 @@ Game.Object.Animator.prototype = {
     },
 
     //setear el nuevo array de frames
-    setFrame(frame_set, moving, delay = 10, f_index = 0) {
-
+    setFrame(frame_set, moving, delay = 20, f_index = 0) {
         if (this.frame_set === frame_set) { return; }
-
         this.count = 0;
         this.delay = delay;
-        this.frame_set = frame_set;
         this.f_index = f_index;
         this.f_value = frame_set[f_index];
         this.moving = moving;
     },
 
-    //funcion para recorrer el array de frames en bucle para los movimientos horizontales
+    //funcion para recorrer el array de frames en bucle
     animacion: function() {
         this.count++;
         while (this.count > this.delay) {
@@ -329,7 +314,7 @@ Game.Object.Animator.prototype = {
 //constructor Personaje
 Game.Object.Personaje = function() {
     Game.Object.call(this, 35, 450, 21, 26);
-    Game.Object.Animator.call(this, Game.Object.Personaje.prototype.frames["quieto-dcha"]);
+    Game.Object.Animator.call(this, Game.Object.Personaje.prototype.frames["quieto-dcha"], 10);
     this.vx = 0;
     this.vy = 0;
     this.saltando = true;
@@ -350,7 +335,7 @@ Game.Object.Personaje.prototype = {
         //arrays animaciones hacia la izquierda
         "quieto-izq": [7],
         "moviendose-izq": [8, 9, 10, 11, 12, 13],
-        "saltando-izq": [11],
+        "saltando-izq": [10],
     },
 
     //funcion saltar
@@ -392,6 +377,7 @@ Game.Object.Personaje.prototype = {
     //funcion de animar al personaje
     animarPersonaje: function() {
 
+
         if (this.vy < 0) {
             if (this.ladomira < 0) {
                 this.setFrame(this.frames["saltando-izq"], false);
@@ -400,19 +386,19 @@ Game.Object.Personaje.prototype = {
             }
         } else if (this.ladomira < 0) {
             if (this.vx < -0.1) {
-                this.setFrame(this.frames["moviendose-izq"], true, 3);
+                this.setFrame(this.frames["moviendose-izq"], true, 5);
             } else {
                 this.setFrame(this.frames["quieto-izq"], false);
             }
         } else if (this.ladomira > 0) {
             if (this.vx > 0.1) {
-                this.setFrame(this.frames["moviendose-dcha"], true, 3);
+                this.setFrame(this.frames["moviendose-dcha"], true, 5);
             } else {
                 this.setFrame(this.frames["quieto-dcha"], false);
             }
         }
-        this.animar();
 
+        this.animar();
     }
 }
 

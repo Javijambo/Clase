@@ -19,14 +19,9 @@ const Display = function(canvas) {
 
         }
         //funcion de dibujar el personaje 
-    this.dibujaPersonaje = function(p, color1, color2) {
-        this.context.beginPath();
-        this.buffer.fillStyle = color1;
-        this.buffer.fillRect(Math.round(p.x), Math.round(p.y), p.width, p.height);
-        this.buffer.fillStyle = color2;
-        this.buffer.fillRect(Math.round(p.x + 2), Math.round(p.y + 2), p.width - 4, p.height - 4);
-        this.context.stroke();
+    this.dibujaObjeto = function(img, origen_x, origen_y, destino_x, destino_y, width, height) {
 
+        this.buffer.drawImage(img, origen_x, origen_y, width, height, Math.round(destino_x), Math.round(destino_y), width, height);
     }
 
     this.dibujaSierra = function(objeto, c1, c2) {
@@ -52,6 +47,7 @@ const Display = function(canvas) {
     }
 
     this.gameOver = function() {
+
         alert("Game Over");
     }
 }
