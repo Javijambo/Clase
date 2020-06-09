@@ -5,7 +5,7 @@ const Display = function(canvas) {
 
     //funcion de dibujar un mapa, recorremos el array y por cada valor seteamos el origena recortar y el destino, después lo dibujamos con dibujarImagen()
     this.dibujaMapa = function(img, img_col, mapa, m_col, tile_size) {
-            for (let i = mapa.length - 1; i > -1; --i) {
+            for (let i = 0; i < mapa.length; --i) {
                 //recogemos el valor 
                 let value = mapa[i];
                 //recogemos el tile

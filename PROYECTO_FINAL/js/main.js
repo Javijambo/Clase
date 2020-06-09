@@ -3,15 +3,18 @@ window.addEventListener("load", function() {
             controller.keyDownUp(event.type, event.keyCode);
         }
         //reescalado
-    var resize = function(event) {
+    var resize = function() {
 
             display.resize(document.documentElement.clientWidth - 32, document.documentElement.clientHeight - 32, game.world.height / game.world.width);
             display.render();
         }
         //renderizado
     var render = function() {
+            //dibujamos el mapa
             display.dibujaMapa(loader.tile_set_image, game.world.tile_set.columnas, game.world.mapa, game.world.columnas, game.world.tile_set.tile_size);
+            //recogemos los frames para la animacion
             let frame_personaje = game.world.tile_set.array_frames[game.world.personaje.f_value];
+            //dibujamos el personaje con los frames y la posicion correspondientes
             display.dibujaObjeto(loader.tile_set_image, frame_personaje.x, frame_personaje.y, game.world.personaje.x, game.world.personaje.y, frame_personaje.width, frame_personaje.height);
             display.dibujaSierra(game.world.sierra, "#A9A9A9", "#C0C0C0");
             display.render();
@@ -35,7 +38,25 @@ window.addEventListener("load", function() {
         }
         //añadimos el cartel de  vidas restantes
         display.cartelVidas.innerHTML = "Vidas restantes: " + game.world.personaje.vidas;
+
         game.update();
+        //si el personaje colisiona con una puerta inizializa la variable gate la cual indica que nivel cargar
+        if (game.world.gate) {
+            console.log("carga");
+            //paramos el juego
+            engine.stop();
+            //recogemos el nuevo nivel y lo cargamos
+            loader.rqJSON("json/nivel" + game.world.gate.nivel_destino + ".json", (nivel) => {
+                console.log(game.world.gate.nivel_destino);
+                //cargamos el nivel
+                console.log("carga2");
+                game.world.cargarNivel(nivel);
+                //iniciamos el juego de nuevo
+                engine.start();
+            });
+            return;
+        }
+
     }
 
     //inicializar
@@ -45,7 +66,11 @@ window.addEventListener("load", function() {
     var display = new Display(document.querySelector("canvas"));
     var engine = new Engine(1000 / 30, render, update);
 
-    //cargar
+    //cargar    
+    display.buffer.canvas.height = game.world.height;
+    display.buffer.canvas.width = game.world.width;
+    display.buffer.imageSmoothingEnabled = false;
+
     loader.rqJSON("json/nivel" + game.world.id_nivel + ".json", (nivel) => {
         game.world.cargarNivel(nivel);
 
@@ -56,9 +81,7 @@ window.addEventListener("load", function() {
         })
     })
 
-    display.buffer.canvas.height = game.world.height;
-    display.buffer.canvas.width = game.world.width;
-    display.buffer.imageSmoothingEnabled = false;
+
 
     window.addEventListener("keydown", keyDownUp);
     window.addEventListener("keyup", keyDownUp);

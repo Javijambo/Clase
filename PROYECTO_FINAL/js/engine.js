@@ -9,6 +9,8 @@ const Engine = function(time_step, update, render) {
     this.render = render;
 
     this.run = function(time_stamp) {
+        this.animation_frame_request = window.requestAnimationFrame(this.handleRun);
+
         this.accumulated_time += time_stamp - this.time;
         this.time = time_stamp;
 
@@ -27,7 +29,6 @@ const Engine = function(time_step, update, render) {
             this.render(time_stamp);
         };
 
-        this.animation_frame_request = window.requestAnimationFrame(this.handleRun);
     };
     this.handleRun = (time_step) => { this.run(time_step); };
 }
