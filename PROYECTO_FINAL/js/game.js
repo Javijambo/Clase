@@ -179,9 +179,7 @@ Game.Collider = function() {
                 case 4:
                     this.colisionPinchosInf(obj, tile_y + (tile_size / 2.5))
                     break;
-                case 19:
-                    this.collidePlatformRight(obj, tile_x + tile_size);
-                    break;
+
             }
         }
     }

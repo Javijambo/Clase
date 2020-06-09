@@ -47,7 +47,6 @@ window.addEventListener("load", function() {
             engine.stop();
             //recogemos el nuevo nivel y lo cargamos
             loader.rqJSON("json/nivel" + game.world.gate.nivel_destino + ".json", (nivel) => {
-                console.log(game.world.gate.nivel_destino);
                 //cargamos el nivel
                 console.log("carga2");
                 game.world.cargarNivel(nivel);
