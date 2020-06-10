@@ -58,7 +58,7 @@ Game.World = function(friccion = 0.15, gravedad = 2) {
     this.filas = 18;
 
     //instanciacion de objetos
-    this.tile_set = new Game.TileSet(32, 10);
+    this.tile_set = new Game.TileSet(32, 11);
     this.personaje = new Game.Object.Personaje();
     this.sierra = new Game.Sierra();
     this.collider = new Game.Collider();
@@ -179,6 +179,10 @@ Game.Collider = function() {
                 case 4:
                     this.colisionPinchosInf(obj, tile_y + (tile_size / 2.5))
                     break;
+                case 20:
+                    this.colisionDcha(obj, tile_x + tile_size);
+                    break;
+
 
             }
         }
