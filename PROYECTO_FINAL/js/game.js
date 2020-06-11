@@ -16,7 +16,7 @@ Game.TileSet = function(tile_size, columnas) {
     this.tile_size = tile_size;
     this.columnas = columnas;
 
-    var frame = Game.TileSet.Frame;
+    var frame = Game.Frame;
     this.array_frames = [
         //mirando derecha [0]
         new frame(196, 38, 21, 26),
@@ -26,19 +26,20 @@ Game.TileSet = function(tile_size, columnas) {
         new frame(229, 38, 21, 26),
         //moviendose izq [8-14], frame [10] equivale al salto izquierda
         new frame(166, 38, 21, 26), new frame(134, 38, 21, 26), new frame(102, 38, 21, 26), new frame(70, 38, 21, 26), new frame(38, 38, 21, 26), new frame(6, 38, 21, 26),
-
-    ]
+        //monedas
+        new frame(0, 64, 16, 16), new frame(16, 64, 16, 16), new frame(32, 64, 16, 16), new frame(48, 64, 16, 16),
+    ];
 }
 Game.TileSet.prototype = { constructor: Game.TileSet };
 
 //para definir los frames dentro de los arrays de tiles para cada animacion
-Game.TileSet.Frame = function(x, y, width, height) {
+Game.Frame = function(x, y, width, height) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
 }
-Game.TileSet.Frame.prototype = { constructor: Game.TileSet.Frame };
+Game.Frame.prototype = { constructor: Game.Frame };
 
 
 
@@ -49,6 +50,8 @@ Game.World = function(friccion = 0.15, gravedad = 2) {
     this.id_nivel = "1";
     this.gates = [];
     this.gate = undefined;
+    this.coins = [];
+    this.score = 0;
 
     //variables de movimiento
     this.friccion = friccion;
@@ -59,7 +62,7 @@ Game.World = function(friccion = 0.15, gravedad = 2) {
 
     //instanciacion de objetos
     this.tile_set = new Game.TileSet(32, 11);
-    this.personaje = new Game.Object.Personaje();
+    this.personaje = new Game.Personaje();
     this.sierra = new Game.Sierra();
     this.collider = new Game.Collider();
 
@@ -78,16 +81,21 @@ Game.World.prototype = {
         this.columnas = nivel.columnas;
         this.filas = nivel.filas;
         this.gates = new Array();
+        this.coins = new Array();
         this.id_nivel = nivel.id_nivel;
+        var padding = this.tile_set.tile_size / 4;
+
+        for (var j = nivel.coins.length - 1; j > -1; j--) {
+            let moneda = nivel.coins[j];
+            this.coins[j] = new Game.Coin(moneda[0] * this.tile_set.tile_size + padding, moneda[1] * this.tile_set.tile_size + padding + 4);
+        }
 
         for (var i = 0; i < nivel.gates.length; i++) {
             var gate = nivel.gates[i];
             this.gates[i] = new Game.Gate(gate);
         }
-
         //si el jugador ha entrado en la puerta
         if (this.gate) {
-            console.log(this.gate);
             //seteamos la posicion del personaje (tanto x como y) en la posicion de destino de la puerta
             if (this.gate.destino_x != -1) {
                 this.personaje.setCentroX(this.gate.destino_x);
@@ -98,10 +106,7 @@ Game.World.prototype = {
                 this.personaje.setCentroYAux(this.gate.destino_y);
             }
             //reseteamos la puerta para no entrar en bucle infinito
-            //this.gate = undefined;
-            console.log(gate);
             this.gate = undefined;
-
         }
     },
 
@@ -147,12 +152,20 @@ Game.World.prototype = {
         //this.personaje.vy*=this.friccion;
         this.sierra.update();
         this.collision(this.personaje);
-        //=======================================================COMPROBAR ERRORES================================================
         //recorremos todas las puertas de la zona y comprobamos si el jugador colisiona con algnuna y cuando colisiona seteamos la puerta
         for (var i = 0; i < this.gates.length; i++) {
             let gate2 = this.gates[i];
-            if (gate2.colision(this.personaje)) {
+            if (gate2.colisionCentral(this.personaje)) {
                 this.gate = gate2;
+            }
+        }
+        for (let j = 0; j < this.coins.length; j++) {
+            let coin = this.coins[j];
+            coin.mover();
+            coin.animar();
+            if (coin.colisionCentral(this.personaje)) {
+                this.coins.splice(this.coins.indexOf(coin), 1);
+                this.score++;
             }
         }
     }
@@ -262,6 +275,28 @@ Game.Object = function(x, y, width, height) {
 
 Game.Object.prototype = {
     constructor: Game.Object,
+    colision: function(o) {
+        if (this.getDcha() < o.getIzq() || this.getIzq > o.getDcha() || this.getAbajo() < o.getArriba() || this.getArriba > o.getAbajo()) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+    //funcion que devuelve un booleano para saber si el centro del objeto que pasamos colisiona con el borde de la puerta
+    colisionCentral: function(o) {
+        var x_central = o.getCentroX();
+        var y_central = o.getCentroY();
+
+        if (
+            y_central < this.getArriba() ||
+            y_central > this.getAbajo() ||
+            x_central < this.getIzq() ||
+            x_central > this.getDcha()) {
+            return false;
+        } else {
+            return true;
+        }
+    },
     //gets
     getArriba: function() {
         return this.y;
@@ -341,7 +376,7 @@ Game.Object.prototype = {
 
 
 ///////////////////////////////////////////////////////////////////////////// OBJETO ANIMACIONES /////////////////////////////////////////////////////////////////////////////
-Game.Object.Animator = function(frame_set, delay) {
+Game.Animator = function(frame_set, delay) {
     this.count = 0;
     if (delay >= 1) {
         this.delay = delay;
@@ -349,11 +384,11 @@ Game.Object.Animator = function(frame_set, delay) {
     this.frame_set = frame_set;
     this.f_index = 0;
     this.f_value = frame_set[0];
-    this.moving = false;
+    this.moving = true;
 }
 
-Game.Object.Animator.prototype = {
-    constructor: Game.Object.Animator,
+Game.Animator.prototype = {
+    constructor: Game.Animator,
 
     //
     animar: function() {
@@ -388,15 +423,16 @@ Game.Object.Animator.prototype = {
             this.f_value = this.frame_set[this.f_index];
         }
     }
+
 }
 
 
-/////////////////////////////////OBJETO PERSONAJE////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////OBJETO PERSONAJE////////////////////////////////////////////
 
 //constructor Personaje
-Game.Object.Personaje = function() {
+Game.Personaje = function() {
     Game.Object.call(this, 35, 35, 21, 26);
-    Game.Object.Animator.call(this, Game.Object.Personaje.prototype.frames["dcha"]);
+    Game.Animator.call(this, Game.Personaje.prototype.frames["dcha"]);
     this.vx = 0;
     this.vy = 0;
     this.saltando = true;
@@ -405,8 +441,8 @@ Game.Object.Personaje = function() {
 }
 
 //funciones personaje
-Game.Object.Personaje.prototype = {
-    constructor: Game.Object.Personaje,
+Game.Personaje.prototype = {
+    constructor: Game.Personaje,
 
     //arrays para las animaciones
     frames: {
@@ -479,13 +515,12 @@ Game.Object.Personaje.prototype = {
             }
         }
         this.animar();
-
     }
 }
 
-Object.assign(Game.Object.Personaje.prototype, Game.Object.prototype);
-Object.assign(Game.Object.Personaje.prototype, Game.Object.Animator.prototype);
-Game.Object.Personaje.prototype.constructor = Game.Object.Personaje;
+Object.assign(Game.Personaje.prototype, Game.Object.prototype);
+Object.assign(Game.Personaje.prototype, Game.Animator.prototype);
+Game.Personaje.prototype.constructor = Game.Personaje;
 
 //Sierra, modificar para animar y con tiles + 
 Game.Sierra = function() {
@@ -510,19 +545,32 @@ Game.Gate = function(gate) {
     this.destino_y = gate.destino_y;
     this.nivel_destino = gate.nivel_destino;
 }
-
-Game.Gate.prototype = {
-    //valor booleano para saber si el centro del objeto que pasamos colisiona con el borde de la puerta
-    colision(o) {
-        var x_central = o.getCentroX();
-        var y_central = o.getCentroY();
-        if (y_central < this.getArriba() || y_central > this.getAbajo() || x_central < this.getIzq() || x_central > this.getDcha()) {
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-}
+Game.Gate.prototype = {}
 Object.assign(Game.Gate.prototype, Game.Object.prototype);
 Game.Gate.prototype.constructor = Game.Gate;
+
+
+//////////////////////////////////////////////////////////////MONEDAS//////////////////////////////////////////
+Game.Coin = function(x, y) {
+    this.x = x;
+    this.y = y;
+    Game.Object.call(x, y, 16, 16);
+    Game.Animator.call(this, Game.Coin.prototype.frame_sets["monedas"], 10);
+    this.valor_movimiento = 0;
+    this.f_index = 0;
+    this.vectory = 0;
+}
+
+Game.Coin.prototype = {
+    frame_sets: {
+        "monedas": [14, 15, 16, 17]
+    },
+    mover: function() {
+        this.vectory -= 0.1;
+        this.y += Math.sin(this.vectory) * 0.4;
+    }
+}
+Object.assign(Game.Coin.prototype, Game.Object.prototype);
+Object.assign(Game.Coin.prototype, Game.Animator.prototype);
+
+Game.Coin.prototype.constructor = Game.Coin;

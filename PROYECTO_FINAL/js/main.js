@@ -16,6 +16,11 @@ window.addEventListener("load", function() {
             let frame_personaje = game.world.tile_set.array_frames[game.world.personaje.f_value];
             //dibujamos el personaje con los frames y la posicion correspondientes
             display.dibujaObjeto(loader.tile_set_image, frame_personaje.x, frame_personaje.y, game.world.personaje.x, game.world.personaje.y, frame_personaje.width, frame_personaje.height);
+            for (let i = 0; i < game.world.coins.length; i++) {
+                let coin = game.world.coins[i];
+                let f = game.world.tile_set.array_frames[coin.f_value];
+                display.dibujaObjeto(loader.tile_set_image, f.x, f.y, coin.x, coin.y, f.width, f.height);
+            }
             display.dibujaSierra(game.world.sierra, "#A9A9A9", "#C0C0C0");
             display.render();
         }
@@ -42,13 +47,11 @@ window.addEventListener("load", function() {
         game.update();
         //si el personaje colisiona con una puerta inizializa la variable gate la cual indica que nivel cargar
         if (game.world.gate) {
-            console.log("carga");
             //paramos el juego
             engine.stop();
             //recogemos el nuevo nivel y lo cargamos
             loader.rqJSON("json/nivel" + game.world.gate.nivel_destino + ".json", (nivel) => {
                 //cargamos el nivel
-                console.log("carga2");
                 game.world.cargarNivel(nivel);
                 //iniciamos el juego de nuevo
                 engine.start();
