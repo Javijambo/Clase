@@ -57,8 +57,8 @@ Game.World = function(friccion = 0.15, gravedad = 2) {
     this.friccion = friccion;
     this.gravedad = gravedad;
 
-    this.columnas = 38;
-    this.filas = 18;
+    this.columnas = 36;
+    this.filas = 17;
 
     //instanciacion de objetos
     this.tile_set = new Game.TileSet(32, 11);
@@ -150,7 +150,6 @@ Game.World.prototype = {
         this.personaje.animarPersonaje();
 
         //this.personaje.vy*=this.friccion;
-        this.sierra.update();
         this.collision(this.personaje);
         //recorremos todas las puertas de la zona y comprobamos si el jugador colisiona con algnuna y cuando colisiona seteamos la puerta
         for (var i = 0; i < this.gates.length; i++) {
@@ -166,6 +165,13 @@ Game.World.prototype = {
             if (coin.colisionCentral(this.personaje)) {
                 this.coins.splice(this.coins.indexOf(coin), 1);
                 this.score++;
+            }
+        }
+        for (let k = 0; k < this.hsierra; k++) {
+            let sierra = this.hsierras[k];
+            sierra.mover();
+            if (sierra.colision(this.personaje)) {
+                this.personaje.perderVida();
             }
         }
     }
@@ -195,7 +201,9 @@ Game.Collider = function() {
                 case 20:
                     this.colisionDcha(obj, tile_x + tile_size);
                     break;
-
+                case 21:
+                    this.colisionIzq(obj, tile_x + tile_size);
+                    break;
 
             }
         }
@@ -522,21 +530,6 @@ Object.assign(Game.Personaje.prototype, Game.Object.prototype);
 Object.assign(Game.Personaje.prototype, Game.Animator.prototype);
 Game.Personaje.prototype.constructor = Game.Personaje;
 
-//Sierra, modificar para animar y con tiles + 
-Game.Sierra = function() {
-    Game.Object.call(this, 465, 525, 15, 15);
-    this.vx = 0;
-    this.vy = 0;
-}
-Game.Sierra.prototype = {
-    update: function() {
-        this.vx += 0.08
-        this.x = this.aux_x + Math.cos(this.vx) * 110;
-    }
-}
-
-Object.assign(Game.Sierra.prototype, Game.Object.prototype);
-Game.Sierra.prototype.constructor = Game.Sierra;
 
 /////////////////////////////////////////PUERTAS PARA CAMBIAR DE NIVEL/////////////////////////////////////////////
 Game.Gate = function(gate) {
@@ -574,3 +567,22 @@ Object.assign(Game.Coin.prototype, Game.Object.prototype);
 Object.assign(Game.Coin.prototype, Game.Animator.prototype);
 
 Game.Coin.prototype.constructor = Game.Coin;
+
+
+//Sierra, modificar para animar y con tiles + 
+Game.Sierra = function(x, y) {
+    this.x = x;
+    this.y = y;
+    Game.Object.call(this, x, y, 15, 15);
+    this.vx = 0;
+    this.vy = 0;
+}
+Game.Sierra.prototype = {
+    update: function() {
+        this.vx += 0.08
+        this.x = this.aux_x + Math.cos(this.vx) * 110;
+    }
+}
+
+Object.assign(Game.Sierra.prototype, Game.Object.prototype);
+Game.Sierra.prototype.constructor = Game.Sierra;

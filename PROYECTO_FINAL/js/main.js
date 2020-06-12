@@ -7,6 +7,8 @@ window.addEventListener("load", function() {
 
             display.resize(document.documentElement.clientWidth - 32, document.documentElement.clientHeight - 32, game.world.height / game.world.width);
             display.render();
+            var rec = display.context.canvas.getBoundingClientRect();
+
         }
         //renderizado
     var render = function() {
