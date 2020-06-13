@@ -5,9 +5,8 @@ window.addEventListener("load", function() {
         //reescalado
     var resize = function() {
 
-            display.resize(document.documentElement.clientWidth - 32, document.documentElement.clientHeight - 32, game.world.height / game.world.width);
+            display.resize(document.documentElement.clientWidth - 10, document.documentElement.clientHeight - 10, game.world.height / game.world.width);
             display.render();
-            var rec = display.context.canvas.getBoundingClientRect();
 
         }
         //renderizado
@@ -20,10 +19,14 @@ window.addEventListener("load", function() {
             display.dibujaObjeto(loader.tile_set_image, frame_personaje.x, frame_personaje.y, game.world.personaje.x, game.world.personaje.y, frame_personaje.width, frame_personaje.height);
             for (let i = 0; i < game.world.coins.length; i++) {
                 let coin = game.world.coins[i];
-                let f = game.world.tile_set.array_frames[coin.f_value];
-                display.dibujaObjeto(loader.tile_set_image, f.x, f.y, coin.x, coin.y, f.width, f.height);
+                let framecoin = game.world.tile_set.array_frames[coin.f_value];
+                display.dibujaObjeto(loader.tile_set_image, framecoin.x, framecoin.y, coin.x, coin.y, framecoin.width, framecoin.height);
             }
-            display.dibujaSierra(game.world.sierra, "#A9A9A9", "#C0C0C0");
+            for (let k = 0; k < game.world.sierras.length; k++) {
+                let sierra = game.world.sierras[k];
+                let f = game.world.tile_set.array_frames[sierra.f_value];
+                display.dibujaObjeto(loader.tile_set_image, f.x, f.y, sierra.x, sierra.y, f.width, f.height);
+            }
             display.render();
         }
         //update, setea el movimiento del personaje al que es dependiendo de que tecla hayamos pulsado
@@ -43,6 +46,7 @@ window.addEventListener("load", function() {
             display.gameOver();
             game.world.personaje.vidas = 3;
         }
+
         //añadimos el cartel de  vidas restantes
         display.cartelVidas.innerHTML = "Vidas restantes: " + game.world.personaje.vidas;
 
