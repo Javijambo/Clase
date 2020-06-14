@@ -1,11 +1,18 @@
-window.addEventListener("load", function() {
+function start() {
+
+    //quitamos el header y el body para dar espacio al canvas
+    document.getElementById("header").remove();
+    document.getElementById("main").remove();
+    var elem = document.getElementsByTagName("footer")[0];
+    elem.parentNode.removeChild(elem);
+
     var keyDownUp = function(event) {
             controller.keyDownUp(event.type, event.keyCode);
         }
         //reescalado
     var resize = function() {
 
-            display.resize(document.documentElement.clientWidth - 10, document.documentElement.clientHeight - 10, game.world.height / game.world.width);
+            display.resize(document.documentElement.clientWidth, document.documentElement.clientHeight, game.world.height / game.world.width);
             display.render();
 
         }
@@ -27,11 +34,15 @@ window.addEventListener("load", function() {
                 let f = game.world.tile_set.array_frames[sierra.f_value];
                 display.dibujaObjeto(loader.tile_set_image, f.x, f.y, sierra.x, sierra.y, f.width, f.height);
             }
+            for (let k = 0; k < game.world.blocks.length; k++) {
+                let block = game.world.blocks[k];
+                let f = game.world.tile_set.array_frames[block.f_value];
+                display.dibujaObjeto(loader.tile_set_image, f.x, f.y, block.x, block.y, f.width, f.height);
+            }
             display.render();
         }
         //update, setea el movimiento del personaje al que es dependiendo de que tecla hayamos pulsado
     var update = function() {
-
         if (controller.izq.active) {
             game.world.personaje.moverIzq();
         }
@@ -43,13 +54,19 @@ window.addEventListener("load", function() {
             controller.saltar.active = false;
         }
         if (game.world.personaje.vidas < 0) {
-            display.gameOver();
-            game.world.personaje.vidas = 3;
+            loader.rqTileImage("tiles/prueba.png", (imagen) => {
+                display.gameOver(imagen);
+                engine.stop();
+            })
         }
 
         //añadimos el cartel de  vidas restantes
-        display.cartelVidas.innerHTML = "Vidas restantes: " + game.world.personaje.vidas;
-
+        if (game.world.personaje.vidas >= -1) {
+            display.cartelvidas.innerHTML = "Vidas restantes: " + "&#10084;".repeat(game.world.personaje.vidas + 1);
+        }
+        if (game.world.score >= -1) {
+            display.monedasrestantes.innerHTML = "Monedas restantes: " + "<img src='tiles/coin.png' width='18px' height='18px'> ".repeat(game.world.score);
+        }
         game.update();
         //si el personaje colisiona con una puerta inizializa la variable gate la cual indica que nivel cargar
         if (game.world.gate) {
@@ -61,6 +78,7 @@ window.addEventListener("load", function() {
                 game.world.cargarNivel(nivel);
                 //iniciamos el juego de nuevo
                 engine.start();
+
             });
             return;
         }
@@ -90,8 +108,13 @@ window.addEventListener("load", function() {
     })
 
 
-
     window.addEventListener("keydown", keyDownUp);
     window.addEventListener("keyup", keyDownUp);
+    window.addEventListener("keydown", function(e) {
+        // space and arrow keys
+        if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
+    }, false)
     window.addEventListener("resize", resize);
-});
+};

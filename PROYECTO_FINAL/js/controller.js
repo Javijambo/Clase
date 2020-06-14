@@ -5,6 +5,8 @@ const Controller = function() {
     this.saltar = new Controller.ButtonInput();
 
     this.keyDownUp = function(type, cod) {
+
+
         if (type == "keydown") {
             down = true;
         } else {

@@ -1,7 +1,30 @@
 const Display = function(canvas) {
     this.buffer = document.createElement("canvas").getContext("2d");
     this.context = canvas.getContext("2d");
-    this.cartelVidas = document.getElementById("vidas");
+    this.volver = document.createElement("button");
+    //MENU SUPERIOR
+    this.volver.innerHTML = "Volver";
+    this.volver.className = "btn btn-info col";
+    this.volver.id = "volver";
+    this.volver.setAttribute("onClick", "window.location.reload();");
+    this.menu = document.createElement("section");
+    this.menu.className = "container-fluid justify-content-center";
+    this.menu.setAttribute("style", "overflow: hidden; padding-left: 0px; padding-right: 0px;");
+    this.row = document.createElement("row");
+    this.row.className = "row ";
+    this.row.setAttribute("style", "overflow: hidden;");
+
+    this.cartelvidas = document.createElement("button");
+    this.cartelvidas.className = "btn col text-white col";
+    this.monedasrestantes = document.createElement("button");
+    this.monedasrestantes.className = "btn col text-white col";
+    document.body.appendChild(this.menu);
+    this.menu.appendChild(this.row);
+    this.row.appendChild(this.cartelvidas);
+    this.row.appendChild(this.volver);
+    this.row.appendChild(this.monedasrestantes);
+    this.row.appendChild(canvas);
+
 
     //funcion de dibujar un mapa, recorremos el array y por cada valor seteamos el origena recortar y el destino, después lo dibujamos con dibujarImagen()
     this.dibujaMapa = function(img, img_col, mapa, m_col, tile_size) {
@@ -24,13 +47,6 @@ const Display = function(canvas) {
         this.buffer.drawImage(img, origen_x, origen_y, width, height, Math.round(destino_x), Math.round(destino_y), width, height);
     }
 
-    this.dibujaSierra = function(objeto, c1, c2) {
-        this.buffer.fillStyle = c1;
-        this.buffer.fillRect(Math.round(objeto.x), Math.round(objeto.y), objeto.width, objeto.height);
-        this.buffer.fillStyle = c2;
-        this.buffer.fillRect(Math.round(objeto.x + 2), Math.round(objeto.y + 2), objeto.width - 4, objeto.height - 4);
-    }
-
     this.resize = function(width, height, ratio) {
         //para que se reescale correctamente tenemos que comprobar que el ratio de altura : anchura sea el mismo
         if (height / width > ratio) {
@@ -46,9 +62,8 @@ const Display = function(canvas) {
 
     }
 
-    this.gameOver = function() {
-
-        alert("Game Over");
+    this.gameOver = function(img) {
+        this.context.drawImage(img, 0, 0, this.buffer.canvas.width, this.buffer.canvas.height, 0, 0, this.context.canvas.width, this.context.canvas.height);
     }
 }
 
