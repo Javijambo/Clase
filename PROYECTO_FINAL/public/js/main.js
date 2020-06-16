@@ -29,8 +29,8 @@ function start() {
                 let framecoin = game.world.tile_set.array_frames[coin.f_value];
                 display.dibujaObjeto(loader.tile_set_image, framecoin.x, framecoin.y, coin.x, coin.y, framecoin.width, framecoin.height);
             }
-            for (let k = 0; k < game.world.sierras.length; k++) {
-                let sierra = game.world.sierras[k];
+            for (let k = 0; k < game.world.spikes.length; k++) {
+                let sierra = game.world.spikes[k];
                 let f = game.world.tile_set.array_frames[sierra.f_value];
                 display.dibujaObjeto(loader.tile_set_image, f.x, f.y, sierra.x, sierra.y, f.width, f.height);
             }

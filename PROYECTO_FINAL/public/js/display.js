@@ -9,9 +9,11 @@ const Display = function(canvas) {
     this.volver.setAttribute("onClick", "window.location.reload();");
     this.menu = document.createElement("section");
     this.menu.className = "container-fluid justify-content-center";
-    this.menu.setAttribute("style", "overflow: hidden; padding-left: 0px; padding-right: 0px;");
-    this.row = document.createElement("row");
-    this.row.className = "row ";
+    this.menu.setAttribute("style", "overflow: hidden !important;  margin:0");
+    this.row = document.createElement("article");
+    this.row.className = "row";
+    this.row2 = document.createElement("article");
+    this.row2.className = "row";
     this.row.setAttribute("style", "overflow: hidden;");
 
     this.cartelvidas = document.createElement("button");
@@ -20,10 +22,11 @@ const Display = function(canvas) {
     this.monedasrestantes.className = "btn col text-white col";
     document.body.appendChild(this.menu);
     this.menu.appendChild(this.row);
+    this.menu.appendChild(this.row2);
     this.row.appendChild(this.cartelvidas);
     this.row.appendChild(this.volver);
     this.row.appendChild(this.monedasrestantes);
-    this.row.appendChild(canvas);
+    this.row2.appendChild(canvas);
 
 
     //funcion de dibujar un mapa, recorremos el array y por cada valor seteamos el origena recortar y el destino, después lo dibujamos con dibujarImagen()

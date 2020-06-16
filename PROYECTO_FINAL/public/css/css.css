@@ -2,7 +2,6 @@
     text-align: center;
     width: 100%;
     margin: 0;
-    padding: 3;
 }
 
 header {
@@ -34,6 +33,10 @@ body,
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+body {
+    background-color: #171c29;
 }
 
 canvas {

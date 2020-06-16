@@ -28,7 +28,7 @@ Game.TileSet = function(tile_size, columnas) {
         new frame(166, 38, 21, 26), new frame(134, 38, 21, 26), new frame(102, 38, 21, 26), new frame(70, 38, 21, 26), new frame(38, 38, 21, 26), new frame(6, 38, 21, 26),
         //monedas
         new frame(0, 64, 16, 16), new frame(16, 64, 16, 16), new frame(32, 64, 16, 16), new frame(48, 64, 16, 16),
-        //sierras
+        //spike
         new frame(37, 82, 13, 13), new frame(50, 82, 13, 13),
         //blocks
         new frame(64, 64, 32, 32), new frame(96, 64, 32, 32),
@@ -64,7 +64,7 @@ Game.World = function(friccion = 0.15, gravedad = 2) {
     //instanciacion de objetos
     this.tile_set = new Game.TileSet(32, 11);
     this.collider = new Game.Collider();
-    this.personaje = new Game.Personaje(35, 35);
+    this.personaje = new Game.Personaje(35, 440);
 
     //""reescalado""" 
     this.height = this.tile_set.tile_size * this.filas;
@@ -81,11 +81,12 @@ Game.World.prototype = {
         this.filas = nivel.filas;
         this.gates = new Array();
         this.coins = new Array();
-        this.sierras = new Array();
+        this.spikes = new Array();
         this.blocks = new Array();
         this.platforms = new Array();
         this.score = nivel.coins.length + 1;
         this.id_nivel = nivel.id_nivel;
+        this.personaje.setReaparicionX(nivel.reaparicion_x * this.tile_set.tile_size);
         this.personaje.setReaparicionX(nivel.reaparicion_x * this.tile_set.tile_size);
         this.personaje.setReaparicionY(nivel.reaparicion_y * this.tile_set.tile_size);
         //padding para centrar los objetos
@@ -98,16 +99,16 @@ Game.World.prototype = {
             this.coins[j] = new Game.Coin(moneda[0] * this.tile_set.tile_size + padding, moneda[1] * this.tile_set.tile_size + padding + 4);
         }
 
-        //seteamos las sierras
-        for (var k = nivel.sierras.length - 1; k > -1; k--) {
-            var sierra = nivel.sierras[k];
-            this.sierras[k] = new Game.Sierra(sierra[0] * this.tile_set.tile_size - 7, sierra[1] * this.tile_set.tile_size + padding + 1, sierra[2], sierra[3], sierra[4], sierra[5]);
+        //seteamos las spike
+        for (var k = nivel.spikes.length - 1; k > -1; k--) {
+            var spike = nivel.spikes[k];
+            this.spikes[k] = new Game.Spike(spike[0] * this.tile_set.tile_size - 7, spike[1] * this.tile_set.tile_size + padding + 1, spike[2], spike[3], spike[4], spike[5]);
         }
 
         //seteamos las plataformas
         for (var m = nivel.platforms.length - 1; m > -1; m--) {
             var plataforma = nivel.platforms[m];
-            this.platforms[m] = new Game.Platform(plataforma[0] * this.tile_set.tile_size - 7, plataforma[1] * this.tile_set.tile_size + padding + 1, plataforma[2], plataforma[3], plataforma[4], plataforma[5]);
+            this.platforms[m] = new Game.Platform(plataforma[0] * this.tile_set.tile_size - 7, plataforma[1] * this.tile_set.tile_size + padding + 1, plataforma[2], plataforma[3], plataforma[4]);
         }
 
         //seteamos las puertas
@@ -155,7 +156,7 @@ Game.World.prototype = {
                 this.gate = gate2;
             }
         }
-        for (let j = 0; j < this.coins.length; j++) {
+        for (let j = 0; j < this.coins.length; j++) { //update monedas
             let coin = this.coins[j];
             coin.mover();
             coin.animar();
@@ -164,15 +165,15 @@ Game.World.prototype = {
                 this.score--;
             }
         }
-        for (let k = 0; k < this.sierras.length; k++) {
-            let sierra = this.sierras[k];
-            sierra.update();
-            sierra.animar();
-            if (sierra.colisionObjeto(this.personaje)) {
+        for (let k = 0; k < this.spikes.length; k++) { //update spike
+            let spike = this.spikes[k];
+            spike.update();
+            spike.animar();
+            if (spike.colisionObjeto(this.personaje)) {
                 this.personaje.perderVida();
             }
         }
-        for (let l = 0; l < this.blocks.length; l++) {
+        for (let l = 0; l < this.blocks.length; l++) { //update blocks
             let block = this.blocks[l];
 
             block.updateBlock(this.personaje);
@@ -183,7 +184,7 @@ Game.World.prototype = {
                 this.personaje.perderVida();
             }
         }
-        for (let m = 0; m < this.platforms.length; m++) {
+        for (let m = 0; m < this.platforms.length; m++) { //update platforms
             let platform = this.platforms[m];
             platform.update();
             platform.animar();
@@ -197,10 +198,8 @@ Game.World.prototype = {
                         this.personaje.x += platform.velocity_x - this.personaje.vx;
                     }
                 }
-
             }
         }
-
     },
     collision: function(o) {
 
@@ -321,11 +320,12 @@ Game.Collider.prototype = {
         return false;
     },
     //Pinchos inferiores
-    colisionPinchosInf: function(o, tile_inf) {
-        if (o.getArriba() < tile_inf) {
+    colisionPinchosInf: function(o, tile_sup) {
+        if (o.getAbajo() >= tile_sup) {
+            o.vx = 0;
             o.perderVida();
-        }
-        return false;
+        } else if (o.getAbajo() >= tile_sup)
+            return false;
     }
 }
 
@@ -635,8 +635,8 @@ Object.assign(Game.Coin.prototype, Game.Animator.prototype);
 Game.Coin.prototype.constructor = Game.Coin;
 
 
-//////////////////////////////////////////////////////////SIERRAS////////////////////////////////////////////////////
-Game.Sierra = function(x, y, orientacion, radio, p, v) {
+//////////////////////////////////////////////////////////spike////////////////////////////////////////////////////
+Game.Spike = function(x, y, orientacion, radio, p, v) {
     this.x = x;
     this.aux_x = x;
     this.aux_y = y;
@@ -647,14 +647,14 @@ Game.Sierra = function(x, y, orientacion, radio, p, v) {
     this.radio = radio;
     this.orientacion = orientacion;
     Game.Object.call(this.x, this.y, this.width, this.height);
-    Game.Animator.call(this, Game.Sierra.prototype.frame_sets["sierras"], 2);
+    Game.Animator.call(this, Game.Spike.prototype.frame_sets["spike"], 2);
     this.vx = 0;
     this.vy = 0;
     this.p = p;
 }
-Game.Sierra.prototype = {
+Game.Spike.prototype = {
     frame_sets: {
-        "sierras": [18, 19]
+        "spike": [18, 19]
     },
     update: function() {
         //1 es horizontal 0 vertical
@@ -676,10 +676,10 @@ Game.Sierra.prototype = {
     }
 }
 
-Object.assign(Game.Sierra.prototype, Game.Object.prototype);
-Object.assign(Game.Sierra.prototype, Game.Animator.prototype);
+Object.assign(Game.Spike.prototype, Game.Object.prototype);
+Object.assign(Game.Spike.prototype, Game.Animator.prototype);
 
-Game.Sierra.prototype.constructor = Game.Sierra;
+Game.Spike.prototype.constructor = Game.Spike;
 
 
 Game.Block = function(x, y, y_inicial, y_final) {
@@ -735,7 +735,7 @@ Game.Block.prototype = {
 Object.assign(Game.Block.prototype, Game.Object.prototype);
 Object.assign(Game.Block.prototype, Game.Animator.prototype);
 
-Game.Platform = function(x, y, orientacion, radio, p, v) {
+Game.Platform = function(x, y, radio, p, v) {
     this.x = x;
     this.aux_x = x;
     this.aux_y = y;
@@ -746,7 +746,6 @@ Game.Platform = function(x, y, orientacion, radio, p, v) {
     this.velocity_x = 0;
     this_velocity_y = 0;
     this.radio = radio;
-    this.orientacion = orientacion;
     Game.Object.call(this.x, this.y, this.width, this.height);
     Game.Animator.call(this, Game.Platform.prototype.frame_sets["Platforms"], 2);
     this.vx = 0;
@@ -760,27 +759,13 @@ Game.Platform.prototype = {
     },
     update: function() {
         //1 es horizontal 0 vertical
-        if (this.orientacion == 1) {
-            if (this.p == 0) {
-                this.vx += this.v
-            } else if (this.p == 1) {
-                this.vx -= this.v
-            }
-
-            this.velocity_x = this.aux_x + Math.cos(this.vx) * this.radio - this.x;
-            this.x += this.velocity_x;
-
-        } else if (this.orientacion == 0) {
-            if (this.p == 0) {
-                this.vy += this.v
-            } else if (this.p == 1) {
-                this.vy -= this.v
-            }
-
-            this.velocity_y = this.aux_y + Math.cos(this.vy) * this.radio - this.y;
-            this.y += this.velocity_y;
+        if (this.p == 0) {
+            this.vx += this.v;
+        } else if (this.p == 1) {
+            this.vx -= this.v;
         }
-
+        this.velocity_x = this.aux_x + Math.sin(this.vx) * this.radio - this.x;
+        this.x += this.velocity_x;
     }
 }
 
