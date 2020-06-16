@@ -31,9 +31,9 @@ Game.TileSet = function(tile_size, columnas) {
         //sierras
         new frame(37, 82, 13, 13), new frame(50, 82, 13, 13),
         //blocks
-        new frame(64, 64, 32, 32),
-        //antorchas
-        new frame(3, 82, 8, 13), new frame(15, 82, 8, 13), new frame(17, 82, 8, 13)
+        new frame(64, 64, 32, 32), new frame(96, 64, 32, 32),
+        //platforms
+        new frame(196, 64, 32, 15)
     ];
 }
 Game.TileSet.prototype = { constructor: Game.TileSet };
@@ -53,23 +53,18 @@ Game.World = function(friccion = 0.15, gravedad = 2) {
 
     //variables de nivel
     this.id_nivel = "1";
-    this.gates = [];
-    this.gate = undefined;
-    this.coins = [];
-    this.sierras = [];
     this.score = 0;
 
-    //variables de movimiento
+    //variables del mapa
     this.friccion = friccion;
     this.gravedad = gravedad;
-
     this.columnas = 36;
     this.filas = 17;
 
     //instanciacion de objetos
     this.tile_set = new Game.TileSet(32, 11);
     this.collider = new Game.Collider();
-    this.personaje = new Game.Personaje(35, 448);
+    this.personaje = new Game.Personaje(35, 35);
 
     //""reescalado""" 
     this.height = this.tile_set.tile_size * this.filas;
@@ -88,6 +83,7 @@ Game.World.prototype = {
         this.coins = new Array();
         this.sierras = new Array();
         this.blocks = new Array();
+        this.platforms = new Array();
         this.score = nivel.coins.length + 1;
         this.id_nivel = nivel.id_nivel;
         this.personaje.setReaparicionX(nivel.reaparicion_x * this.tile_set.tile_size);
@@ -108,6 +104,12 @@ Game.World.prototype = {
             this.sierras[k] = new Game.Sierra(sierra[0] * this.tile_set.tile_size - 7, sierra[1] * this.tile_set.tile_size + padding + 1, sierra[2], sierra[3], sierra[4], sierra[5]);
         }
 
+        //seteamos las plataformas
+        for (var m = nivel.platforms.length - 1; m > -1; m--) {
+            var plataforma = nivel.platforms[m];
+            this.platforms[m] = new Game.Platform(plataforma[0] * this.tile_set.tile_size - 7, plataforma[1] * this.tile_set.tile_size + padding + 1, plataforma[2], plataforma[3], plataforma[4], plataforma[5]);
+        }
+
         //seteamos las puertas
         for (var i = 0; i < nivel.gates.length; i++) {
             var gate = nivel.gates[i];
@@ -115,9 +117,9 @@ Game.World.prototype = {
         }
 
         //seteamos los bloques
-        for (var j = nivel.blocks.length - 1; j > -1; j--) {
-            var block = nivel.blocks[j];
-            this.blocks[j] = new Game.Block(block[0] * this.tile_set.tile_size, block[1] * this.tile_set.tile_size + 1, block[2] * this.tile_set.tile_size);
+        for (var l = 0; l < nivel.blocks.length; l++) {
+            var block = nivel.blocks[l];
+            this.blocks[l] = new Game.Block(block[0] * this.tile_set.tile_size, block[1] * this.tile_set.tile_size, block[2] * this.tile_set.tile_size, block[1] * this.tile_set.tile_size + block[3] * this.tile_set.tile_size);
         }
         //si el jugador ha entrado en la puerta
         if (this.gate) {
@@ -133,36 +135,6 @@ Game.World.prototype = {
             //reseteamos la puerta para no entrar en bucle infinito
             this.gate = undefined;
         }
-    },
-
-    //funcion para hacer que no se salga de los limites del mapa
-    collision: function(o) {
-
-        var arriba, abajo, izq, dcha, value;
-
-        //valores de columna fila de la esquina superior izquierda 
-        arriba = Math.floor(o.getArriba() / this.tile_set.tile_size);
-        izq = Math.floor(o.getIzq() / this.tile_set.tile_size);
-        value = this.mapa[arriba * this.columnas + izq];
-        this.collider.collide(value, o, izq * this.tile_set.tile_size, arriba * this.tile_set.tile_size, this.tile_set.tile_size);
-
-        //esquina superior derecha
-        arriba = Math.floor(o.getArriba() / this.tile_set.tile_size);
-        dcha = Math.floor(o.getDcha() / this.tile_set.tile_size);
-        value = this.mapa[arriba * this.columnas + dcha];
-        this.collider.collide(value, o, dcha * this.tile_set.tile_size, arriba * this.tile_set.tile_size, this.tile_set.tile_size);
-
-        //esquina inferior izquierda
-        abajo = Math.floor(o.getAbajo() / this.tile_set.tile_size);
-        izq = Math.floor(o.getIzq() / this.tile_set.tile_size);
-        value = this.mapa[abajo * this.columnas + izq];
-        this.collider.collide(value, o, izq * this.tile_set.tile_size, abajo * this.tile_set.tile_size, this.tile_set.tile_size);
-
-        //esquina inferior derecha
-        abajo = Math.floor(o.getAbajo() / this.tile_set.tile_size);
-        dcha = Math.floor(o.getDcha() / this.tile_set.tile_size);
-        value = this.mapa[abajo * this.columnas + dcha];
-        this.collider.collide(value, o, dcha * this.tile_set.tile_size, abajo * this.tile_set.tile_size, this.tile_set.tile_size);
     },
 
     //funcion de actualizar el mundo
@@ -200,16 +172,65 @@ Game.World.prototype = {
                 this.personaje.perderVida();
             }
         }
-        for (let k = 0; k < this.blocks.length; k++) {
-            let block = this.blocks[k];
-            console.log(block.state);
+        for (let l = 0; l < this.blocks.length; l++) {
+            let block = this.blocks[l];
+
             block.updateBlock(this.personaje);
+
             block.animar();
+
             if (block.colisionObjeto(this.personaje)) {
                 this.personaje.perderVida();
             }
         }
+        for (let m = 0; m < this.platforms.length; m++) {
+            let platform = this.platforms[m];
+            platform.update();
+            platform.animar();
+
+            if (this.personaje.getDcha() > platform.getIzq() && this.personaje.getIzq() < platform.getDcha()) {
+                if (this.personaje.getAbajo() > platform.getArriba() && this.personaje.getAbajoAux() <= platform.getArriba()) {
+                    this.personaje.setAbajo(platform.getArriba());
+                    this.personaje.vy = 0;
+                    this.personaje.saltando = false;
+                    if (this.personaje.vx == 0) {
+                        this.personaje.x += platform.velocity_x - this.personaje.vx;
+                    }
+                }
+
+            }
+        }
+
+    },
+    collision: function(o) {
+
+        var arriba, abajo, izq, dcha, value;
+
+        //valores de columna fila de la esquina superior izquierda 
+        arriba = Math.floor(o.getArriba() / this.tile_set.tile_size);
+        izq = Math.floor(o.getIzq() / this.tile_set.tile_size);
+        value = this.mapa[arriba * this.columnas + izq];
+        this.collider.collide(value, o, izq * this.tile_set.tile_size, arriba * this.tile_set.tile_size, this.tile_set.tile_size);
+
+        //esquina superior derecha
+        arriba = Math.floor(o.getArriba() / this.tile_set.tile_size);
+        dcha = Math.floor(o.getDcha() / this.tile_set.tile_size);
+        value = this.mapa[arriba * this.columnas + dcha];
+        this.collider.collide(value, o, dcha * this.tile_set.tile_size, arriba * this.tile_set.tile_size, this.tile_set.tile_size);
+
+        //esquina inferior izquierda
+        abajo = Math.floor(o.getAbajo() / this.tile_set.tile_size);
+        izq = Math.floor(o.getIzq() / this.tile_set.tile_size);
+        value = this.mapa[abajo * this.columnas + izq];
+        this.collider.collide(value, o, izq * this.tile_set.tile_size, abajo * this.tile_set.tile_size, this.tile_set.tile_size);
+
+        //esquina inferior derecha
+        abajo = Math.floor(o.getAbajo() / this.tile_set.tile_size);
+        dcha = Math.floor(o.getDcha() / this.tile_set.tile_size);
+        value = this.mapa[abajo * this.columnas + dcha];
+        this.collider.collide(value, o, dcha * this.tile_set.tile_size, abajo * this.tile_set.tile_size, this.tile_set.tile_size);
     }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////// COLISIONES /////////////////////////////////////////////////////////////////////////////
@@ -218,6 +239,12 @@ Game.Collider = function() {
         //colisiones dependiendo del bloque que sea
         this.collide = function(value, obj, tile_x, tile_y, tile_size) {
             switch (value) {
+                case 3:
+                    this.colisionPinchosSup(obj, tile_y + tile_size / 2.5)
+                    break;
+                case 4:
+                    this.colisionPinchosInf(obj, tile_y + (tile_size / 2.5))
+                    break;
                 case 0:
                     if (this.colisionSuperior(obj, tile_y)) return;
                     if (this.colisionIzq(obj, tile_x)) return;
@@ -227,16 +254,14 @@ Game.Collider = function() {
                 case 2:
                     this.colisionSuperior(obj, tile_y);
                     break;
-                case 3:
-                    this.colisionPinchosSup(obj, tile_y + tile_size / 2.5)
-                    break;
-                case 4:
-                    this.colisionPinchosInf(obj, tile_y + (tile_size / 2.5))
-                    break;
                 case 20:
+                    if (this.colisionSuperior(obj, tile_y)) return;
+                    if (this.colisionInferior(obj, tile_y + tile_size)) return;
                     this.colisionDcha(obj, tile_x + tile_size);
                     break;
                 case 21:
+                    if (this.colisionSuperior(obj, tile_y)) return;
+                    if (this.colisionInferior(obj, tile_y + tile_size)) return;
                     this.colisionIzq(obj, tile_x);
                     break;
 
@@ -426,7 +451,7 @@ Game.Animator = function(frame_set, delay) {
     this.frame_set = frame_set;
     this.f_index = 0;
     this.f_value = frame_set[0];
-    this.moving = true;
+    this.loop = true;
 }
 
 Game.Animator.prototype = {
@@ -434,22 +459,20 @@ Game.Animator.prototype = {
 
     //
     animar: function() {
-        if (this.moving) {
+        if (this.loop) {
             this.animacion();
         }
     },
 
     //setear el nuevo array de frames
-    setFrame(frame_set, moving, delay = 10, f_index = 0) {
-
+    setFrame(frame_set, loop, delay = 10, f_index = 0) {
         if (this.frame_set === frame_set) { return; }
-
         this.count = 0;
         this.delay = delay;
         this.frame_set = frame_set;
         this.f_index = f_index;
         this.f_value = frame_set[f_index];
-        this.moving = moving;
+        this.loop = loop;
     },
 
     //funcion para recorrer el array de frames en bucle para los movimientos horizontales
@@ -481,7 +504,7 @@ Game.Personaje = function(x, y) {
     this.vy = 0;
     this.saltando = true;
     this.ladomira = 1;
-    this.vidas = 2;
+    this.vidas = 4;
 }
 
 //funciones personaje
@@ -659,32 +682,33 @@ Object.assign(Game.Sierra.prototype, Game.Animator.prototype);
 Game.Sierra.prototype.constructor = Game.Sierra;
 
 
-Game.Block = function(x, y, y_final) {
+Game.Block = function(x, y, y_inicial, y_final) {
     this.x = x;
     this.y = y;
-    this.y_inicial = y;
+    this.y_inicial = y_inicial;
     this.y_final = y_final;
     this.state = "quieto";
     this.vy = 0;
     this.width = 31.5;
     this.height = 31.5;
     Game.Object.call(this.x, this.y, this.width, this.height);
-    Game.Animator.call(this, Game.Block.prototype.frame_sets["bloque"]);
-
+    Game.Animator.call(this, Game.Block.prototype.frame_sets["bloque"], 2);
 }
 Game.Block.prototype = {
-    frame_sets: { "bloque": [20] },
+    frame_sets: { "bloque": [21], "cayendo": [20] },
     updateBlock: function(jugador) {
-        console.log(this.y_inicial, this.y);
         switch (this.state) {
+            //si esta quieto y el jugador colisiona con su zona inferior pasa a caer
             case "quieto":
-                if (jugador.getCentroX() < this.getDcha() && jugador.getCentroX() > this.getIzq()) {
+                if (jugador.getCentroX() < this.getDcha() && jugador.getCentroX() > this.getIzq() && this.y_final + 32 > jugador.getCentroY() && this.y_inicial + 32 < jugador.getCentroY()) {
                     this.state = "cae";
                 }
                 break;
 
+                //si esta cayendo y llega al final cambia a elevarse
             case "cae":
-                this.vy = 0.7;
+                this.setFrame(this.frame_sets["cayendo"], true, 2);
+                this.vy = 6;
                 this.y += this.vy;
                 if (this.y > this.y_final) {
                     this.y = this.y_final;
@@ -692,8 +716,11 @@ Game.Block.prototype = {
                     this.state = "elevarse";
                 }
                 break;
+
+                //si esta elevandose y llega al punto inicial pasa al estado quieto
             case "elevarse":
-                this.vy = 0.6;
+                this.setFrame(this.frame_sets["bloque"], true, 20);
+                this.vy = 0.9;
                 this.y -= this.vy;
                 if (this.getArriba() < this.y_inicial) {
                     this.y = this.y_inicial;
@@ -707,3 +734,56 @@ Game.Block.prototype = {
 
 Object.assign(Game.Block.prototype, Game.Object.prototype);
 Object.assign(Game.Block.prototype, Game.Animator.prototype);
+
+Game.Platform = function(x, y, orientacion, radio, p, v) {
+    this.x = x;
+    this.aux_x = x;
+    this.aux_y = y;
+    this.y = y;
+    this.v = v;
+    this.width = 32;
+    this.height = 32;
+    this.velocity_x = 0;
+    this_velocity_y = 0;
+    this.radio = radio;
+    this.orientacion = orientacion;
+    Game.Object.call(this.x, this.y, this.width, this.height);
+    Game.Animator.call(this, Game.Platform.prototype.frame_sets["Platforms"], 2);
+    this.vx = 0;
+    this.vy = 0;
+    this.p = p;
+}
+
+Game.Platform.prototype = {
+    frame_sets: {
+        "Platforms": [22]
+    },
+    update: function() {
+        //1 es horizontal 0 vertical
+        if (this.orientacion == 1) {
+            if (this.p == 0) {
+                this.vx += this.v
+            } else if (this.p == 1) {
+                this.vx -= this.v
+            }
+
+            this.velocity_x = this.aux_x + Math.cos(this.vx) * this.radio - this.x;
+            this.x += this.velocity_x;
+
+        } else if (this.orientacion == 0) {
+            if (this.p == 0) {
+                this.vy += this.v
+            } else if (this.p == 1) {
+                this.vy -= this.v
+            }
+
+            this.velocity_y = this.aux_y + Math.cos(this.vy) * this.radio - this.y;
+            this.y += this.velocity_y;
+        }
+
+    }
+}
+
+
+Object.assign(Game.Platform.prototype, Game.Object.prototype);
+Object.assign(Game.Platform.prototype, Game.Animator.prototype);

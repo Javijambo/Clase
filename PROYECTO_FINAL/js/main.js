@@ -39,6 +39,11 @@ function start() {
                 let f = game.world.tile_set.array_frames[block.f_value];
                 display.dibujaObjeto(loader.tile_set_image, f.x, f.y, block.x, block.y, f.width, f.height);
             }
+            for (let k = 0; k < game.world.platforms.length; k++) {
+                let platform = game.world.platforms[k];
+                let f = game.world.tile_set.array_frames[platform.f_value];
+                display.dibujaObjeto(loader.tile_set_image, f.x, f.y, platform.x, platform.y, f.width, f.height);
+            }
             display.render();
         }
         //update, setea el movimiento del personaje al que es dependiendo de que tecla hayamos pulsado
@@ -54,7 +59,7 @@ function start() {
             controller.saltar.active = false;
         }
         if (game.world.personaje.vidas < 0) {
-            loader.rqTileImage("tiles/prueba.png", (imagen) => {
+            loader.rqTileImage("tiles/gameover.png", (imagen) => {
                 display.gameOver(imagen);
                 engine.stop();
             })

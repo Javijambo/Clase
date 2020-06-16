@@ -30,10 +30,11 @@ const Display = function(canvas) {
     this.dibujaMapa = function(img, img_col, mapa, m_col, tile_size) {
             for (let i = mapa.length - 1; i > -1; --i) {
                 //recogemos el valor 
-                var value = mapa[i];
+                var tile = mapa[i];
                 //recogemos el tile
-                var origen_x = (value % img_col) * tile_size;
-                var origen_y = Math.floor(value / img_col) * tile_size;
+                var origen_x = (tile % img_col) * tile_size;
+                var origen_y = Math.floor(tile / img_col) * tile_size;
+                //posicion donde vamos a dibujar el tile
                 var destino_x = (i % m_col) * tile_size;
                 var destino_y = Math.floor(i / m_col) * tile_size;
                 //pintamos la tile en el buffer 
