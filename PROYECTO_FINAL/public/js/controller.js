@@ -12,7 +12,7 @@ const Controller = function() {
         } else {
             down = false;
         }
-
+        //comprobamos que tecla ha pulsado
         switch (cod) {
             case 37:
                 this.izq.getInput(down);

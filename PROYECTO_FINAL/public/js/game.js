@@ -93,31 +93,31 @@ Game.World.prototype = {
         var padding = this.tile_set.tile_size / 4;
 
 
-        //seteamos las monedas
+        //instanciamos las monedas
         for (var j = nivel.coins.length - 1; j > -1; j--) {
             var moneda = nivel.coins[j];
             this.coins[j] = new Game.Coin(moneda[0] * this.tile_set.tile_size + padding, moneda[1] * this.tile_set.tile_size + padding + 4);
         }
 
-        //seteamos las spike
+        //instanciamos las spike
         for (var k = nivel.spikes.length - 1; k > -1; k--) {
             var spike = nivel.spikes[k];
             this.spikes[k] = new Game.Spike(spike[0] * this.tile_set.tile_size - 7, spike[1] * this.tile_set.tile_size + padding + 1, spike[2], spike[3], spike[4], spike[5]);
         }
 
-        //seteamos las plataformas
+        //instanciamos las plataformas
         for (var m = nivel.platforms.length - 1; m > -1; m--) {
             var plataforma = nivel.platforms[m];
             this.platforms[m] = new Game.Platform(plataforma[0] * this.tile_set.tile_size - 7, plataforma[1] * this.tile_set.tile_size + padding + 1, plataforma[2], plataforma[3], plataforma[4]);
         }
 
-        //seteamos las puertas
+        //instanciamos las puertas
         for (var i = 0; i < nivel.gates.length; i++) {
             var gate = nivel.gates[i];
             this.gates[i] = new Game.Gate(gate);
         }
 
-        //seteamos los bloques
+        //instanciamos los bloques
         for (var l = 0; l < nivel.blocks.length; l++) {
             var block = nivel.blocks[l];
             this.blocks[l] = new Game.Block(block[0] * this.tile_set.tile_size, block[1] * this.tile_set.tile_size, block[2] * this.tile_set.tile_size, block[1] * this.tile_set.tile_size + block[3] * this.tile_set.tile_size);
@@ -138,7 +138,7 @@ Game.World.prototype = {
         }
     },
 
-    //funcion de actualizar el mundo
+    //metodo de actualizar el mundo
     update: function() {
 
         //actualizar por friccion y gravedad
@@ -156,16 +156,16 @@ Game.World.prototype = {
                 this.gate = gate2;
             }
         }
-        for (let j = 0; j < this.coins.length; j++) { //update monedas
+        for (let j = 0; j < this.coins.length; j++) { //update y animacion monedas
             let coin = this.coins[j];
             coin.mover();
             coin.animar();
-            if (coin.colisionObjeto(this.personaje)) {
+            if (coin.colisionObjeto(this.personaje)) { //comprobamos la colision con el personaje
                 this.coins.splice(this.coins.indexOf(coin), 1);
                 this.score--;
             }
         }
-        for (let k = 0; k < this.spikes.length; k++) { //update spike
+        for (let k = 0; k < this.spikes.length; k++) { //update y animacion spike
             let spike = this.spikes[k];
             spike.update();
             spike.animar();
@@ -173,7 +173,7 @@ Game.World.prototype = {
                 this.personaje.perderVida();
             }
         }
-        for (let l = 0; l < this.blocks.length; l++) { //update blocks
+        for (let l = 0; l < this.blocks.length; l++) { //update y animacion blocks
             let block = this.blocks[l];
 
             block.updateBlock(this.personaje);
@@ -184,18 +184,18 @@ Game.World.prototype = {
                 this.personaje.perderVida();
             }
         }
-        for (let m = 0; m < this.platforms.length; m++) { //update platforms
+        for (let m = 0; m < this.platforms.length; m++) { //update y animacion platforms
             let platform = this.platforms[m];
             platform.update();
             platform.animar();
 
-            if (this.personaje.getDcha() > platform.getIzq() && this.personaje.getIzq() < platform.getDcha()) {
+            if (this.personaje.getDcha() > platform.getIzq() && this.personaje.getIzq() < platform.getDcha()) { //comprobamos la colision del personaje con la parte superior
                 if (this.personaje.getAbajo() > platform.getArriba() && this.personaje.getAbajoAux() <= platform.getArriba()) {
                     this.personaje.setAbajo(platform.getArriba());
                     this.personaje.vy = 0;
                     this.personaje.saltando = false;
                     if (this.personaje.vx == 0) {
-                        this.personaje.x += platform.velocity_x - this.personaje.vx;
+                        this.personaje.x += platform.velocity_x - this.personaje.vx; //seteamos el movimiento del personaje para que iguale al de la plataforma
                     }
                 }
             }
@@ -331,7 +331,7 @@ Game.Collider.prototype = {
 
 
 
-///////////////////////////////////////////////////////////////////////////// CONSTRUCTOR OBJETO /////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////// CONSTRUCTOR GAME OBJECTS /////////////////////////////////////////////////////////////////////////////
 Game.Object = function(x, y, width, height) {
     this.height = height;
     this.width = width;
@@ -343,14 +343,14 @@ Game.Object = function(x, y, width, height) {
 
 Game.Object.prototype = {
     constructor: Game.Object,
-    colisionObjeto: function(o) {
+    colisionObjeto: function(o) { //metodo de colision de un objeto con los laterales del que pasemos
         if (this.getDcha() < o.getIzq() ||
             this.getAbajo() < o.getArriba() ||
             this.getIzq() > o.getDcha() ||
             this.getArriba() > o.getAbajo()) return false;
         return true;
     },
-    //funcion que devuelve un booleano para saber si el centro del objeto que pasamos colisiona con el borde de la puerta
+    //metodo que devuelve un booleano para saber si el centro del objeto que pasamos colisiona con el borde de la puerta
     colisionCentral: function(o) {
         var x_central = o.getCentroX();
         var y_central = o.getCentroY();
@@ -365,7 +365,7 @@ Game.Object.prototype = {
             return true;
         }
     },
-    //gets
+    //-------------gets------------------
     getArriba: function() {
         return this.y;
     },
@@ -402,7 +402,8 @@ Game.Object.prototype = {
     getCentroYAux: function() {
         return this.aux_y + this.height / 2;
     },
-    //sets
+
+    //------------sets--------------------
     setArriba: function(i) {
         this.y = i;
     },
@@ -457,7 +458,7 @@ Game.Animator = function(frame_set, delay) {
 Game.Animator.prototype = {
     constructor: Game.Animator,
 
-    //
+    //seteamos si queremos que la animacion se reproduzca en bucle o no
     animar: function() {
         if (this.loop) {
             this.animacion();
@@ -475,7 +476,7 @@ Game.Animator.prototype = {
         this.loop = loop;
     },
 
-    //funcion para recorrer el array de frames en bucle para los movimientos horizontales
+    //metodo para recorrer el array de frames en bucle para los movimientos horizontales
     animacion: function() {
         this.count++;
         while (this.count > this.delay) {
@@ -507,7 +508,7 @@ Game.Personaje = function(x, y) {
     this.vidas = 4;
 }
 
-//funciones personaje
+//metodos personaje
 Game.Personaje.prototype = {
     constructor: Game.Personaje,
 
@@ -528,7 +529,7 @@ Game.Personaje.prototype = {
     setReaparicionY(i) {
         this.reaparicion_y = i;
     },
-    //funcion saltar
+    //metodos saltar
     saltar: function() {
         if (!this.saltando) {
             this.saltando = true;
@@ -547,7 +548,7 @@ Game.Personaje.prototype = {
         this.vx += 50;
         this.ladomira = 1;
     },
-    //funcion de perder vida
+    //metodos de perder vida
     perderVida: function() {
         this.x = this.reaparicion_x;
         this.y = this.reaparicion_y;
@@ -564,7 +565,7 @@ Game.Personaje.prototype = {
         this.y += this.vy;
     },
 
-    //funcion de animar al personaje
+    //metodos con animaciones del personaje
     animarPersonaje: function() {
         //dependiendo del lado que mire se le asignan una animacion u otra así como dependiendo de si está saltando o no
         if (this.vy < 0) {
@@ -624,7 +625,7 @@ Game.Coin.prototype = {
     frame_sets: {
         "monedas": [14, 15, 16, 17]
     },
-    mover: function() {
+    mover: function() { //metodo para que las monedas se muevan en vertical hacia arriba y abajo como flotando
         this.vectory -= 0.1;
         this.y += Math.sin(this.vectory) * 0.4;
     }
@@ -635,7 +636,7 @@ Object.assign(Game.Coin.prototype, Game.Animator.prototype);
 Game.Coin.prototype.constructor = Game.Coin;
 
 
-//////////////////////////////////////////////////////////spike////////////////////////////////////////////////////
+////////////////////////////////////////////////////////// OBJETO SPIKE (SIERRAS) ////////////////////////////////////////////////////
 Game.Spike = function(x, y, orientacion, radio, p, v) {
     this.x = x;
     this.aux_x = x;
@@ -656,11 +657,11 @@ Game.Spike.prototype = {
     frame_sets: {
         "spike": [18, 19]
     },
-    update: function() {
+    update: function() { //metodo movimiento de las sierras
         //1 es horizontal 0 vertical
         if (this.orientacion == 1) {
             if (this.p == 0) {
-                this.vx += this.v
+                this.vx += this.v //p -> 0 para movimiento hacia abajo 1 para movimiento hacia arriba
             } else if (this.p == 1) {
                 this.vx -= this.v
             }
@@ -681,7 +682,7 @@ Object.assign(Game.Spike.prototype, Game.Animator.prototype);
 
 Game.Spike.prototype.constructor = Game.Spike;
 
-
+//////////////////////////////////////////////////////////OBJETO BLOQUE (SIERRAS) ////////////////////////////////////////////////////
 Game.Block = function(x, y, y_inicial, y_final) {
     this.x = x;
     this.y = y;
@@ -696,6 +697,7 @@ Game.Block = function(x, y, y_inicial, y_final) {
 }
 Game.Block.prototype = {
     frame_sets: { "bloque": [21], "cayendo": [20] },
+    //metodo para el movmiento del bloque
     updateBlock: function(jugador) {
         switch (this.state) {
             //si esta quieto y el jugador colisiona con su zona inferior pasa a caer
@@ -735,6 +737,8 @@ Game.Block.prototype = {
 Object.assign(Game.Block.prototype, Game.Object.prototype);
 Object.assign(Game.Block.prototype, Game.Animator.prototype);
 
+
+//////////////////////////////////////////////////////////PLATAFORMAS (SIERRAS) ////////////////////////////////////////////////////
 Game.Platform = function(x, y, radio, p, v) {
     this.x = x;
     this.aux_x = x;
@@ -757,6 +761,7 @@ Game.Platform.prototype = {
     frame_sets: {
         "Platforms": [22]
     },
+    //METODO PARA EL MOVIMIENTO DE LAS PLATAFORMAS
     update: function() {
         //1 es horizontal 0 vertical
         if (this.p == 0) {

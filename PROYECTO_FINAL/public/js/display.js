@@ -15,7 +15,7 @@ const Display = function(canvas) {
     this.row2 = document.createElement("article");
     this.row2.className = "row";
     this.row.setAttribute("style", "overflow: hidden;");
-
+    //carteles
     this.cartelvidas = document.createElement("button");
     this.cartelvidas.className = "btn col text-white col";
     this.monedasrestantes = document.createElement("button");
@@ -52,20 +52,20 @@ const Display = function(canvas) {
     }
 
     this.resize = function(width, height, ratio) {
-        //para que se reescale correctamente tenemos que comprobar que el ratio de altura : anchura sea el mismo
-        if (height / width > ratio) {
-            this.context.canvas.height = width * ratio;
-            this.context.canvas.width = width;
+            //para que se reescale correctamente tenemos que comprobar que el ratio de altura : anchura sea el mismo
+            if (height / width > ratio) {
+                this.context.canvas.height = width * ratio;
+                this.context.canvas.width = width;
 
-        } else {
-            this.context.canvas.height = height;
-            this.context.canvas.width = height / ratio;
+            } else {
+                this.context.canvas.height = height;
+                this.context.canvas.width = height / ratio;
+            }
+            //para que se vean bien en pixel art y no aparezca borroso tras escalado los pixeles
+            this.context.imageSmoothingEnabled = false;
+
         }
-        //para que se vean bien en pixel art y no aparezca borroso tras escalado los pixeles
-        this.context.imageSmoothingEnabled = false;
-
-    }
-
+        //funcion que dibuja la pantalla de gameover
     this.gameOver = function(img) {
         this.context.drawImage(img, 0, 0, this.buffer.canvas.width, this.buffer.canvas.height, 0, 0, this.context.canvas.width, this.context.canvas.height);
     }

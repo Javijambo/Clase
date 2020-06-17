@@ -59,7 +59,7 @@ function start() {
             controller.saltar.active = false;
         }
         if (game.world.personaje.vidas < 0) {
-            loader.rqTileImage("tiles/gameover.png", (imagen) => {
+            loader.rqTileImage("img/gameover.png", (imagen) => {
                 display.gameOver(imagen);
                 engine.stop();
             })
@@ -70,8 +70,9 @@ function start() {
             display.cartelvidas.innerHTML = "Vidas restantes: " + "&#10084;".repeat(game.world.personaje.vidas + 1);
         }
         if (game.world.score >= -1) {
-            display.monedasrestantes.innerHTML = "Monedas restantes: " + "<img src='tiles/coin.png' width='18px' height='18px'> ".repeat(game.world.score);
+            display.monedasrestantes.innerHTML = "Monedas restantes: " + "<img src='img/coin.png' width='18px' height='18px'> ".repeat(game.world.score);
         }
+        //ejecutamos todos los updates del script game.js (game.world.update el cual ejecuta el update de cada objeto)
         game.update();
         //si el personaje colisiona con una puerta inizializa la variable gate la cual indica que nivel cargar
         if (game.world.gate) {
@@ -90,22 +91,23 @@ function start() {
 
     }
 
-    //inicializar
+    //inicializar los objetos
     var loader = new Loader();
     var controller = new Controller();
     var game = new Game();
     var display = new Display(document.querySelector("canvas"));
     var engine = new Engine(1000 / 30, render, update);
 
-    //cargar    
+    //reescalado "manual"    
     display.buffer.canvas.height = game.world.height;
     display.buffer.canvas.width = game.world.width;
     display.buffer.imageSmoothingEnabled = false;
 
+    //recuperamos el nivel
     loader.rqJSON("json/nivel" + game.world.id_nivel + ".json", (nivel) => {
         game.world.cargarNivel(nivel);
-
-        loader.rqTileImage("tiles/tiles.png", (imagen) => {
+        //recogemos el tileset
+        loader.rqTileImage("img/tiles.png", (imagen) => {
             loader.tile_set_image = imagen;
             resize();
             engine.start();
