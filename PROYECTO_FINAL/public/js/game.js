@@ -239,10 +239,10 @@ Game.Collider = function() {
         this.collide = function(value, obj, tile_x, tile_y, tile_size) {
             switch (value) {
                 case 3:
-                    this.colisionPinchosSup(obj, tile_y + tile_size / 2.5)
+                    this.colisionPinchosInf(obj, tile_y + (tile_size / 1.2))
                     break;
                 case 4:
-                    this.colisionPinchosInf(obj, tile_y + (tile_size / 2.5))
+                    this.colisionPinchosSup(obj, tile_y + (tile_size / 3))
                     break;
                 case 0:
                     if (this.colisionSuperior(obj, tile_y)) return;
@@ -314,18 +314,18 @@ Game.Collider.prototype = {
 
     //Pinchos superiores
     colisionPinchosSup: function(o, tile_inf) {
-        if (o.getArriba() > tile_inf && o.getArribaAux() <= tile_inf) {
+        if (o.getArriba() <= tile_inf) {
             o.perderVida();
         }
         return false;
     },
     //Pinchos inferiores
-    colisionPinchosInf: function(o, tile_sup) {
-        if (o.getAbajo() >= tile_sup) {
+    colisionPinchosInf: function(o, tile_inf) {
+        if (o.getAbajo() >= tile_inf) {
             o.vx = 0;
             o.perderVida();
-        } else if (o.getAbajo() >= tile_sup)
-            return false;
+        }
+        return false;
     }
 }
 
